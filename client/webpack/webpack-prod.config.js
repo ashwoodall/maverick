@@ -1,19 +1,24 @@
 import webpack from 'webpack'
-import { cloneDeep } from 'lodash'
+import merge from 'webpack-merge'
 
 import config from '../config'
 import webpackConfig from './webpack.config'
 
-webpackConfig.devtool = 'source-map'
-webpackConfig.plugins = webpackConfig.plugins.concat([
-	new webpack.optimize.OccurrenceOrderPlugin(),
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }),
-  new webpack.optimize.AggressiveMergingPlugin(),
-])
+const prodConfig = {
+	entry  : {
+		app: [`${config.paths.app}/index.js`]
+	},
+	devtool: 'source-map',
+	plugins: [
+		new webpack.optimize.OccurrenceOrderPlugin(),
+		new webpack.optimize.AggressiveMergingPlugin(),
+	  new webpack.optimize.DedupePlugin(),
+	  new webpack.optimize.UglifyJsPlugin({
+	    compress: {
+	      warnings: false
+	    }
+	  })
+	]
+}
 
-export default webpackConfig
+export default merge.smart({}, webpackConfig, prodConfig)
