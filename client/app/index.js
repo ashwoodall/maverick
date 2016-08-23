@@ -7,7 +7,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Routes
-import routes from './core/routes'
+import routes from 'core/routes'
 
 // Store
 import configureStore from './core/configureStore'
@@ -23,7 +23,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 render(
   <Provider store={ store }>
-    <Router history={ history } children={ routes(store) } />
+    <Router history={ history } routes={ routes } />
   </Provider>,
   document.getElementById('root')
 )
