@@ -1,0 +1,44 @@
+// Typography
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+.oh-display-4 {
+  font-size: $display-4-font-size-base;
+  font-weight: 300;
+  letter-spacing: -0.010em;
+  line-height: $display-4-font-size-base;
+}
+
+.oh-display-3, h1 {
+  @include oh-display-3;
+}
+
+.oh-display-2, h2 {
+  @include oh-display-2;
+}
+
+.oh-display-1, h3 {
+  @include oh-display-3;
+}
+
+.oh-headline, h4 {
+   @include oh-headline;
+}
+
+.oh-title, h5 {
+  @include oh-title;
+}
+
+.oh-subhead, h6 {
+  @include oh-subhead;
+}
+
+.oh-body-1, p {
+	@include oh-body-1;
+}
+
+.oh-body-2 {
+	@include oh-body-2;
+}

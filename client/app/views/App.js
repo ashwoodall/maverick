@@ -1,9 +1,18 @@
 // Core
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+// Thirdparty
+import { Layout, Panel } from 'react-toolbox'
 
 // Styles
-import 'react-flex/index.scss'
-import './App.scss'
+import 'core/theme/commons.scss'
+
+// Modules
+import * as Actions from 'views/Actions'
+import Header from 'modules/Header/HeaderContainer'
+import Footer from 'modules/Footer/FooterContainer'
 
 class App extends Component {
   constructor(props) {
@@ -14,9 +23,15 @@ class App extends Component {
     const { children } = this.props
 
     return (
-      <main>
-        { children }
-      </main>
+      <Layout>
+        <Panel>
+          <Header { ...this.props }/>
+          <main>
+            { React.cloneElement(children, { ...this.props }) }
+            <Footer { ...this.props } />
+          </main>
+        </Panel>
+      </Layout>
     )
   }
 }
@@ -25,4 +40,8 @@ App.propTypes = {
   children: PropTypes.element.isRequired
 }
 
-export default App
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(App)

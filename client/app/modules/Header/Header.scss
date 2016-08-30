@@ -1,0 +1,29 @@
+.oh__appBar {
+	background-color: $text-color-light-secondary;
+	border-bottom: 1px solid $color-border;
+	box-sizing: border-box;
+	display: none;
+	height: 64px;
+	position: relative;
+	flex: 0 0 auto;
+}
+
+.oh__active {
+	display: block;
+}
+
+.oh__appBar__toolbar {
+	margin-right: auto;
+  margin-left: auto;
+	max-width: $layout-lg;
+	padding: $baseline-grid $layout-gutter-width;
+}
+
+.oh__appBar__logo {
+	height: 48px;
+}
+
+.oh__appBar__flex {
+	box-sizing: border-box;
+	flex: 1;
+}

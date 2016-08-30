@@ -1,10 +1,11 @@
 // Core
 import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import { routerReducer as router } from 'react-router-redux'
+import configureReducer from './configureReducer'
 
-// Lets combine the reducers
-const reducers = {
-  routing: routerReducer
-}
+const rootReducer = combineReducers({
+  routing: router,
+  app: configureReducer
+})
 
-export default combineReducers(reducers);
+export default rootReducer

@@ -1,0 +1,38 @@
+@import "~normalize.css";
+@import 'mixins';
+@import 'typography';
+
+html, body {
+  height: 100%;
+  position: relative;
+  min-height: 100%;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.4;
+}
+
+body {
+	color: $text-color-dark-primary;
+  background-color: $color-background;
+	font-family: $font-family;
+	font-size: 1.6rem;
+	margin: 0;
+	padding: 0;
+	-webkit-touch-callout: none;
+}
+
+a {
+	color: #22b473;
+	text-decoration: none;
+}
+
+main {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	height: 100%;
+  overflow-y: auto;
+  position: relative;
+}

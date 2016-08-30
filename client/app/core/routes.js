@@ -1,13 +1,21 @@
 // Core
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route } from 'react-router'
 
 // Views
 import App from 'views/App'
-import Maintenance from 'modules/Maintenance/MaintenanceComponent'
+import Home from 'views/Home/Home'
+import Login from 'views/Login/LoginContainer'
+import Signup from 'views/Signup/SignupContainer'
 
-export default (
-	<Route path="/" component={ App }>
-		<IndexRoute component={ Maintenance }/>
-	</Route>
-)
+export const routes = () => ({
+	path: '/',
+	component: App,
+	indexRoute: { component: Home },
+	childRoutes: [
+		{ path: 'login', component: Login },
+		{ path: 'signup', component: Signup }
+	]
+})
+
+export default routes

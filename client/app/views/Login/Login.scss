@@ -1,0 +1,35 @@
+.oh__login {
+	background-color: #fafafa;
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 76px;
+
+	.oh__login__card {
+		padding: 32px;
+		max-width: 400px;
+		height: 100%;
+	}
+
+	.oh__forgot__password {
+		margin-bottom: 16px;
+		text-align: center;
+	}
+
+	.oh__login__logo {
+		height: 64px;
+		margin-bottom: 16px;
+	}
+
+	.oh__login__button {
+		margin: 0 auto;
+		width: 200px;
+	}
+
+	.oh__login__select {
+		> ul {
+			padding: 0;
+		}
+	}
+}

@@ -1,5 +1,5 @@
+import autoprefixer from 'autoprefixer'
 import webpack from 'webpack'
-import CleanWebpackPlugin from 'clean-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 import config from '../config'
@@ -30,7 +30,11 @@ export default {
       'node_modules',
       `${ config.paths.app }`
     ],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.scss']
+  },
+  postcss: [autoprefixer],
+  sassLoader: {
+    data: `@import "${config.paths.app}/core/theme/_config.scss";`
   },
   plugins: [
     new webpack.DefinePlugin(config.globals),
@@ -40,12 +44,7 @@ export default {
       hash: false,
       filename: 'index.html',
       inject: true
-    }),
-    new CleanWebpackPlugin(['dist'], {
-      root: config.paths.app,
-      verbose: true,
-      dry: false
-    }),
+    })
   ],
   module: {
     loaders: [
@@ -60,12 +59,16 @@ export default {
         }
       },
       {
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        test    : /(\.scss|\.css)$/,
+        loader: 'style!css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'
       },
       {
         test: /\.(png|jpg|gif)$/,
         loader: "file-loader?name=img/img-[hash:6].[ext]"
+      },
+      {
+        test: /\.svg$/,
+        loader: 'babel!svg-react'
       }
     ]
   }
