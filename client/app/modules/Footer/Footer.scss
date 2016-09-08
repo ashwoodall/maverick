@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 	color: $text-color-light-secondary;
 	display: none;
-	min-height: 80px;
+	flex: 0 0 auto;
 	position: relative;
 	padding: 16px;
 }

@@ -22,7 +22,7 @@ class Home extends Component {
 
     return (
     	<Container id="home" className={ theme.oh__home }>
-    		<Flexbox layout={ true } column={ true } align="center" justify="center">
+    		<Flexbox layout="column" align="center center">
     			<Logo className={ theme.oh__home__logo } aria-label="Oh-hi. Meet new friends" />
     			<h5 className={ theme.oh__home__h4 }>Please excuse the mess as we work hard to bring to you the new Oh-hi.</h5>
     			<h3 className={ theme.oh__home__h4 }>Coming soon!</h3>
@@ -30,7 +30,7 @@ class Home extends Component {
 
     		<img className={ theme.oh__home__steps } src={ Steps } aria-label="Steps" />
 
-    		<Flexbox layout row>
+    		<Flexbox layout="row" layout-sm="column" layout-xs="column">
   				<Flexbox flex>
   					<h4>Why Oh-hi Exists</h4>
   					<p>We all need friends. We need people we can depend on, confide in, and just hang out with. And for the significant others of military service members (MilSOs, for short), it can be especially tough to find friends but essential to have them. That’s what Oh-hi is all about!</p>

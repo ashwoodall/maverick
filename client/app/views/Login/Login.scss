@@ -1,15 +1,20 @@
 .oh__login {
-	background-color: #fafafa;
 	display: flex;
 	flex: 1 1 auto;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 76px;
+	background-color: #fafafa;
+	min-height: 100%;
+
+	.oh__login__container {
+		align-items: center;
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		margin-top: 32px;
+	}
 
 	.oh__login__card {
 		padding: 32px;
-		max-width: 400px;
-		height: 100%;
+		max-width: 350px;
 	}
 
 	.oh__forgot__password {
@@ -24,12 +29,23 @@
 
 	.oh__login__button {
 		margin: 0 auto;
-		width: 200px;
+		width: 170px;
 	}
 
 	.oh__login__select {
 		> ul {
 			padding: 0;
 		}
+	}
+}
+
+@media (max-width: 599px) {
+	.oh__login {
+		background-color: #ffffff;
+		justify-content: flex-start;
+	}
+
+	.oh__login__card {
+		box-shadow: none;
 	}
 }

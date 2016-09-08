@@ -13,14 +13,16 @@ import theme from 'views/Login/Login.scss'
 
 const Login = (props) => (
 	<div className={ theme.oh__login }>
-		<Card className={ theme.oh__login__card }>
+		<div className={ theme.oh__login__container }>
 			<HeaderLogo className={ theme.oh__login__logo } />
-			<Input type='email' label='Email' name='email' />
-			<Input type='password' label='Password' name='password' />
-			<a className={ theme.oh__forgot__password } href="#">Forgot Password?</a>
-			<Button className={ theme.oh__login__button } label='Login' raised primary />
-		</Card>
-		<p>Need an account? <a href="/signup">Sign Up</a></p>
+			<Card className={ theme.oh__login__card }>
+				<Input type='email' label='Email' name='email' />
+				<Input type='password' label='Password' name='password' />
+				<a className={ theme.oh__forgot__password } href="#">Forgot Password?</a>
+				<Button className={ theme.oh__login__button } label='Login' raised primary />
+			</Card>
+			<p>Need an account? <a href="/signup">Sign Up</a></p>
+		</div>
 	</div>
 )
 

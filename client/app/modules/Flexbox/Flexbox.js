@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import React, { Component, PropTypes } from 'react'
-import { forEach } from 'lodash'
+import { forEach, isArray } from 'lodash'
 
 import theme from 'modules/Flexbox/Flexbox.scss'
 
@@ -8,15 +8,18 @@ const configureClasses = (props) => {
 	const classes = {}
 
 	forEach(props, (value, key) => {
-		let className
+		if (key === 'children') return
 
+		let className
 
 		if (typeof value === 'boolean') {
 			className = theme[key]
 
 			classes[className] = true
 		} else if (typeof value === 'string' || typeof value === 'number') {
-			let className = theme[key + '__' + value]
+			className = typeof value === 'string' && value.indexOf(' ') >= 0 ?
+				theme[key + '__' + value.replace(/ /g, "__")] :
+				theme[key + '__' + value]
 
 			classes[className] = true
 		}
@@ -38,10 +41,12 @@ class Flexbox extends Component {
  
 Flexbox.propTypes = {
 	align: PropTypes.string,
-	column: PropTypes.bool,
-	layout: PropTypes.bool,
-	justify: PropTypes.string,
-	row: PropTypes.bool
+	layout: PropTypes.string,
+	'layout-xs': PropTypes.string,
+	'layout-sm': PropTypes.string,
+	'layout-md': PropTypes.string,
+	'layout-lg': PropTypes.string,
+	'layout-xl': PropTypes.string
 }
 
 export default Flexbox

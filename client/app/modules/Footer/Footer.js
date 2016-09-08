@@ -24,7 +24,7 @@ class Footer extends Component {
 
 		return (
 			<footer className={ classes } aria-label="Oh hi footer">
-				<Flexbox layout={ true } row={ true } align="center" justify="center">
+				<Flexbox layout="row" align="center center">
 					<p>If you have a suggestion to improve Oh-hi or would like to share a story about making new friends, we'd love to hear from you. Send us an email! <a href="mailto:hi@oh-hi.us">hi@oh-hi.us</a></p>
 				</Flexbox>	
 			</footer>
