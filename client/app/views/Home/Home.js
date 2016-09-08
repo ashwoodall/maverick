@@ -25,10 +25,12 @@ class Home extends Component {
     		<Flexbox layout="column" align="center center">
     			<Logo className={ theme.oh__home__logo } aria-label="Oh-hi. Meet new friends" />
     			<h5 className={ theme.oh__home__h4 }>Please excuse the mess as we work hard to bring to you the new Oh-hi.</h5>
-    			<h3 className={ theme.oh__home__h4 }>Coming soon!</h3>
+    			<h4 className={ theme.oh__home__h4 }>Coming soon!</h4>
     		</Flexbox>
 
-    		<img className={ theme.oh__home__steps } src={ Steps } aria-label="Steps" />
+        <Flexbox layout="row" align="center center">
+    		  <img className={ theme.oh__home__steps } src={ Steps } aria-label="Steps" />
+        </Flexbox>
 
     		<Flexbox layout="row" layout-sm="column" layout-xs="column">
   				<Flexbox flex>
