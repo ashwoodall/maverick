@@ -1,3 +1,4 @@
-/client/node_modules/
-/client/dist/
+node_modules/
+dist/
 npm-debug.log
+config/horizon/
