@@ -11,6 +11,7 @@ import chalk from 'chalk'
 import config from '../config'
 import db from '../src/server/core/configureDb'
 import api from '../src/server/core/configureApi'
+import passportConfig from '../src/server/core/configurePassport'
 
 // Servers
 import devServer from './dev.server'
@@ -33,15 +34,24 @@ console.log(chalk.yellow('[express] Initializing database...'))
 
 db(config)
 
-// Setup up
-console.log(chalk.yellow('[express] Initializing api...'))
-
-api(app, passport, config)
-
 // Checking environment
 if (config.env === 'development')
 	console.log(chalk.yellow('[webpack] Initializing development middlewares...'))
+
 	devServer(app, config)
+
+// Setup passport
+console.log(chalk.yellow('[passport] Initializing passport...'))
+
+app.use(passport.initialize())
+app.use(passport.session())
+passportConfig(passport)
+
+
+// Setup api
+console.log(chalk.yellow('[express] Initializing api...'))
+
+api(app, passport, config)
 
 server.listen(config.port, (error) => {
   if (error)

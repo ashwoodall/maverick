@@ -4,6 +4,9 @@ import React, { Component, PropTypes} from 'react'
 // Modules
 import Login from 'views/Login/Login'
 
+// Api 
+import LoginApi from 'views/Login/LoginApi'
+
 class LoginContainer extends Component {
 
 	componentWillMount() {
@@ -11,8 +14,14 @@ class LoginContainer extends Component {
 		this.props.setFooter(false)
 	}
 
+	handleLogin = (user) => {
+		const { callAPI } = this.props
+
+		callAPI(LoginApi(user))
+	}
+
 	render() {
-		return ( <Login /> )
+		return ( <Login login={ this.handleLogin } /> )
 	}
 }
 

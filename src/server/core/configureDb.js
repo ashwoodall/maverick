@@ -27,10 +27,10 @@ const indexes = (config) => {
 const tableIndex = (config, name) => {
 	r.connect(config.rethink, (err, conn) => {
     r.table(name.table)
-    .indexCreate(name.index)
-    .run(conn, (err, res) => {
-      conn.close()
-    })
+	    .indexCreate(name.index)
+	    .run(conn, (err, res) => {
+	      conn.close()
+	    })
   })
 }
 

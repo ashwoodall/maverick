@@ -4,11 +4,7 @@ const model = (data) => {
 		email: data.email,
 		password: data.password
 	}
-
-	for (let field in data) {
-		user[field] = data[field]
-	}
-
+	
 	return user
 }
 

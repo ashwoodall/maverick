@@ -1,9 +1,10 @@
 // Core
 import React, { Component, PropTypes } from 'react'
 
+import Flexbox from 'react-material-flexbox'
+
 // Modules
 import Container from 'modules/Container/Container'
-import Flexbox from 'modules/Flexbox/Flexbox'
 import Svg from 'modules/Svg/Svg'
 
 // Assets
@@ -42,7 +43,7 @@ class Home extends Component {
   					<h5>Oh-hi is a community of MilSOs, meeting in-person to find new friends at their duty stations.</h5>
   					<p>Although connections can be made digitally, we know that real, trustworthy relationships are built by spending time together in-person. That is why Oh-hi aims to quickly get people away from their screens and instead, get them out and about, having fun and sharing experiences.</p>
   				</Flexbox>
-  				<Flexbox flex={ 10 } />
+  				<Flexbox flex="10" />
   				<Flexbox flex>
   					<h4>What to Expect</h4>
   					<p>Oh-hi is free to use. Once you sign up, you can view potential new friends across your entire duty station. You’ll be joining a community of MilSOs that are ready and willing to meet up. Once you find someone you’d like to meet, we’ll send them an invite! If they accept, we’ll put you in touch and the two of you can decide when and where to meet up. New to the area and don’t know where to go? We’ll give you some suggestions to get you started! And it’s as easy as texting.</p>

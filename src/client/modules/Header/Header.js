@@ -4,9 +4,9 @@ import React, { Component, PropTypes } from 'react'
 
 // Thirdparty
 import { Navigation, Link } from 'react-toolbox'
+import Flexbox from 'react-material-flexbox'
 
 // Modules
-import Flexbox from 'modules/Flexbox/Flexbox'
 import Toolbar from 'modules/Toolbar'
 import Svg from 'modules/Svg/Svg'
 
@@ -30,7 +30,7 @@ class Header extends Component {
 			<header className={ classes } aria-label="Navigation Toolbar">
 				<Toolbar className={ theme.oh__appBar__toolbar }>
 					<Svg className={ theme.oh__appBar__logo } source={ HeaderLogo } />
-					<Flexbox flex={ true } />
+					<Flexbox flex />
 				</Toolbar>
 			</header>
 		)

@@ -3,12 +3,12 @@ import bcrypt from 'bcrypt'
 
 import config from '../../../config'
 
-import userModel from './userModel'
+import model from './model'
 
 const register = (req, res, next) => {
 	const { email, password } = req.body
 
-	let user = userModel({
+	let user = model({
 		email: email,
 		password: bcrypt.hashSync(password, 8)
 	})

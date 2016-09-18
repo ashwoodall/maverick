@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import { Navigation, Link } from 'react-toolbox'
 
 // Modules
-import Flexbox from 'modules/Flexbox/Flexbox'
+import Flexbox from 'react-material-flexbox'
 
 // Theme 
 import theme from 'modules/Footer/Footer.scss'
