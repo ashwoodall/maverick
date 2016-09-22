@@ -1,7 +1,7 @@
 // Core
 import React, { Component, PropTypes } from 'react'
-import { subscribe } from 'horizon-react'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // Thirdparty
 import { Layout, Panel } from 'react-toolbox'
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(Actions, dispatch)
 }
 
-export default subscribe({ mapDispatchToProps })(App)
+export default connect(null, mapDispatchToProps)(App)
