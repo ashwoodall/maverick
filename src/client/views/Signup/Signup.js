@@ -27,7 +27,7 @@ class Signup extends Component {
 		register(this.state)
 	}
 
-	render () { 
+	render () {
 		return (
 			<div className={ theme.oh__login }>
 				<div className={ theme.oh__login__container }>

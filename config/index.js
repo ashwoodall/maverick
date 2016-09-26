@@ -36,9 +36,10 @@ config.globals = {
 
 config.rethink = {
 	db: 'ohhi',
-	host : process.env.HOST || 'localhost',
-	port: 28015
+	servers: {
+		host : process.env.HOST || 'localhost',
+		port: 28015
+	}
 }
-
 
 export default config

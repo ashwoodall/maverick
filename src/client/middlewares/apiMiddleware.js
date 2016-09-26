@@ -1,6 +1,6 @@
 // Constants
 import constants from 'core/constants'
-import { messages } from 'core/constants/messages'
+import messages from 'core/constants/messages'
 import fetch from 'isomorphic-fetch'
 
 export default store => next => action => {
@@ -18,7 +18,7 @@ export default store => next => action => {
     }),
     error => next({
       type: endpoint.actionTypes.error,
-      message: messages.noLoad,
+      message: messages.error.noLoad,
       error
     }))
 }
@@ -36,19 +36,6 @@ const callApi = (endpoint) => {
     props.body = JSON.stringify(endpoint.body) 
 
   return fetch(endpoint.url, props)
-    .then(checkStatus)
     .then(response => response.json())
-}
-
-const checkStatus = (response) => {
-  console.log(response)
-  if (response.status >= 200 && response.status < 400)
-    return response
-  else {
-    const err = new Error(response)
-    err.status = response.statusText
-    console.log(err)
-    throw err
-  }
 }
 

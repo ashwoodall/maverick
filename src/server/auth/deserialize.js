@@ -1,15 +1,10 @@
-import r from 'rethinkdb'
+import r from '../db'
 
 import config from '../../../config'
 
 const deserialize = (id, done) => {
-	r.connect(config.rethink, (err, conn) => {
-		r.table('users')
-			.get(id)
-			.run(conn)
-			.then(user => {
-				done(null, user)
-			})
+	r.table('users').get(id).run().then(user => {
+		done(null, user)
 	})
 }
 

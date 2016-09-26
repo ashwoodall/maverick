@@ -1,33 +1,40 @@
 // Core
 import React, { Component, PropTypes} from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // Modules
 import Signup from 'views/Signup/Signup'
 
-import SignupApi from 'views/Signup/SignupApi'
+// Signup
+import * as Actions from 'views/Signup/SignupActions'
 
 const stations = [
-	{ value: 'ft-hood', label: 'Fort Hood'},
-	{ value: 'ft-benning', label: 'Fort Benning'},
-	{ value: 'ft-fort', label: 'Fort Fort'}
+	{ value: 'ft-hood', label: 'Fort Hood'}
 ]
 
-class SignupContainer extends Component {
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch)
+}
 
-	componentWillMount() {
-		this.props.setHeader(false)
-		this.props.setFooter(false)
+const mapPropsToState = (state) => {
+	const { app } = state
+
+	const {
+		isFetching,
+		lastUpdated,
+		data
+	} = app['register'] || {
+		isFetching: true,
+		data: {}
 	}
 
-	handleSubmit = (user) => {
-		const { callAPI } = this.props
-
-		callAPI(SignupApi(user))
-	}
-
-	render() {
-		return ( <Signup stations={ stations } register={ this.handleSubmit }/> )
+	return {
+		isFetching,
+		data,
+		stations: stations
 	}
 }
 
-export default SignupContainer
+
+export default connect(mapPropsToState, mapDispatchToProps)(Signup)

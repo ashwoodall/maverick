@@ -32,7 +32,7 @@ app.use(historyApiFallback({ verbose : true }))
 // Setup db
 console.log(chalk.yellow('[express] Initializing database...'))
 
-db(config)
+db()
 
 // Checking environment
 if (config.env === 'development')

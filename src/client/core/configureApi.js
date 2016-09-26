@@ -4,7 +4,6 @@ import queryString from 'query-string'
 export default (url, key, body) => {
   const action = key.replace(/([A-Z])/g, '_$1').toUpperCase()
 
-  console.log(body)
   return {
     url: url,
     actionTypes: {
