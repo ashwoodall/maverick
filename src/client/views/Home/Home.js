@@ -40,6 +40,7 @@ class Home extends Component {
   				<Flexbox flex>
   					<h4>Why Oh-hi Exists</h4>
   					<p>We all need friends. We need people we can depend on, confide in, and just hang out with. And for the significant others of military service members (MilSOs, for short), it can be especially tough to find friends but essential to have them. That’s what Oh-hi is all about!</p>
+            <br/>
   					<h5>Oh-hi is a community of MilSOs, meeting in-person to find new friends at their duty stations.</h5>
   					<p>Although connections can be made digitally, we know that real, trustworthy relationships are built by spending time together in-person. That is why Oh-hi aims to quickly get people away from their screens and instead, get them out and about, having fun and sharing experiences.</p>
   				</Flexbox>

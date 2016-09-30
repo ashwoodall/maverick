@@ -1,26 +1,7 @@
-@import "~normalize.css";
-@import 'mixins';
-@import 'typography';
-
-html, body {
-  height: 100%;
-  position: relative;
-  min-height: 100%;
-}
-
-html {
-  font-size: 62.5%;
-  line-height: 1.4;
-}
+@import "~react-toolbox/lib/commons";
 
 body {
-	color: $text-color-dark-primary;
-  background-color: $color-background;
-	font-family: $font-family;
-	font-size: 1.6rem;
-	margin: 0;
-	padding: 0;
-	-webkit-touch-callout: none;
+	background-color: $color-background;
 }
 
 a {
@@ -29,8 +10,14 @@ a {
 }
 
 main {
-	height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 64px;
+  padding-bottom: 36px;
+  max-width: $layout-lg;
+}
+
+div[data-react-toolbox="card"] {
+	border-radius: 0.4rem;
+	box-shadow: 0px 0px 4px rgba(0,0,0,0.12);
 }

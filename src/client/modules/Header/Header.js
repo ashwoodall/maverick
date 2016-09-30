@@ -3,11 +3,10 @@ import classnames from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 // Thirdparty
-import { Navigation, Link } from 'react-toolbox'
+import { AppBar } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Modules
-import Toolbar from 'modules/Toolbar'
 import Svg from 'modules/Svg/Svg'
 
 // Assets 
@@ -27,12 +26,13 @@ class Header extends Component {
 		)
 
 		return (
-			<header className={ classes } aria-label="Navigation Toolbar">
-				<Toolbar className={ theme.oh__appBar__toolbar }>
-					<Svg className={ theme.oh__appBar__logo } source={ HeaderLogo } />
-					<Flexbox flex />
-				</Toolbar>
-			</header>
+			<div className={ theme.appBar } data-oh-hi='header'>
+				<AppBar className={ theme.header } flat>
+					<Flexbox className={ theme.wrapper } layout='row' flex align='start center'>
+						<Svg className={ theme.logo } source={ HeaderLogo } />
+					</Flexbox>
+				</AppBar>
+			</div>
 		)
 	}
 }

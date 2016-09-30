@@ -9,9 +9,18 @@ import Signup from 'views/Signup/Signup'
 // Signup
 import * as Actions from 'views/Signup/SignupActions'
 
-const stations = [
-	{ value: 'ft-hood', label: 'Fort Hood'}
-]
+class SignupContainer extends Component {
+
+	componentWillMount() {
+		this.props.setHeader(false)
+		this.props.setFooter(false)
+	}
+
+	render() {
+		return ( <Signup register={ this.props.register } /> )
+	}
+}
+
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(Actions, dispatch)
@@ -24,17 +33,16 @@ const mapPropsToState = (state) => {
 		isFetching,
 		lastUpdated,
 		data
-	} = app['register'] || {
+	} = app['user'] || {
 		isFetching: true,
 		data: {}
 	}
 
 	return {
 		isFetching,
-		data,
-		stations: stations
+		data
 	}
 }
 
 
-export default connect(mapPropsToState, mapDispatchToProps)(Signup)
+export default connect(mapPropsToState, mapDispatchToProps)(SignupContainer)

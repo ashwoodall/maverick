@@ -14,24 +14,21 @@ import * as Actions from 'views/Actions'
 import Header from 'modules/Header/HeaderContainer'
 import Footer from 'modules/Footer/FooterContainer'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-  }
+// Theme
+import theme from 'views/App.scss'
 
+class App extends Component {
   render() {
     const { children } = this.props
 
     return (
-      <Layout>
-        <Panel>
-          <Header { ...this.props }/>
-          <main>
-            { React.cloneElement(children, { ...this.props }) }
-            <Footer { ...this.props } />
-          </main>
-        </Panel>
-      </Layout>
+      <div className={ theme.app } data-oh-hi='app'>
+        <Header { ...this.props }/>
+        <main>
+          { React.cloneElement(children, { ...this.props }) }
+        </main>
+        <Footer { ...this.props } />
+      </div>
     )
   }
 }

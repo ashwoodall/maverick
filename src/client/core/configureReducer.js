@@ -26,8 +26,8 @@ export default (state = initialState, action) => {
       return merge({}, state, {
         [key]: {
           isFetching: false,
-          data: action.response,
-          lastUpdated: Date.now()
+          lastUpdated: Date.now(),
+          ...action.response
         }
       })
     case constants.reducerActions.ERROR:
