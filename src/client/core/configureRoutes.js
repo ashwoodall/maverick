@@ -3,7 +3,7 @@ import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 
 // Views
-import App from 'views/App'
+import App from 'views/App/App'
 import Home from 'views/Home/Home'
 import Login from 'views/Login/LoginContainer'
 import Signup from 'views/Signup/SignupContainer'
