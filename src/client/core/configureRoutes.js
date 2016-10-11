@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute } from 'react-router'
 // Views
 import App from 'views/App/App'
 import Home from 'views/Home/Home'
+import Groups from 'views/Groups/Groups'
 import Login from 'views/Login/LoginContainer'
 import Signup from 'views/Signup/SignupContainer'
 
@@ -13,6 +14,7 @@ const childRoutes = (
 		<IndexRoute component={ Home }/>
 		<Route path="login" component={ Login }/>
 		<Route path="signup" component={ Signup }/>
+		<Route path="groups" component={ Groups }/>
 	</Route>
 )
 

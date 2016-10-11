@@ -1,11 +1,14 @@
 // Core
 import React, { Component, PropTypes} from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 
 // Modules
 import Login from 'views/Login/Login'
 
 // Api 
-import LoginApi from 'views/Login/LoginApi'
+import * as Actions from 'views/Login/LoginActions'
 
 class LoginContainer extends Component {
 
@@ -14,15 +17,13 @@ class LoginContainer extends Component {
 		this.props.setFooter(false)
 	}
 
-	handleLogin = (user) => {
-		const { callAPI } = this.props
-
-		callAPI(LoginApi(user))
-	}
-
 	render() {
-		return ( <Login login={ this.handleLogin } /> )
+		return ( <Login login={ this.props.login } /> )
 	}
 }
 
-export default LoginContainer
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(Actions, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(LoginContainer)

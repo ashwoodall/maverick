@@ -7,14 +7,7 @@ const NODE_ENV = JSON.stringify(process.env.NODE_ENV)
 const config = {
 	env  : process.env.NODE_ENV || 'development',
 	port : process.env.PORT || 3000,
-	host : process.env.HOST || 'localhost',
-	db   : {
-		name: 'ohhi',
-		tables: [
-			{ table:'users', index: 'email' },
-			{ table: 'messages', index: 'id' }
-		]
-	}
+	host : process.env.HOST || 'localhost'
 }
 
 config.paths = {
@@ -34,10 +27,9 @@ config.globals = {
   '__PROD__' : config.env === 'production'
 }
 
-config.rethink = {
-	db: 'ohhi',
-	host : process.env.HOST || 'localhost',
-	port: 28015
+config.db = {
+	port : process.env.PORT || 8000,
+	url: process.env.MONGO_URL || 'mongodb://localhost:27017/oh-hi'
 }
 
 
