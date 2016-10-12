@@ -6,12 +6,13 @@ import Verification from 'modules/Verification/Verification'
 
 const Signup = ({ register, registered }) => {
 	console.log(`is user register? ${registered}`)
-		return (
-			<div>
-				<div><Auth type='register' submit={ register } /></div>
-				<div><Verification  /></div>
-			</div>
-		)
+
+				if (!registered){
+					return (<div><Auth type='register' submit={ register } /></div>)
+				} else {
+					return (<div><Verification  /></div>)
+				}
+				
 }
 
-export default Signup
+export default Signup	
