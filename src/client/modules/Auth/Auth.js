@@ -17,8 +17,6 @@ class AuthForm extends Component {
 	}
 
 	handleSubmit = () => {
-		console.log("test123")
-		console.log(this.state)
 		this.props.submit({...this.state})
 	}
 
