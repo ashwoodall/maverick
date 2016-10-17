@@ -46,8 +46,13 @@ userSchema.methods.generatePassword = (password) => {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
 };
 
-userSchema.methods.comparePasswords = function(password) {
-	return bcrypt.compareSync(password, this.password)
+userSchema.methods.comparePasswords = (password, hash) => {
+    return bcrypt.compare(password, hash, (err, match) =>  {
+        if (err) {
+            throw err
+        }
+        return match
+    });
 };
 
 export default mongoose.model('User', userSchema)

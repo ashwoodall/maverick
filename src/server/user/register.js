@@ -3,7 +3,7 @@ import { Strategy } from 'passport-local'
 import User from './schema'
 
 const register = (email, password, done) => {
-	User.findOne({ 'email': email }, (err, user) => {
+	User.findOne({ 'account.email': email }, (err, user) => {
 		if (err) return done(err)
 		if (user) return done(null, false)
 			
@@ -17,7 +17,6 @@ const register = (email, password, done) => {
 
 			return done(null, newUser)
 		})
-
 	})
 }
 

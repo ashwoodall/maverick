@@ -4,6 +4,7 @@ import User from './schema'
 
 const login = (email, password, done) => {
 	User.findOne({ 'account.email': email }, (err, user) => {
+
 		if (err) return done(err)
 		if (!user) return done(null, false)
 		if (!user.comparePasswords(password, user.account.password)) return done(null, false)
