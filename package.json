@@ -115,7 +115,7 @@
     "react-addons-update": "^15.3.1",
     "react-cookie": "^0.4.8",
     "react-dom": "^15.3.0",
-    "react-material-flexbox": "^1.0.3",
+    "react-material-flexbox": "^1.0.6",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",

@@ -2,6 +2,7 @@
 
 body {
 	background-color: $color-background;
+	font-family: $preferred-font;
 }
 
 a {
@@ -14,7 +15,7 @@ main {
 	margin-right: auto;
 	padding-top: 64px;
   padding-bottom: 36px;
-  max-width: $layout-lg;
+  max-width: $layout-md;
 }
 
 div[data-react-toolbox="card"] {

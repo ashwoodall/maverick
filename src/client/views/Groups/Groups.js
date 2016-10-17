@@ -1,7 +1,9 @@
 import React from 'react'
 
+import ProfileEditor from 'modules/ProfileEditor/ProfileEditor'
+
 const Groups = () => (
-	<div>Hello world</div>
+	<ProfileEditor />
 )
 
 export default Groups

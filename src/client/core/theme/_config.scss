@@ -1,14 +1,9 @@
-@function rem($multiplier) {
-  $font-size: 10px;
-  @return $multiplier * $font-size;
-}
-
 // Colors
 $color-white:           #ffffff !default;
 $color-black:           #000000 !default;
 
 // Typography
-$font-family: 							 'Source Sans Pro', sans-serif !default;
+$preferred-font: 						 'Source Sans Pro', sans-serif !default;
 $text-color-dark-primary:    rgba($color-black, .87) !default;
 $text-color-dark-secondary:  rgba($color-black, .54) !default;
 $text-color-dark-hint:       rgba($color-black, .26) !default;
