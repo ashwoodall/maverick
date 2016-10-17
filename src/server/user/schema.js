@@ -14,10 +14,14 @@ const userSchema = new Schema({
 	        first: String,
             last: String
         },
+        age: Number,
+        hometown: String,
         profilePicture: String, //URL?
         introduction: String,
         hasKids: String, //Y, N, Expecting
+        kidsAge: Array,
         hasPets: Boolean,
+        aboutPets: String,
         isServiceMember: Boolean,
         soServiceYears: Number
     },
