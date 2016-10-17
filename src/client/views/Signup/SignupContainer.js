@@ -17,7 +17,7 @@ class SignupContainer extends Component {
 	}
 
 	render() {
-		return ( <Signup register={ this.props.register } registered={ this.props.isRegistered } /> )
+		return ( <Signup email={ this.props.email } register={ this.props.register } registered={ this.props.isRegistered } /> )
 	}
 }
 
@@ -36,6 +36,7 @@ const mapPropsToState = (state) => {
 	}
 
 	return {
+		email: email,
 		isRegistered: email ? true : false
 	}
 }
