@@ -9,8 +9,8 @@ const register = (email, password, done) => {
 			
 		let newUser = new User()
 
-		newUser.email = email
-		newUser.password = newUser.generatePassword(password)
+		newUser.account.email = email
+		newUser.account.password = newUser.generatePassword(password)
 
 		newUser.save((err, user) => {
 			if (err) throw err
