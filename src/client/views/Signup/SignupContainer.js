@@ -17,7 +17,7 @@ class SignupContainer extends Component {
 	}
 
 	render() {
-		return ( <Signup register={ this.props.register } /> )
+		return ( <Signup email={ this.props.email } register={ this.props.register } registered={ this.props.isRegistered } /> )
 	}
 }
 
@@ -30,17 +30,14 @@ const mapPropsToState = (state) => {
 	const { app } = state
 
 	const {
-		isFetching,
-		lastUpdated,
-		data
+		email
 	} = app['user'] || {
-		isFetching: true,
-		data: {}
+		email: null
 	}
 
 	return {
-		isFetching,
-		data
+		email: email,
+		isRegistered: email ? true : false
 	}
 }
 
