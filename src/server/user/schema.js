@@ -19,6 +19,7 @@ const userSchema = new Schema({
         profilePicture: String, //URL?
         introduction: String,
         hasKids: String, //Y, N, Expecting
+        numberOfKids: Number,
         kidsAge: Array,
         hasPets: Boolean,
         aboutPets: String,
