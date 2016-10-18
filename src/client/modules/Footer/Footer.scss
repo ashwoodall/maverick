@@ -1,11 +1,12 @@
 .oh__footer {
 	background-color: #4d4d4d;
+	bottom: 0;
 	box-sizing: border-box;
 	color: $text-color-light-secondary;
 	display: none;
-	flex: 0 0 auto;
-	position: relative;
-	padding: 16px;
+	position: absolute;
+	padding: $layout-gutter-width;
+	width: 100%;
 }
 
 .oh__active {

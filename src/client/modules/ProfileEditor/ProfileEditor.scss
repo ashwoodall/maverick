@@ -1,19 +1,27 @@
 .group {
-	margin: 24px auto;
+	margin: ($baseline-grid * 4) auto;
 
 	p {
 		font-weight: 500;
-		margin-bottom: 16px;
+		line-height: 1.8rem;
+	}
+
+	h4, h5, h6 {
+		margin-bottom: $layout-gutter-width;
 	}
 
 	.options {
 		flex-wrap: wrap;
 	}
 
+}
+
+.basic {
+
 	.avatar {
 		width: 12rem;
 		height: 12rem;
-		margin-bottom: 16px;
+		margin: ($baseline-grid * 4) 0 $layout-gutter-width;
 
 		.letter {
 			font-size: 6rem;
@@ -22,4 +30,33 @@
 
 	}
 
+}
+
+.intro {
+
+	hr {
+		margin: ($layout-gutter-width * 2) 0;
+	}
+
+	.description {
+
+		.inputElement {
+			height: 128px !important;
+		}
+
+	}
+
+	.examples {
+		margin-bottom: $layout-gutter-width;
+	}
+
+	.inspiration {
+		margin-top: $layout-gutter-width;
+	}
+}
+
+.social {
+	.notice {
+		margin: $layout-gutter-width 0;
+	}
 }
