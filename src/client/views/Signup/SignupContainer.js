@@ -12,7 +12,7 @@ const mapPropsToState = ({ api }) => {
   const { account } = data || { email: null }
   const { email } = account || { email: null }
 
-	return { email }
+  return { email }
 }
 
 export default connect(mapPropsToState)(Signup)

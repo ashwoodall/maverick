@@ -16,25 +16,25 @@ import HeaderLogo from 'assets/oh-hi_Logo_2-03.svg'
 import theme from 'modules/Header/Header.scss'
 
 class Header extends Component {
-	render() {
-		const { active } = this.props
-		
-		const classes = classnames(theme.appBar,
-			{
-				[theme.active]: active
-			}
-		)
+  render() {
+    const { active } = this.props
+    
+    const classes = classnames(theme.appBar,
+      {
+        [theme.active]: active
+      }
+    )
 
-		return (
-			<div className={ classes } data-oh-hi='header'>
-				<AppBar className={ theme.header } flat>
-					<Flexbox className={ theme.wrapper } layout='row' flex align='start center'>
-						<Svg className={ theme.logo } source={ HeaderLogo } />
-					</Flexbox>
-				</AppBar>
-			</div>
-		)
-	}
+    return (
+      <div className={ classes } data-oh-hi='header'>
+        <AppBar className={ theme.header } flat>
+          <Flexbox className={ theme.wrapper } layout='row' flex align='start center'>
+            <Svg className={ theme.logo } source={ HeaderLogo } />
+          </Flexbox>
+        </AppBar>
+      </div>
+    )
+  }
 }
 
 export default Header

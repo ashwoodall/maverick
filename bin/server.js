@@ -23,9 +23,9 @@ app.use(historyApiFallback({ verbose : true }))
 
 // Checking environment
 if (config.env === 'development')
-	console.log(chalk.yellow('[webpack] Initializing development middlewares...'))
+  console.log(chalk.yellow('[webpack] Initializing development middlewares...'))
 
-	devServer(app, config)
+  devServer(app, config)
 
 // Setup passport
 console.log(chalk.yellow('[express] Initializing api...'))
@@ -33,10 +33,10 @@ console.log(chalk.yellow('[express] Initializing api...'))
 server(app)
 
 app.listen(config.port, error => {
-	if (error)
+  if (error)
     console.error(chalk.red(error))
   else
-  	console.log(chalk.green(`[express] Listening at http://${config.host}:${config.port}`))
+    console.log(chalk.green(`[express] Listening at http://${config.host}:${config.port}`))
 })
 
 
