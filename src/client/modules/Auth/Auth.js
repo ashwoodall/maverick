@@ -17,22 +17,14 @@ class AuthForm extends Component {
 	}
 
 	handleSubmit = () => {
-		this.props.submit({...this.state})
+		const { login, register, type } = this.props
+
+		if (type === 'login') return login({...this.state})
+		else if (type === 'register') return register({...this.state})
 	}
 
 	render () {
-		const { type, submit } = this.props
-		let buttonLabel, link, aside
-
-		if (type === 'login') {
-			buttonLabel = 'Login'
-			link = (<a className={ theme.forgot__password } href="#">Forgot Password?</a>)
-			aside = (<p className={ theme.aside }>Need an account? <a href="/signup">Sign Up</a></p>)
-		} else {
-			buttonLabel = 'Sign up'
-			link = (<span/>)
-			aside = (<p className={ theme.aside }>Have an account? <a href="/login">Login</a></p>)
-		}
+		const { type } = this.props
 
 		return (
 			<div className={ theme.auth } data-oh-hi='auth'>
@@ -41,10 +33,12 @@ class AuthForm extends Component {
 						<Svg source={ HeaderLogo } className={ theme.logo } />
 						<Input type='email' label='Email' name='email' value={ this.state.email } onChange={ this.handleChange.bind(this, 'email') } />
 						<Input type='password' label='Password' name='password' value={ this.state.password } onChange={ this.handleChange.bind(this, 'password') } />
-						<Button className={ theme.button } label={ buttonLabel } raised primary onClick={ this.handleSubmit } />
-						{ link }
+						<Button className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up'  } raised primary onClick={ this.handleSubmit } />
+						{ type === 'login' && (<a className={ theme.forgot__password } href="#">Forgot Password?</a>) }
 					</Card>
-					{ aside }
+					<p className={ theme.aside }>
+						{ type === 'login' && (<span>Need an account? <a href="/signup">Sign Up</a></span>) || (<span>Have an account? <a href="/login">Login</a></span>) }
+					</p>
 				</Flexbox>
 			</div>
 		)

@@ -1,41 +1,29 @@
-// Constants
-import constants from 'core/constants'
-import messages from 'core/constants/messages'
-import fetch from 'isomorphic-fetch'
+import { fetchJSON } from 'core/utils'
+
+import { actionTypes } from 'core/constants'
+
+const { CALL_API } = actionTypes
 
 export default store => next => action => {
-  if (action.type !== constants.reducerActions.CALL_API) return next(action)
+  const { type, types, payload } = action
 
-  const endpoint = action.api
+  if (type !== CALL_API) return next(action)
 
-  next({ type: endpoint.actionTypes.request })
+  const [ REQUEST, RECEIVE, ERROR ] = types
+  const { body, endpoint, key, method, dataType } = payload
 
-  return callApi(endpoint)
-    .then(response => next({
-      type: endpoint.actionTypes.receive,
-      key: endpoint.key,
-      response
+  next({ type: REQUEST, key, dataType })
+
+  return fetchJSON(endpoint, method, body).then(
+    response => next({
+      type: RECEIVE,
+      payload: response,
+      key
     }),
     error => next({
-      type: endpoint.actionTypes.error,
-      message: messages.error.noLoad,
-      error
+      type: ERROR,
+      payload: error,
+      key
     }))
-}
-
-const callApi = (endpoint) => {
-  let props = { 
-    method: 'post',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }
-
-  if (endpoint.body)
-    props.body = JSON.stringify(endpoint.body) 
-
-  return fetch(endpoint.url, props)
-    .then(response => response.json())
 }
 
