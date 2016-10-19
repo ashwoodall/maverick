@@ -14,17 +14,17 @@ import userRoutes from './user/routes'
 
 const server = (app) => {
 
-	// Setup Mongo
-	console.log(chalk.yellow('[mongo] Initializing mongo...'))
+  // Setup Mongo
+  console.log(chalk.yellow('[mongo] Initializing mongo...'))
 
-	mongoose.Promise = global.Promise
-	mongoose.connect(config.db.url)
+  mongoose.Promise = global.Promise
+  mongoose.connect(config.db.url)
 
-	// Setup Passport
-	console.log(chalk.yellow('[passport] Initializing passport...'))
+  // Setup Passport
+  console.log(chalk.yellow('[passport] Initializing passport...'))
 
-	app.use(passport.initialize())
-	app.use(passport.session())
+  app.use(passport.initialize())
+  app.use(passport.session())
 
   passport.use('local-login', login)
   passport.use('local-signup', register)

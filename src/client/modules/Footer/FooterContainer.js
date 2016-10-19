@@ -6,15 +6,15 @@ import { connect } from 'react-redux'
 import Footer from 'modules/Footer/Footer'
 
 const mapStateToProps = (state) => {
-	const { app } = state
+  const { app } = state
 
-	const { 
-		active 
-	} = app['footer'] || {
-		active: true
-	}
+  const { 
+    active 
+  } = app['footer'] || {
+    active: true
+  }
 
-	return { active }
+  return { active }
 }
 
 export default connect(mapStateToProps)(Footer)
