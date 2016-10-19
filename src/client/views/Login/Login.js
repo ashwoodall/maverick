@@ -1,10 +1,10 @@
 // Core
 import React from 'react'
 
-import Auth from 'modules/Auth/Auth'
+import Auth from 'modules/Auth/AuthContainer'
 
 const Login = ({ login }) => (
-	<Auth type='login' submit={ login } />
+	<Auth type='login'  />
 )
 
 export default Login
