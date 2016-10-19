@@ -6,13 +6,13 @@ import { connect } from 'react-redux'
 // Modules
 import Signup from 'views/Signup/Signup'
 
-const mapPropsToState = (state) => {
-	const { app } = state
-	const { email } = app['user'] || {
-		email: null
-	}
+// This got really ugly. Need to dig into destructing 
+const mapPropsToState = ({ api }) => {
+  const { data } = api['user'] || { email: null }
+  const { account } = data || { email: null }
+  const { email } = account || { email: null }
 
 	return { email }
 }
 
-export default connect(mapPropsToState, mapDispatchToProps)(Signup)
+export default connect(mapPropsToState)(Signup)
