@@ -1,34 +1,46 @@
 import React, { Component, PropTypes } from 'react'
 import { clone, omit } from 'lodash'
 
-import { Input } from 'react-toolbox'
-
-import validation from 'core/constants/validation'
+import Flexbox from 'react-material-flexbox'
+import { Checkbox, Input, RadioGroup, RadioButton } from 'react-toolbox'
 
 class Field extends Component {
-	state = { value: '', dirty: false, error: '' }
-
-	handleChange = (value) => {
-		const { rule } = this.props
-
-		const regex = validation[rule].regex
-
-		console.log(regex.test(value))
-	}
 
 	render () {
-		const props = clone(this.props)
+		const { type, label, name, options, onChange } = this.props
+		let content
 
-		delete props['rule']
+		if (type === 'input') {
+			content = (<Input type={ name } label={ label } name={ name } />)
+		} else if (type === 'checkboxGroup') {
+			content = (
+				<Flexbox>
+					<h6>{ label }</h6>
+					<Flexbox layout='row' flex='50'>
+						{options.map(option => {
+							return (
+								<Flexbox layout='row' flex='50'>
+									<Checkbox label={ option.label } />
+								</Flexbox>
+							)
+						})}
+					</Flexbox>
+				</Flexbox>
+			)
+		} else if (type === 'radio') {
+			<Flexbox>
+				<h6>{ label }</h6>
+				<RadioGroup name={ name }>
+					{options.map(option => {
+						return (<RadioButton label={ option.label } value={ option.value } />)
+					})}
+				</RadioGroup>
+			</Flexbox>
+		}
 
-		return (
-			<Input { ...props } onChange={ this.handleChange } />
-		)
+		return content 
 	}
 }
 
-Field.propTypes = {
-	rule: PropTypes.string
-}
 
 export default Field
