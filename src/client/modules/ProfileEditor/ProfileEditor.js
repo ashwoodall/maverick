@@ -17,35 +17,37 @@ import Military from './Sections/Military'
 import theme from './ProfileEditor.scss'
 
 class ProfileEditor extends Component {
+  state = { index: 1 }
 
-  handleChange = (name, value) => {
-    this.setState({...this.state, [name]: value});
+  handlePanelChange = (index) => {
+    this.setState({ index })
   }
 
   render () {
+
     return (
-      <form>
+      <div data-oh-hi='profile-editor'>
         <PanelGroup>
-          <Panel title='Basic info' subTitle='(required section)' expanded>
-            <BasicInfo onTextChange={ this.handleChange } />
+          <Panel title='Basic info' subTitle='(required section)' expanded={ this.state.index === 1 }>
+            <BasicInfo onTextChange={ this.handleChange } onPanelChange={ this.handlePanelChange } />
           </Panel>
-          <Panel title='Introduce Yourself' subTitle='(required section)'>
+          <Panel title='Introduce Yourself' subTitle='(required section)' expanded={ this.state.index === 2 }>
             <IntroduceYourself />
           </Panel>
-          <Panel title='Social Media' subTitle='(optional)'>
+          <Panel title='Social Media' subTitle='(optional)' expanded={ this.state.index === 3 }>
             <SocialMedia />
           </Panel>
-          <Panel title='Family' subTitle='(optional)'>
+          <Panel title='Family' subTitle='(optional)' expanded={ this.state.index === 4 }>
             <Family />
           </Panel>
-          <Panel title='History with the Military' subTitle='(optional)'>
+          <Panel title='History with the Military' subTitle='(optional)' expanded={ this.state.index === 5 }>
             <Military />
           </Panel>
         </PanelGroup>
         <Flexbox layout='row' align='end center'>
           <Button label='Save Changes' raised primary />
         </Flexbox>
-      </form>
+      </div>
     )
   }
 }

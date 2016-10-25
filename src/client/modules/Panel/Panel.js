@@ -15,6 +15,14 @@ class Panel extends Component {
   	this.setState({ expanded: expanded })
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps === this.props) return
+
+    const { expanded } = this.props
+
+    this.setState({ expanded: expanded })
+  }
+
   handleToggle = () => {
   	let expanded = !this.state.expanded
 
