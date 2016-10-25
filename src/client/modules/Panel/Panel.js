@@ -24,9 +24,13 @@ class Panel extends Component {
   }
 
   handleToggle = () => {
+    const { onClick } = this.props
+
   	let expanded = !this.state.expanded
 
   	this.setState({ expanded: expanded })
+
+    if (onClick) this.props.onClick()
   }
 
   render () {

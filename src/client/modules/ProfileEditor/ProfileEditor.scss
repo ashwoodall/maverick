@@ -14,14 +14,10 @@
 		flex-wrap: wrap;
 	}
 
-}
-
-.basic {
-
 	.avatar {
 		width: 12rem;
 		height: 12rem;
-		margin: ($baseline-grid * 4) 0 $layout-gutter-width;
+		margin: $layout-gutter-width 0;
 
 		.letter {
 			font-size: 6rem;
@@ -29,10 +25,6 @@
 		}
 
 	}
-
-}
-
-.intro {
 
 	hr {
 		margin: ($layout-gutter-width * 2) 0;
@@ -53,10 +45,9 @@
 	.inspiration {
 		margin-top: $layout-gutter-width;
 	}
-}
 
-.social {
 	.notice {
 		margin: $layout-gutter-width 0;
 	}
+
 }

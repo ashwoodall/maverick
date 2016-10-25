@@ -5,16 +5,12 @@ import { connect } from 'react-redux'
 // Components
 import Header from 'modules/Header/Header'
 
-const mapStateToProps = (state) => {
-	const { app } = state
+const mapStateToProps = ({ app }) => {
+  const { active } = app['header'] || {
+    active: true
+  }
 
-	const { 
-		active 
-	} = app['header'] || {
-		active: true
-	}
-
-	return { active }
+  return { active }
 }
 
 export default connect(mapStateToProps)(Header)
