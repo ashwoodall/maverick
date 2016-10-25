@@ -6,7 +6,7 @@ import { actionTypes } from 'core/constants'
 export const login = (user) => {
   const action = {
     key: 'user',
-    endpoint: 'api/login',
+    endpoint: 'login',
     method: 'POST',
     body: user,
     dataType: {}
@@ -22,7 +22,7 @@ export const login = (user) => {
 export const register = (user) => {
   const action = {
     key: 'user',
-    endpoint: 'api/register',
+    endpoint: 'register',
     method: 'POST',
     body: user,
     dataType: {}
