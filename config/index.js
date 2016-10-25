@@ -28,7 +28,7 @@ config.globals = {
 }
 
 config.db = {
-  port : process.env.PORT || 8000,
+  port : process.env.PORT || 8080,
   url: process.env.MONGO_URL || 'mongodb://localhost:27017/oh-hi'
 }
 

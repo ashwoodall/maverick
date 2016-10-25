@@ -1,6 +1,6 @@
 const api = {
   host : process.env.HOST || 'localhost',
-  port: '3000',
+  port: '8080',
 }
 
 export default api
