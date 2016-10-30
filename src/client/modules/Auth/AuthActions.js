@@ -14,7 +14,8 @@ export const login = (user) => {
 
   return (dispatch) => {
     dispatch(createAction('CALL_API', action)).then(
-      response => { cookie.save('username', response.response.email) 
+      response => {
+        cookie.save('username', response.payload.email)
     })
   }
 }

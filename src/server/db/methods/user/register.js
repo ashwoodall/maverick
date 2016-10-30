@@ -1,26 +1,21 @@
 import { Strategy } from 'passport-local'
 
 import db from '../../models'
-// var db = require('../models')
 
-// var Promise = require('bluebird')
 import Promise from 'bluebird'
+import {hash} from 'bcrypt'
 
-var bcryptHash = Promise.promisify(require('bcrypt').hash)
+const bcryptHash = Promise.promisify(hash)
 
-
-var createUser = (email, password) => {
+const createUser = (email, password) => {
     return bcryptHash(password, 8)
-    .then(function(hashedPassword){
-        console.log(hashedPassword)
+    .then((hashedPassword) => {
         return db.User.create({
             email: email,
             password: hashedPassword
         })
     })
-    .catch(function(err){
-        throw err
-    })
+    .catch((err) => {throw err})
 }
 
 const register = (email, password, done) => {
@@ -28,7 +23,7 @@ const register = (email, password, done) => {
         where: {
             'email': email }
     })
-        .then(function(user){
+        .then((user) => {
             if (!user){
                 return createUser(email, password)
             } else {
@@ -36,11 +31,8 @@ const register = (email, password, done) => {
             }
             //Add less janky custom error and filtered catch in the future
         })
-        .then(function(newUser){
-            return done(null, newUser.dataValues)
-        })
-        .catch(function(err){
-            console.log('Error: ', err)
+        .then((newUser) => done(null, newUser.dataValues))
+        .catch((err) => {
             if (err === 'Pre-existing User') return done(null, false)
 
             return done(err)

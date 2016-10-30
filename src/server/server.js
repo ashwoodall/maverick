@@ -20,7 +20,7 @@ const server = (app) => {
   passport.use('local-signup', register)
 
   // Setup Routes
-  console.log(chalk.yellow('[express] Initializing api user...'))
+  console.log(chalk.yellow('[express] Initializing user routes...'))
 
   userRoutes(app, passport)
 

@@ -2,35 +2,42 @@ import { Strategy } from 'passport-local'
 
 import db from '../../models'
 import Promise from 'bluebird'
+import {compare} from 'bcrypt'
 
-var bcryptCompare = Promise.promisify(require('bcrypt').compare)
+const bcryptCompare = Promise.promisify(compare)
 
-var comparePasswords = (password, hash) => {
+const comparePasswords = (password, hash) => {
     return bcryptCompare(password, hash)
-        .then(function(match){
-            return match
-        })
-        .catch(function(err){
-            throw err
-        })
+        .then((match) => match)
+        .catch((err) => {throw err})
 }
 
 const login = (email, password, done) => {
+    let userInfo;
     return db.User.findOne({
         where: {
-            'email': email }
+            'email': email
+        }
     })
-        .then(function(user){
-            if (!user) return done(null, false)
+        .then((user) => {
+            if (!user) throw 'No user in database';
+            //Clean up with custom error
+            userInfo = user;
 
-            if (!comparePasswords(password, user.password)) return done(null, false)
-
-            return done(null, user.dataValues)
+            return comparePasswords(password, user.password)
         })
-        .catch(function(err){
-            console.log('Error: ', err)
-            if (err) return done(err)
-    })
+        .then((match) => {
+            if (!match) {
+                return done(null, false)
+            } else {
+                return done(null, userInfo.dataValues)
+            }
+
+        })
+        .catch((err) => {
+            if (err === 'No user in database') return done(null, false)
+            done(err)
+        })
 }
 
 export default new Strategy({ usernameField: 'email', passwordField: 'password' }, login)
