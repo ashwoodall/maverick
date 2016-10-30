@@ -1,6 +1,5 @@
 import chalk from 'chalk'
 import passport from 'passport'
-// import db from './db/models'
 
 // Passport auth
 import login from './db/methods/user/login'

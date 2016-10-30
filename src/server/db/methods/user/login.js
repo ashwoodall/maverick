@@ -1,14 +1,18 @@
 import { Strategy } from 'passport-local'
 
 import db from '../../models'
-import bcrypt from 'bcrypt'
+import Promise from 'bluebird'
+
+var bcryptCompare = Promise.promisify(require('bcrypt').compare)
 
 var comparePasswords = (password, hash) => {
-    return bcrypt.compare(password, hash, (err, match) =>  {
-        if (err) throw err
-
-        return match
-    })
+    return bcryptCompare(password, hash)
+        .then(function(match){
+            return match
+        })
+        .catch(function(err){
+            throw err
+        })
 }
 
 const login = (email, password, done) => {
@@ -18,7 +22,10 @@ const login = (email, password, done) => {
     })
         .then(function(user){
             if (!user) return done(null, false)
-            if (!comparePasswords(password, user.dataValues.password)) return done(null, false)
+
+            if (!comparePasswords(password, user.password)) return done(null, false)
+
+            return done(null, user.dataValues)
         })
         .catch(function(err){
             console.log('Error: ', err)

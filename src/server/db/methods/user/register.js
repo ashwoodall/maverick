@@ -6,20 +6,17 @@ import db from '../../models'
 // var Promise = require('bluebird')
 import Promise from 'bluebird'
 
-var bcrypt = Promise.promisifyAll(require('bcrypt'))
+var bcryptHash = Promise.promisify(require('bcrypt').hash)
 
 
 var createUser = (email, password) => {
-    return bcrypt.genSaltAsync(8)
-        .then(function(salt){
-            return bcrypt.hashAsync(password, salt)
+    return bcryptHash(password, 8)
+    .then(function(hashedPassword){
+        console.log(hashedPassword)
+        return db.User.create({
+            email: email,
+            password: hashedPassword
         })
-        .then(function(hashedPassword){
-            console.log(hashedPassword)
-            return db.User.create({
-                email: email,
-                password: hashedPassword
-            })
     })
     .catch(function(err){
         throw err
@@ -34,14 +31,18 @@ const register = (email, password, done) => {
         .then(function(user){
             if (!user){
                 return createUser(email, password)
+            } else {
+                throw 'Pre-existing User'
             }
-            //Add logic for pre-existing users
+            //Add less janky custom error and filtered catch in the future
         })
         .then(function(newUser){
             return done(null, newUser.dataValues)
         })
         .catch(function(err){
             console.log('Error: ', err)
+            if (err === 'Pre-existing User') return done(null, false)
+
             return done(err)
         })
 }
