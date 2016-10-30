@@ -1,16 +1,13 @@
 import chalk from 'chalk'
 import passport from 'passport'
-import socketIo from 'socket.io'
-import models from './db/models'
-
-import config from '../../config'
+// import db from './db/models'
 
 // Passport auth
-// import login from './user/login'
-// import register from './user/register'
-//
+import login from './db/methods/user/login'
+import register from './db/methods/user/register'
+
 // // Routes
-// import userRoutes from './user/routes'
+import userRoutes from './user/routes'
 
 const server = (app) => {
 
@@ -20,18 +17,13 @@ const server = (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-    return models.User.create({
-        email: 'tom@blah.com',
-        password: 'blurppp'
-    });
-  //
-  // passport.use('local-login', login)
-  // passport.use('local-signup', register)
-  //
-  // // Setup Routes
-  // console.log(chalk.yellow('[express] Initializing api routes...'))
-  //
-  // userRoutes(app, passport)
+  passport.use('local-login', login)
+  passport.use('local-signup', register)
+
+  // Setup Routes
+  console.log(chalk.yellow('[express] Initializing api user...'))
+
+  userRoutes(app, passport)
 
 }
 
