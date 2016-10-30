@@ -1,0 +1,34 @@
+.finishProfile {
+	color: $text-color-dark-secondary;
+
+
+	h5 {
+		color: $text-color-dark-primary;
+		margin-bottom: $baseline-grid;
+	}
+
+	p {
+		margin-bottom: ($layout-gutter-width * 2);
+		font-size: 20px;
+	}
+
+	.card {
+		padding: $layout-gutter-width;
+		margin-bottom: $layout-gutter-width;
+		max-width: 350px;
+	}
+
+	.account {
+  	font-size: 72px;
+  	color: $color-primary;
+		margin-top: ($baseline-grid * 2);
+		margin-bottom: ($baseline-grid * 2);
+		text-align: center;
+	}
+
+	.close {
+  font-size: 24px;
+  text-align: right;
+  color: $text-color-dark-hint;
+	}
+}
