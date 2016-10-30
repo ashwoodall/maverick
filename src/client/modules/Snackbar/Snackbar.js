@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Snackbar, FontIcon } from 'react-toolbox';
 import theme from 'modules/Snackbar/Snackbar.scss'
 
-class SnackbarTest extends React.Component {
+class ProfileSnackbar extends React.Component {
   handleSnackbarClick = (event, instance) => {
     console.log('handleSnackbarClick', event, instance);
     this.setState({ active: false });
@@ -24,7 +24,7 @@ class SnackbarTest extends React.Component {
   render () {
     return (
       <section>
-        <Snackbar
+        <Snackbar 
           action='Dismiss'
           active={this.state.active}
           icon='account_circle'
@@ -32,7 +32,7 @@ class SnackbarTest extends React.Component {
           timeout={2000}
           onClick={this.handleSnackbarClick}
           onTimeout={this.handleSnackbarTimeout}
-          type='cancel'
+          type='accept'
         > As soon as you're ready, make sure to <a href="/profileEdit">complete your profile</a>. 
         It lets you connect with others you'd like to meet up with!</Snackbar>
         
@@ -41,4 +41,4 @@ class SnackbarTest extends React.Component {
   }
 }
 
-export default SnackbarTest
+export default ProfileSnackbar
