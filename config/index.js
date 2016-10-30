@@ -27,9 +27,8 @@ config.globals = {
   '__PROD__' : config.env === 'production'
 }
 
-config.db = {
-  port : process.env.PORT || 8080,
-  url: process.env.MONGO_URL || 'mongodb://localhost:27017/oh-hi'
+config.api = {
+  port : process.env.PORT || 8080
 }
 
 
