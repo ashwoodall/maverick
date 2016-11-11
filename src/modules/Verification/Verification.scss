@@ -1,5 +1,8 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
 .verification {
-  color: $text-color-dark-secondary;
+  color: $color-text-secondary;
 
   p {
     text-align: center;
@@ -7,21 +10,21 @@
   }
 
   h5 {
-    color: $text-color-dark-primary
+    color: $color-text;
   }
 
   .logo {
     height: 64px;
-    margin-bottom: $layout-gutter-width;
+    margin-bottom: $layout-gutter-width-sm;
   }
 
   .email {
-    padding: $layout-gutter-width 0;
+    padding: $layout-gutter-width-sm 0;
   }
 
   .card {
-    padding: $layout-gutter-width * 2;
-    margin-bottom: $layout-gutter-width;
+    padding: $layout-gutter-width-sm * 2;
+    margin-bottom: $layout-gutter-width-sm;
     max-width: 350px;
   }
 

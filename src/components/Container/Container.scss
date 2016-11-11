@@ -1,15 +1,8 @@
-.oh__container {
-	margin: 24px 72px 30px;
-}
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
 
-@media (max-width: 599px) {
-  .oh__container {
-    margin: 8px;
-  }
-}
-
-@media (max-width: 959px) {
-  .oh__container {
-    margin: 24px;
-  }
+.container {
+  margin-left: auto;
+  margin-right: auto;
+	max-width: $layout-breakpoint-md;
 }

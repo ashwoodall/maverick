@@ -16,9 +16,9 @@ class Footer extends Component {
   render() {
     const { active } = this.props
     
-    const classes = classnames( theme.oh__footer,
+    const classes = classnames( theme.footer,
       { 
-        [theme.oh__active]: active
+        [theme.active]: active
       }
     )
 
