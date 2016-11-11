@@ -13,8 +13,6 @@ const config = {
 config.paths = {
   base : BASE,
   src  : `${BASE}/src`,
-  app  : `${BASE}/src/client`,
-  server: `${BASE}/src/server`,
   dist : `${BASE}/dist`,
 }
 
@@ -26,11 +24,5 @@ config.globals = {
   '__DEV__'  : config.env === 'development',
   '__PROD__' : config.env === 'production'
 }
-
-config.db = {
-  port : process.env.PORT || 8080,
-  url: process.env.MONGO_URL || 'mongodb://localhost:27017/oh-hi'
-}
-
 
 export default config
