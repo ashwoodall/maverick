@@ -8,7 +8,7 @@ import { Tab, Tabs } from 'react-toolbox'
 import Container from 'components/Container/Container'
 
 // Modules
-import ProfileEditor from 'modules/ProfileEditor/ProfileEditor'
+import ProfileEditor from 'modules/ProfileEditor/ProfileEditorContainer'
 
 // Theme 
 import theme from './Profile.scss'

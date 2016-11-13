@@ -5,7 +5,18 @@ import Footer from 'modules/Footer/FooterContainer'
 import Groups from 'views/Groups/Groups'
 import Login from 'views/Login/Login'
 import Profile from 'views/Profile/Profile'
-import Signup from 'views/Signup/SignupContainer'
+import Signup from 'views/Signup/Signup'
+
+// Core
+import { checkAuth } from 'core/utils'
+
+const isLoggedIn = (nexstState, replace) => {
+  if (checkAuth()) replace({ pathname: '/' })
+}
+
+const requireAuth = (nextState, replace) => {
+  if (!checkAuth()) replace({ pathname: '/login', state: { nextPathname: nextState.location.pathname } })
+}
 
 const paths = {
   app: {
@@ -13,11 +24,11 @@ const paths = {
     component: App,
     index: {
       label: 'Groups',
-      components: { main: Groups, header: Header, footer: Footer }
+      components: { main: Groups, header: Header, footer: Footer, onEnter: requireAuth }
     },
     children: [
-      { components: { main: Login }, label: 'Login', path: 'login' },
-      { components: { main: Profile, header: Header, footer: Footer }, label: 'Profile', path: 'profile' },
+      { components: { main: Login }, label: 'Login', path: 'login', onEnter: isLoggedIn },
+      { components: { main: Profile, header: Header, footer: Footer }, label: 'Profile', path: 'profile', onEnter: requireAuth },
       { components: { main: Signup }, label: 'Signup', path: 'signup' }
     ]
   }

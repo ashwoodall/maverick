@@ -31,9 +31,9 @@ class Header extends Component {
           <Flexbox className={ theme.wrapper } layout='row' flex align='space-between center'>
             <Svg className={ theme.logo } source={ HeaderLogo } />
             <Navigation type='horizontal'>
-              <Link href='http://' label='People' icon='people' />
+              <Link href='/' label='People' icon='people' />
               <Link href='http://' label='Messages' icon='forum' />
-              <Link href='http://' label='Profile' icon='person' />
+              <Link href='/profile' label='Profile' icon='person' />
             </Navigation>
           </Flexbox>
         </AppBar>

@@ -5,14 +5,10 @@ import React, { Component, PropTypes } from 'react'
 import 'core/theme/commons.scss'
 
 // Theme
-import theme from './App.scss'
+import AppContainer from 'modules/App/AppContainer'
 
 const App = ({ header, footer, main }) => (
-  <div className={ theme.app } data-oh-hi='app'>
-    { header }
-    <main>{ main }</main>
-    { footer }
-  </div>
+  <AppContainer header={ header } footer={ footer } main={ main } />
 )
 
 App.propTypes = {

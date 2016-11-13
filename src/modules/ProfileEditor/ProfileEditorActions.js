@@ -1,13 +1,16 @@
 import { createAction } from 'core/utils'
 
-export const save = (data) => {
+export const updateUser = (id, user) => {
   const action = {
     key: 'user',
-    payload: data
+    endpoint: `user/${id}`,
+    method: 'PUT',
+    body: user,
+    dataType: {}
   }
 
   return (dispatch) => {
-    dispatch(createAction('CALL_APP', action))
+    dispatch(createAction('CALL_API', action))
   }
 }
 

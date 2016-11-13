@@ -27,11 +27,11 @@ const item = (state = itemState, action) => {
     case RECEIVE:
       return merge({}, state, {
         isFetching: false,
-        data: action.payload,
+        data: action.payload.data,
         lastUpdated: Date.now()
       })
     case ERROR:
-      return merge({}, state, { isFetching: false, error: action.payload })
+      return merge({}, state, { isFetching: false, error: action.payload.message })
     default:
       return state
   }

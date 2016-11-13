@@ -2,12 +2,16 @@ import { map } from 'lodash'
 
 // Paths
 import { paths } from 'core/constants'
+import { checkAuth } from 'core/utils'
 
 const children = () => {
-  return map(paths.app.children, (path) => {
-    return { path: path.path, components: path.components }
+  return map(paths.app.children, (child) => {
+    const { path, components, onEnter } = child
+
+    return { path, components, onEnter }
   })
 }
+
 
 export const routes = (store) => ({
   path: paths.app.path,
