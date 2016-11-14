@@ -3,11 +3,12 @@ import React, { PropTypes } from 'react'
 
 import theme from './Svg.scss'
 
-const Svg = (props) => (
-  <div className={ classnames(theme.oh__svg, props.className) } dangerouslySetInnerHTML={{__html: props.source }} />
+const Svg = ({ className, source }) => (
+  <div className={ classnames(theme.oh__svg, className) } dangerouslySetInnerHTML={{ __html: source }} />
 )
 
 Svg.propTypes = {
+  className: PropTypes.string,
   source: PropTypes.string
 }
 

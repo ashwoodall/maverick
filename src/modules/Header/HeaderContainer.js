@@ -1,14 +1,11 @@
 // Core
-import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Components
 import Header from './Header'
 
-const mapStateToProps = ({ app }) => {
-  const { active } = app['header'] || {
-    active: true
-  }
+const mapStateToProps = ({ app: { header = {} } }) => {
+  const { active = true } = header
 
   return { active }
 }

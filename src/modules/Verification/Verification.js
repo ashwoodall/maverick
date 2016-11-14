@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Button, Card, Input, FontIcon } from 'react-toolbox'
+import React, { PropTypes } from 'react'
+import { Card, FontIcon } from 'react-toolbox'
 
 import Flexbox from 'react-material-flexbox'
 
@@ -25,10 +25,14 @@ const Verification = ({ email }) => (
           <p>Click the link in the email to activate your account.</p>
         </Flexbox>
       </Card>
-      <p>Can't find the email? <a href="/resend">Resend</a></p>
-        <p>Need to change your email address? <a href="/changeEmail">Change Email</a></p>
+      <p>Can't find the email? <a href='/resend'>Resend</a></p>
+      <p>Need to change your email address? <a href='/changeEmail'>Change Email</a></p>
     </Flexbox>
   </div>
 )
+
+Verification.propTypes = {
+  email: PropTypes.string.isRequired
+}
 
 export default Verification

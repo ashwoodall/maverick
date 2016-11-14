@@ -1,14 +1,15 @@
 // Core
 import React, { PropTypes } from 'react'
 
-// Styles
-import 'core/theme/commons.scss'
-
 // Theme
-import AppContainer from 'modules/App/AppContainer'
+import theme from './App.scss'
 
 const App = ({ header, footer, main }) => (
-  <AppContainer header={ header } footer={ footer } main={ main } />
+  <div className={ theme.app } data-oh-hi='app'>
+    { header }
+    <main>{ main }</main>
+    { footer }
+  </div>
 )
 
 App.propTypes = {

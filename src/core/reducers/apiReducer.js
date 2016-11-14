@@ -21,17 +21,17 @@ const { REQUEST, RECEIVE, ERROR } = actionTypes
 const item = (state = itemState, action) => {
   const { dataType, type, payload } = action
 
-  switch(type) {
+  switch (type) {
     case REQUEST:
       return merge({}, state, { isFetching: true, data: dataType })
     case RECEIVE:
       return merge({}, state, {
         isFetching: false,
-        data: action.payload,
+        data: payload.data,
         lastUpdated: Date.now()
       })
     case ERROR:
-      return merge({}, state, { isFetching: false, error: action.payload })
+      return merge({}, state, { isFetching: false, error: payload.message })
     default:
       return state
   }
@@ -44,7 +44,7 @@ const item = (state = itemState, action) => {
  * @param {object} action params passed in from middlewares
  */
 export default (state = initialState, action) => {
-  const { type, key, payload } = action
+  const { type, key } = action
 
   switch (type) {
     case RECEIVE:

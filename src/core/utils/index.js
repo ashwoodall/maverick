@@ -1,5 +1,7 @@
+import checkAuth from './checkAuth'
 import checkObject from './checkObject'
 import createAction from './createAction'
 import fetchJSON from './fetchJSON'
+import getToken from './getToken'
 
-export { checkObject, createAction, fetchJSON }
+export { checkAuth, checkObject, createAction, fetchJSON, getToken }

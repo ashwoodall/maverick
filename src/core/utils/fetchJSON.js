@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { messages } from 'core/constants'
+import { getToken } from 'core/utils'
 
 // Cool little check from http://stackoverflow.com/a/34787336
 const checkStatus = (response) => {
@@ -23,7 +24,8 @@ const fetchJSON = (endpoint, method, body) => {
     method: method,
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
     }
   }
 

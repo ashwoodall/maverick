@@ -1,18 +1,11 @@
 // Core
-import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Components
 import Footer from './Footer'
 
-const mapStateToProps = (state) => {
-  const { app } = state
-
-  const { 
-    active 
-  } = app['footer'] || {
-    active: true
-  }
+const mapStateToProps = ({ app: { footer = {} } }) => {
+  const { active = true } = footer
 
   return { active }
 }
