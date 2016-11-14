@@ -22,7 +22,7 @@ class AppContainer extends Component {
   }
 }
 
-App.propTypes = {
+AppContainer.propTypes = {
   header: PropTypes.element,
   footer: PropTypes.element,
   main: PropTypes.element.isRequired,

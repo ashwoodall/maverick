@@ -2,64 +2,64 @@
 @import "~react-toolbox/lib/globals";
 
 .panel {
-	background-color: $color-white;
-	border-radius: 2px;
-	box-shadow: $zdepth-shadow-1;
-	padding: 0 24px;
-	max-height: 64px;
-	overflow: hidden;
-	transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+  background-color: $color-white;
+  border-radius: 2px;
+  box-shadow: $zdepth-shadow-1;
+  padding: 0 24px;
+  max-height: 64px;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
 
-	.content {
-		padding-bottom: 18px;
-	}
+  .content {
+    padding-bottom: 18px;
+  }
 
-	.toolbar {
-		cursor: pointer;
-		height: 64px;
+  .toolbar {
+    cursor: pointer;
+    height: 64px;
 
-		.title {
-			font-weight: 500;
-			margin-right: 16px;
-			width: 200px;
-		}
+    .title {
+      font-weight: 500;
+      margin-right: 16px;
+      width: 200px;
+    }
 
-		.subTitle {
-			color: $color-text-secondary;
-		}
+    .subTitle {
+      color: $color-text-secondary;
+    }
 
-		.icon {
-			transition: all .2s ease-in-out;
-		}
+    .icon {
+      transition: all .2s ease-in-out;
+    }
 
-		.iconExpanded {
-			transform: rotate(180deg)
-		}
+    .iconExpanded {
+      transform: rotate(180deg);
+    }
 
-	}
+  }
 
-	&.expanded {
-		max-height: 999px;
-		transition: max-height 0.4s ease-in-out;
-	}
+  &.expanded {
+    max-height: 999px;
+    transition: max-height 0.4s ease-in-out;
+  }
 
-	&.inGroup {
-		border-radius: 0px;
-	}
+  &.inGroup {
+    border-radius: 0;
+  }
 
-	&.firstPanel {
-		border-top-left-radius: 2px;
-		border-top-right-radius: 2px;
-	}
+  &.firstPanel {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
 
-	&.lastPanel {
-		border-bottom-left-radius: 2px;
-		border-bottom-right-radius: 2px;
-	}
+  &.lastPanel {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
 }
 
 .panelGroup {
-	display: flex;
-	flex-direction: column;
-	padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
 }

@@ -4,8 +4,8 @@ import React from 'react'
 // Modules
 import Auth from 'modules/Auth/AuthContainer'
 
-const Signup = ({ email }) => {
-  return <Auth type='register' />
-}
+const Signup = () => (
+  <Auth type='register' />
+)
 
-export default Signup 
+export default Signup

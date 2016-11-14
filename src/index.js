@@ -5,7 +5,6 @@ import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 import Redbox from 'redbox-react'
-import { Provider } from 'react-redux'
 
 import configureStore from 'core/configureStore'
 
@@ -16,7 +15,7 @@ const initialState = window.__INITIAL_STATE__
 const store = configureStore(initialState, browserHistory)
 const history = syncHistoryWithStore(browserHistory, store)
 
-render (
+render(
   <AppContainer errorReporter={ Redbox }>
     <App store={ store } history={ history } />
   </AppContainer>,
@@ -34,6 +33,6 @@ if (__DEV__) {
         </AppContainer>,
         documentRoot
       )
-    });
+    })
   }
 }

@@ -1,7 +1,5 @@
 import { browserHistory } from 'react-router'
-
 import { createAction } from 'core/utils'
-import { actionTypes } from 'core/constants'
 
 export const login = (user) => {
   const action = {

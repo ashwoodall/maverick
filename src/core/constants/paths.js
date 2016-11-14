@@ -10,7 +10,7 @@ import Signup from 'views/Signup/Signup'
 // Core
 import { checkAuth } from 'core/utils'
 
-const isLoggedIn = (nexstState, replace) => {
+const isLoggedIn = (nextState, replace) => {
   if (checkAuth()) replace({ pathname: '/' })
 }
 

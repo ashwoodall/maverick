@@ -1,14 +1,19 @@
 // Core
+import React, { PropTypes } from 'react'
 import classnames from 'classnames'
-import React from 'react'
 
 // Theme
 import theme from './Container.scss'
 
 const Container = ({ children, className }) => (
-	<div className={ classnames(theme.container, className) }>
-		{ children }
-	</div>
+  <div className={ classnames(theme.container, className) }>
+    { children }
+  </div>
 )
+
+Container.propTypes = {
+  children: PropTypes.element,
+  className: PropTypes.string
+}
 
 export default Container

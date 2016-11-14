@@ -1,12 +1,13 @@
 // Core
-import React, { Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // Modules
 import Auth from './Auth'
+import Verification from 'modules/Verification/Verification'
 
-// Api 
+// Api
 import * as Actions from './AuthActions'
 
 class AuthContainer extends Component {
@@ -20,9 +21,9 @@ class AuthContainer extends Component {
     const { login, register, type } = this.props
 
     if (type === 'login') {
-      login({...this.state})
+      login({ ...this.state })
     } else if (type === 'register') {
-      register({...this.state})
+      register({ ...this.state })
     }
   }
 
@@ -33,12 +34,12 @@ class AuthContainer extends Component {
     return (
       <div>
         { showVerification && <Verification email={ email } /> }
-        { !email && 
-          <Auth 
-            email={ this.state.email } 
-            handleChange={ this.handleChange } 
+        { !email &&
+          <Auth
+            email={ this.state.email }
+            handleChange={ this.handleChange }
             handleSubmit={ this.handleSubmit }
-            password={ this.state.password } 
+            password={ this.state.password }
             type={ type } />
         }
       </div>
@@ -48,7 +49,9 @@ class AuthContainer extends Component {
 
 AuthContainer.propTypes = {
   type: PropTypes.string.isRequired,
-  email: PropTypes.string
+  email: PropTypes.string,
+  login: PropTypes.func,
+  register: PropTypes.func
 }
 
 const mapPropsToState = ({ app: { user = {} } }) => {

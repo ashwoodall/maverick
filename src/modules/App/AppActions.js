@@ -17,7 +17,7 @@ export const getUserByToken = () => {
           method: 'GET',
           dataType: {}
         }
-        
+
         dispatch(createAction('CALL_API', userAction))
       })
   }

@@ -1,5 +1,4 @@
 import actionTypes from 'core/constants/actionTypes'
-import api from 'core/constants/api'
 
 const {
   CALL_API,
@@ -80,7 +79,7 @@ const appAction = (action) => {
     types: [SET],
     payload: {
       key: action.key,
-      payload: action.payload,
+      payload: action.payload
     }
   }
 }

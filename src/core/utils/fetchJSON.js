@@ -24,11 +24,10 @@ const fetchJSON = (endpoint, method, body) => {
     method: method,
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    }
   }
-
-  options.headers.Authorization = getToken()
 
   if (body) options.body = JSON.stringify(body)
 

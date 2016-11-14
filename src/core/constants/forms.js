@@ -1,14 +1,14 @@
 const forms = {
   activities: [
-    { value: 'walk', label: 'Go for a walk' }, 
-    { value: 'coffee', label: 'Grab coffee or a drink' }, 
-    { value: 'eat', label: 'Grab lunch or dinner' }, 
-    { value: 'workout', label: 'Work out together' }, 
-    { value: 'shopping', label: 'Go shopping together' }, 
-    { value: 'party', label: 'Go to a party' }, 
-    { value: 'kids', label: 'Play date with the kids' }, 
-    { value: 'dogs', label: 'Play date with the dogs' }, 
-    { value: 'volunteer', label: 'Volunteering' }, 
+    { value: 'walk', label: 'Go for a walk' },
+    { value: 'coffee', label: 'Grab coffee or a drink' },
+    { value: 'eat', label: 'Grab lunch or dinner' },
+    { value: 'workout', label: 'Work out together' },
+    { value: 'shopping', label: 'Go shopping together' },
+    { value: 'party', label: 'Go to a party' },
+    { value: 'kids', label: 'Play date with the kids' },
+    { value: 'dogs', label: 'Play date with the dogs' },
+    { value: 'volunteer', label: 'Volunteering' },
     { value: 'community', label: 'Attend a community event' }
   ],
   kidsAge: [

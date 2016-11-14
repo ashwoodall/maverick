@@ -1,4 +1,4 @@
-// Core 
+// Core
 import React, { Component, PropTypes } from 'react'
 import update from 'react-addons-update'
 import { bindActionCreators } from 'redux'
@@ -9,7 +9,7 @@ import ProfileEditor from './ProfileEditor'
 import * as Actions from './ProfileEditorActions'
 
 class ProfileEditorContainer extends Component {
-  state = { 
+  state = {
     expanded: {
       basic: true,
       intro: false,
@@ -38,13 +38,13 @@ class ProfileEditorContainer extends Component {
   }
 
   handleChange = (name, value) => {
-    const newState = update(this.state, { user: { $merge: { [name]: value }}})
+    const newState = update(this.state, { user: { $merge: { [name]: value } } })
 
     this.setState(newState)
   }
 
   handlePanelChange = (name, value) => {
-    const newState = update(this.state, { expanded: { $merge: { [name]: value }}})
+    const newState = update(this.state, { expanded: { $merge: { [name]: value } } })
 
     this.setState(newState)
   }
@@ -53,9 +53,9 @@ class ProfileEditorContainer extends Component {
     let newState
 
     if (this.state.user[key][field]) {
-      newState = update(this.state, { user: { [key]: { $merge: { [field]: false }}}})
+      newState = update(this.state, { user: { [key]: { $merge: { [field]: false } } } })
     } else {
-      newState = update(this.state, { user: { [key]: { $merge: { [field]: true }}}})
+      newState = update(this.state, { user: { [key]: { $merge: { [field]: true } } } })
     }
 
     this.setState(newState)
@@ -64,18 +64,23 @@ class ProfileEditorContainer extends Component {
   handleSubmit = () => {
     const { updateUser } = this.props
 
-    updateUser(this.props.data.id, {...this.state.user})
+    updateUser(this.props.data.id, { ...this.state.user })
   }
 
   render () {
-    return <ProfileEditor 
-              user={ this.state.user } 
-              expanded={ this.state.expanded } 
-              handleCheck={ this.handleCheck } 
-              handleChange={ this.handleChange } 
-              handlePanelChange={ this.handlePanelChange } 
-              handleSubmit={ this.handleSubmit } />
+    return <ProfileEditor
+      user={ this.state.user }
+      expanded={ this.state.expanded }
+      handleCheck={ this.handleCheck }
+      handleChange={ this.handleChange }
+      handlePanelChange={ this.handlePanelChange }
+      handleSubmit={ this.handleSubmit } />
   }
+}
+
+ProfileEditorContainer.propTypes = {
+  data: PropTypes.object,
+  updateUser: PropTypes.func
 }
 
 const mapPropsToState = ({ api: { user: { data = {} } } }) => {

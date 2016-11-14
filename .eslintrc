@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
 	"extends": [
 		"standard",
     "standard-react"
@@ -12,6 +13,11 @@
     "mocha" : true,
     "es6": true
 	},
+  "globals": {
+    "__DEV__"      : false,
+    "__TEST__"     : false,
+    "__PROD__"     : false
+  },
   "rules": {
     "react/jsx-curly-spacing": [2, "always", {"spacing": {
       "objectLiterals": "never"

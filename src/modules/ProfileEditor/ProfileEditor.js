@@ -1,5 +1,5 @@
-// Core 
-import React from 'react'
+// Core
+import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
 // Constants
@@ -24,7 +24,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
           <Flexbox layout='column' flex>
             <h5>Some quick information about yourself</h5>
             <p>We need some basic information to add to your profile</p>
-            <br/>
+            <br />
             <Flexbox layout='row' align='start center'>
               <h6 className={ theme.noMargin }>Profile Picture</h6>
               <IconButton icon='edit' />
@@ -51,11 +51,11 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
               <p>What are you looking for in a friend?</p>
               <p>What are some things that are most important to you?</p>
             </Flexbox>
-            <Input className={ theme.description } theme={ theme } type='text' value={ user.introduction } multiline label='Introduction' maxLength={140} onChange={ (value) => handleChange('introduction', value) } />
+            <Input className={ theme.description } theme={ theme } type='text' value={ user.introduction } multiline label='Introduction' maxLength={ 140 } onChange={ (value) => handleChange('introduction', value) } />
             <p>(We’ll put this introduction under your picture at the top of your profile.)</p>
             <div className={ theme.inspiration }>
               <p>Need some inspiration?</p>
-              <p>Check out some <a href="/">example introductions.</a></p>
+              <p>Check out some <a href='/'>example introductions.</a></p>
             </div>
             <ListDivider />
             <h5>What are the top two ways you would feel comfortable meeting up with new people?</h5>
@@ -79,7 +79,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
           <Flexbox layout='column' flex>
             <h5>Links to your social media pages</h5>
             <p>Sharing social media pages can help Oh-hi members get to know each other a bit before reaching out. They can be a great way to find conversation topics for those first time meetings. Feel free to include only the pages you’re comfortable sharing, or none at all.</p>
-            <br/>
+            <br />
             <p className={ theme.notice }>Oh-hi won’t post anything to your accounts or pull any information from them.</p>
             <Input type='text' label='Facebook' name='facebook' value={ user.facebook } onChange={ (value) => handleChange('facebook', value) } />
             <Input type='text' label='Twitter' name='twitter' value={ user.twitter } onChange={ (value) => handleChange('twitter', value) } />
@@ -102,8 +102,8 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
               <RadioButton label='Yes' value='yes' />
               <RadioButton label='No' value='no' />
             </RadioGroup>
-            { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } onChange={ (value) => handleChange('aboutPets', value) } /> : <span/> }
-            <br/>
+            { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } onChange={ (value) => handleChange('aboutPets', value) } /> : <span /> }
+            <br />
             <h5>Kids</h5>
             <h6>Do you have any kids?</h6>
             <RadioGroup name='hasKids' value={ user.has_kids } onChange={ (value) => handleChange('has_kids', value) }>
@@ -122,8 +122,8 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
                     </Flexbox>
                   ))}
                 </Flexbox>
-              </div> 
-            ) : <span/> }
+              </div>
+            ) : <span /> }
           </Flexbox>
         </Flexbox>
         <Flexbox layout='column' align='center center'>
@@ -149,5 +149,14 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
 
   </div>
 )
+
+ProfileEditor.propTypes = {
+  user: PropTypes.object,
+  expanded: PropTypes.object,
+  handleCheck: PropTypes.func,
+  handleChange: PropTypes.func,
+  handlePanelChange: PropTypes.func,
+  handleSubmit: PropTypes.func
+}
 
 export default ProfileEditor

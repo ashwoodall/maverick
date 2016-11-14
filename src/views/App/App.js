@@ -1,5 +1,5 @@
 // Core
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
 // Styles
 import 'core/theme/commons.scss'

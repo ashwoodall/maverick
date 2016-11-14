@@ -16,11 +16,11 @@ const Auth = ({ email, password, handleChange, handleSubmit, type }) => (
         <Svg source={ HeaderLogo } className={ theme.logo } />
         <Input type='email' label='Email' name='email' value={ email } onChange={ (value) => handleChange('email', value) } />
         <Input type='password' label='Password' name='password' value={ password } onChange={ (value) => handleChange('password', value) } />
-        <Button className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up'  } raised primary onClick={ () => handleSubmit() } />
-        { type === 'login' && (<a className={ theme.forgot__password } href="#">Forgot Password?</a>) }
+        <Button className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up' } raised primary onClick={ () => handleSubmit() } />
+        { type === 'login' && (<a className={ theme.forgot__password } href='#'>Forgot Password?</a>) }
       </Card>
       <p className={ theme.aside }>
-        { type === 'login' && (<span>Need an account? <a href="/signup">Sign Up</a></span>) || (<span>Have an account? <a href="/login">Login</a></span>) }
+        { type === 'login' && (<span>Need an account? <a href='/signup'>Sign Up</a></span>) || (<span>Have an account? <a href='/login'>Login</a></span>) }
       </p>
     </Flexbox>
   </div>
@@ -29,7 +29,9 @@ const Auth = ({ email, password, handleChange, handleSubmit, type }) => (
 Auth.propTypes = {
   email: PropTypes.string,
   handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  password: PropTypes.string,
+  type: PropTypes.string
 }
 
 export default Auth
