@@ -5,22 +5,22 @@
   background-color: $color-white;
   border-radius: 2px;
   box-shadow: $zdepth-shadow-1;
-  padding: 0 24px;
-  max-height: 64px;
+  padding: 0 $layout-gutter-width;
+  max-height: $standard-increment-desktop;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+  transition: all $animation-duration $animation-curve-default;
 
   .content {
-    padding-bottom: 18px;
+    padding-bottom: $layout-gutter-width;
   }
 
   .toolbar {
     cursor: pointer;
-    height: 64px;
+    height: $standard-increment-desktop;
 
     .title {
       font-weight: 500;
-      margin-right: 16px;
+      margin-right: $layout-gutter-width-sm;
       width: 200px;
     }
 
@@ -29,7 +29,7 @@
     }
 
     .icon {
-      transition: all .2s ease-in-out;
+      transition: all $animation-duration $animation-curve-default;
     }
 
     .iconExpanded {
@@ -40,7 +40,13 @@
 
   &.expanded {
     max-height: 999px;
-    transition: max-height 0.4s ease-in-out;
+    transition: all $animation-duration $animation-curve-default;
+    margin: $layout-gutter-width 0;
+
+    &.firstPanel {
+      margin-top: 0;
+    }
+
   }
 
   &.inGroup {
@@ -61,5 +67,5 @@
 .panelGroup {
   display: flex;
   flex-direction: column;
-  padding: 16px 0;
+  padding: $layout-gutter-width-sm 0;
 }

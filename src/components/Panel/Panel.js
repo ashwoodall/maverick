@@ -15,10 +15,10 @@ class Panel extends Component {
     this.setState({ expanded: expanded })
   }
 
-  componentWillReceiveProps (prevProps) {
-    if (prevProps === this.props) return
+  componentWillReceiveProps (nextProps) {
+    if (nextProps === this.props) return
 
-    const { expanded } = this.props
+    const { expanded } = nextProps
 
     this.setState({ expanded: expanded })
   }
@@ -34,7 +34,7 @@ class Panel extends Component {
   }
 
   render () {
-    const { title, subTitle } = this.props
+    const { className, title, subTitle } = this.props
     const { expanded } = this.state
 
     let panelClass = {
@@ -48,7 +48,7 @@ class Panel extends Component {
     }
 
     return (
-      <div className={ classnames(this.props.className, panelClass) }>
+      <div className={ classnames(className, panelClass) }>
         <div onClick={ () => this.handleToggle() }>
           <Flexbox layout='row' align='start center' className={ theme.toolbar }>
             <h6 className={ theme.title }>{ title }</h6>
@@ -66,7 +66,7 @@ class Panel extends Component {
 }
 
 Panel.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   className: PropTypes.string,
   expanded: PropTypes.bool,
   onClick: PropTypes.func,

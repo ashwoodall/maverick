@@ -1,0 +1,11 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.subheader {
+
+  h3 {
+    color: $color-text-secondary;
+    margin: $layout-gutter-width-sm 0;
+  }
+  
+}

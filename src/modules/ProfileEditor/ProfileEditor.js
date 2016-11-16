@@ -18,7 +18,6 @@ const { activities, kidsAge } = forms
 const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelChange, handleSubmit }) => (
   <div data-oh-hi='profile-editor'>
     <PanelGroup>
-
       <Panel title='Basic info' subTitle='(required section)' expanded={ expanded.basic } onClick={ () => handlePanelChange('basic', !expanded.basic) }>
         <Flexbox className={ theme.group } flex='70' flex-sm='100' flex-xs='100' layout='row' align='center center'>
           <Flexbox layout='column' flex>
@@ -111,14 +110,14 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
               <RadioButton label='No' value='noKids' />
               <RadioButton label='Expection my first' value='expecting' />
             </RadioGroup>
-            { user.has_kids === 'yes' ? (
+            { user.has_kids === 'hasKids' ? (
               <div>
                 <Input type='text' label='How many kids?' name='aboutKids' value={ user.number_of_kids } onChange={ (value) => handleChange('number_of_kids', value) } />
                 <h6>What are their age ranges?</h6>
                 <Flexbox layout='row' className={ theme.options }>
                   {kidsAge.map(option => (
                     <Flexbox layout='row' flex='50' flex-sm='100' key={ option.value }>
-                      <Checkbox label={ option.label } checked={ user.kid_status[option.label] } onChange={ () => handleCheck('kid_status', option.value) } />
+                      <Checkbox label={ option.label } checked={ user.kid_status[option.label] } onChange={ () => handleCheck('kid_status', option.label) } />
                     </Flexbox>
                   ))}
                 </Flexbox>

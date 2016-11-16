@@ -24,7 +24,7 @@ const PanelGroup = ({ children }) => (
 )
 
 PanelGroup.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.node
 }
 
 export default PanelGroup

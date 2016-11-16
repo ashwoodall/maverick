@@ -1,0 +1,38 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.person {
+
+  .avatar {
+    height: 192px;
+    margin: $baseline-grid auto 16px;
+    width: 192px;
+  }
+
+  .age {
+    color: $color-text-secondary;
+    line-height: $unit * 2;
+    margin-left: 8px;
+  }
+
+  .content {
+    color: $color-text-secondary;
+    line-height: $unit * 1.6;
+    margin-right: -($unit);
+    margin-top: $baseline-grid;
+    max-height: $unit * 4.8;
+    overflow: hidden;
+    padding-right: $unit;
+    position: relative; 
+
+    &:before {
+      background-color: $color-white;
+      bottom: 0;
+      content: "...";
+      position: absolute;
+      right: $layout-gutter-width-sm;
+    }
+
+  }
+
+}

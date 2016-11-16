@@ -1,0 +1,21 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.search {
+  
+  .icon {
+    margin-top: $baseline-grid;
+  }
+
+  .input {
+    overflow: hidden;
+    transition: all $animation-duration $animation-curve-default;
+    width: 0;
+
+    &.show {
+      width: 194px;
+    }
+
+  }
+
+}

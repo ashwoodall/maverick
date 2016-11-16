@@ -2,7 +2,6 @@
 @import "~react-toolbox/lib/globals";
 
 .appBar {
-  display: none;
   height: 64px;
   position: fixed;
   top: 0;
@@ -25,8 +24,37 @@
     width: 64px;
   }
 
-}
+  .navigation {
+    display: flex;
+    flex-direction: row;
+  }
 
-.active {
-  display: block;
+  .link {
+    align-items: center;
+    color: $color-text-secondary;
+    display: flex;
+    margin: 0 $unit * 0.8;
+    opacity: 1;
+    transition: all $animation-duration $animation-curve-default;
+
+    > * {
+      display: flex;
+      vertical-align: inherit;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &.active {
+      color: $color-primary;
+    }
+
+  }
+
+  .avatar {
+    width: 24px;
+    height: 24px;
+  }
+
 }
