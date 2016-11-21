@@ -10,8 +10,14 @@ import Verification from 'modules/Verification/Verification'
 // Api
 import * as Actions from './AuthActions'
 
+// Duty Stations
+const stations = [
+  { value: 'forthood', label: 'Fort Hood' },
+  { value: 'other', label: 'Other' }
+]
+
 class AuthContainer extends Component {
-  state = { email: '', password: '' }
+  state = { email: '', password: '', current_station: '' }
 
   handleChange = (name, value) => {
     this.setState({ ...this.state, [name]: value })
@@ -28,18 +34,19 @@ class AuthContainer extends Component {
   }
 
   render () {
-    const { email, type } = this.props
-    let showVerification = email && type === 'submit'
+    const { success, type } = this.props
 
     return (
       <div>
-        { showVerification && <Verification email={ email } /> }
-        { !email &&
+        { success && <Verification email={ this.state.email } /> }
+        { !success &&
           <Auth
+            current_station={ this.state.current_station }
             email={ this.state.email }
             handleChange={ this.handleChange }
             handleSubmit={ this.handleSubmit }
             password={ this.state.password }
+            stations={ stations }
             type={ type } />
         }
       </div>
@@ -49,15 +56,15 @@ class AuthContainer extends Component {
 
 AuthContainer.propTypes = {
   type: PropTypes.string.isRequired,
-  email: PropTypes.string,
+  success: PropTypes.bool,
   login: PropTypes.func,
   register: PropTypes.func
 }
 
-const mapPropsToState = ({ app: { user = {} } }) => {
-  const { email = null } = user
+const mapPropsToState = ({ api: { register = {} } }) => {
+  const { success = false } = register
 
-  return { email }
+  return { success }
 }
 
 const mapDispatchToProps = (dispatch) => {

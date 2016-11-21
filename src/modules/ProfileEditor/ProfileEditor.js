@@ -16,10 +16,10 @@ import theme from './ProfileEditor.scss'
 const { activities, kidsAge } = forms
 
 const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelChange, handleSubmit }) => (
-  <div data-oh-hi='profile-editor'>
+  <div data-oh-hi='profile-editor' className={ theme.profileEditor }>
     <PanelGroup>
       <Panel title='Basic info' subTitle='(required section)' expanded={ expanded.basic } onClick={ () => handlePanelChange('basic', !expanded.basic) }>
-        <Flexbox className={ theme.group } flex='70' flex-sm='100' flex-xs='100' layout='row' align='center center'>
+        <Flexbox className={ theme.group } layout='row' align='center center'>
           <Flexbox layout='column' flex>
             <h5>Some quick information about yourself</h5>
             <p>We need some basic information to add to your profile</p>
@@ -42,7 +42,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
       </Panel>
 
       <Panel title='Introduce Yourself' subTitle='(required section)' expanded={ expanded.intro } onClick={ () => handlePanelChange('intro', !expanded.intro) }>
-        <Flexbox className={ theme.group } flex='70' layout='row' align='center center'>
+        <Flexbox className={ theme.group } align='center center'>
           <Flexbox layout='column' flex>
             <h5>Write a <b>quick introduction</b> of yourself to potential new friends. Here are some things you might include:</h5>
             <Flexbox layout='column' className={ theme.examples }>
@@ -74,7 +74,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
       </Panel>
 
       <Panel title='Social Media' subTitle='(optional)' expanded={ expanded.social } onClick={ () => handlePanelChange('social', !this.state.expanded.social) }>
-        <Flexbox className={ classnames(theme.group, theme.social) } flex='70' layout='row' align='center center'>
+        <Flexbox className={ classnames(theme.group, theme.social) } layout='row' align='center center'>
           <Flexbox layout='column' flex>
             <h5>Links to your social media pages</h5>
             <p>Sharing social media pages can help Oh-hi members get to know each other a bit before reaching out. They can be a great way to find conversation topics for those first time meetings. Feel free to include only the pages you’re comfortable sharing, or none at all.</p>
@@ -93,7 +93,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
       </Panel>
 
       <Panel title='Family' subTitle='(optional)' expanded={ expanded.family } onClick={ () => handlePanelChange('family', !expanded.family) }>
-        <Flexbox className={ theme.group } flex='70' flex-sm='90' layout='row' align='center center'>
+        <Flexbox className={ theme.group } layout='row' align='center center'>
           <Flexbox layout='column' flex>
             <h5>Pets</h5>
             <h6>Do you have any pets?</h6>
@@ -132,7 +132,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
       </Panel>
 
       <Panel title='History with the Military' subTitle='(optional)' expanded={ expanded.military } onClick={ () => handlePanelChange('military', !expanded.military) }>
-        <Flexbox className={ theme.group } flex='70' layout='row' align='center center'>
+        <Flexbox className={ theme.group } layout='row' align='center center'>
           <Flexbox layout='column' flex>
             <h6>Current Duty Station</h6>
             <h4>Fort Hood</h4>

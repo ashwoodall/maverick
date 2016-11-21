@@ -9,11 +9,16 @@ import Header from './Header'
 import * as Actions from './HeaderActions'
 
 class HeaderContainer extends Component {
+  componentWillMount () {
+    const { pathname } = this.props.location
+
+    this.props.setActive(pathname)
+  }
 
   handleNavigate = (route) => {
     browserHistory.push(`/${route}`)
 
-    this.props.setActive(route)
+    this.props.setActive(`/${route}`)
   }
 
   render () {
@@ -23,11 +28,12 @@ class HeaderContainer extends Component {
 
 HeaderContainer.propTypes = {
   active: PropTypes.string,
-  setActive: PropTypes.func
+  setActive: PropTypes.func,
+  location: PropTypes.array
 }
 
 const mapStateToProps = ({ app: { navigation = {} } }) => {
-  const { active = null } = navigation
+  const { active = '' } = navigation
 
   return { active }
 }

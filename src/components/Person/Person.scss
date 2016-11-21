@@ -2,11 +2,23 @@
 @import "~react-toolbox/lib/globals";
 
 .person {
+  cursor: pointer;
+  width: 100%;
+
+  h5 {
+    color: $color-text-secondary;
+  }
 
   .avatar {
-    height: 192px;
+    font-size: $unit * 10;
+    height: 148px;
     margin: $baseline-grid auto 16px;
-    width: 192px;
+    width: 148px;
+
+    .letter {
+      line-height: $unit * 15;
+    }
+
   }
 
   .age {
@@ -17,22 +29,14 @@
 
   .content {
     color: $color-text-secondary;
+    display: -webkit-box;
     line-height: $unit * 1.6;
-    margin-right: -($unit);
     margin-top: $baseline-grid;
-    max-height: $unit * 4.8;
+    height: $unit * 4.8;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    padding-right: $unit;
-    position: relative; 
-
-    &:before {
-      background-color: $color-white;
-      bottom: 0;
-      content: "...";
-      position: absolute;
-      right: $layout-gutter-width-sm;
-    }
-
+    text-overflow: ellipsis;
   }
 
 }

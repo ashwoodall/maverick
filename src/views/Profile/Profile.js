@@ -17,7 +17,7 @@ const Profile = () => (
   <div className={ theme.profile } data-oh-hi='profile-view'>
     <div className={ theme.toolbar } />
     <Container>
-      <Tabs inverse>
+      <Tabs fixed>
         <Tab className={ theme.tab } theme={ theme } label='Profile'>
           <ProfileEditor />
         </Tab>

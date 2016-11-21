@@ -2,11 +2,6 @@
 @import "~react-toolbox/lib/globals";
 
 .appBar {
-  height: 64px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 22;
 
   .header {
     background-color: $color-white;
@@ -14,14 +9,14 @@
   }
 
   .wrapper {
-    max-width: $layout-breakpoint-md;
+    max-width: $layout-breakpoint-sm;
     margin-left: auto;
     margin-right: auto;
   }
 
   .logo {
     height: 48px;
-    width: 64px;
+    width: 48px;
   }
 
   .navigation {

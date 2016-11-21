@@ -28,10 +28,12 @@ const item = (state = itemState, action) => {
       return merge({}, state, {
         isFetching: false,
         data: payload.data,
-        lastUpdated: Date.now()
+        lastUpdated: Date.now(),
+        message: payload.message,
+        success: payload.success
       })
     case ERROR:
-      return merge({}, state, { isFetching: false, error: payload.message })
+      return merge({}, state, { isFetching: false, message: payload.message, success: payload.success })
     default:
       return state
   }

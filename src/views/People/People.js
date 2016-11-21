@@ -6,7 +6,7 @@ import Container from 'components/Container'
 import Subheader from 'components/Subheader'
 
 // Modules
-import PeopleList from 'modules/PeopleList'
+import PeopleList from 'modules/People'
 
 const People = () => (
   <div data-oh-hi='people-view'>

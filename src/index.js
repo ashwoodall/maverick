@@ -24,15 +24,6 @@ render(
 
 if (__DEV__) {
   if (module.hot) {
-    module.hot.accept('./App', () => {
-      const NextApp = require('./App').default
-
-      render(
-        <AppContainer errorReporter={ Redbox }>
-          <NextApp store={ store } history={ history } />
-        </AppContainer>,
-        documentRoot
-      )
-    })
+    module.hot.accept()
   }
 }
