@@ -14,3 +14,8 @@ main {
   padding-top: 64px;
   padding-bottom: 80px;
 }
+
+div[data-react-toolbox="card"] {
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}

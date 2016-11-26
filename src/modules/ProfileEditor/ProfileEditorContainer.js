@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import update from 'react-addons-update'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { merge } from 'lodash'
 
 // Modules
 import ProfileEditor from './ProfileEditor'
@@ -24,7 +25,7 @@ class ProfileEditorContainer extends Component {
       birth_date: '',
       hometown: '',
       introduction: '',
-      activities: {},
+      activities: [],
       facebook: '',
       twitter: '',
       instagram: '',
@@ -33,8 +34,18 @@ class ProfileEditorContainer extends Component {
       about_pets: '',
       has_kids: 'noKids',
       number_of_kids: 0,
-      kid_status: {}
+      kid_status: [],
+      is_service_member: false
     }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps === this.props) return
+
+    const { data } = nextProps
+    const { user } = this.state
+
+    this.setState({ user: merge({}, user, data) })
   }
 
   handleChange = (name, value) => {

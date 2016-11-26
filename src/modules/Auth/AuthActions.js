@@ -21,14 +21,7 @@ export const login = (user) => {
 
 export const register = (user) => {
   const action = {
-    key: 'user',
-    payload: {
-      emai: user.email
-    }
-  }
-
-  const apiAction = {
-    key: 'user',
+    key: 'register',
     endpoint: 'auth/register',
     method: 'POST',
     body: user,
@@ -36,7 +29,6 @@ export const register = (user) => {
   }
 
   return (dispatch) => {
-    dispatch(createAction('CALL_APP', action))
-    dispatch(createAction('CALL_API', apiAction))
+    dispatch(createAction('CALL_API', action))
   }
 }

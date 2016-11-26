@@ -2,11 +2,6 @@
 @import "~react-toolbox/lib/globals";
 
 .appBar {
-  height: 64px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 22;
 
   .header {
     background-color: $color-white;
@@ -14,14 +9,14 @@
   }
 
   .wrapper {
-    max-width: $layout-breakpoint-md;
+    max-width: $layout-breakpoint-sm;
     margin-left: auto;
     margin-right: auto;
   }
 
   .logo {
     height: 48px;
-    width: 64px;
+    width: 48px;
   }
 
   .navigation {
@@ -33,13 +28,22 @@
     align-items: center;
     color: $color-text-secondary;
     display: flex;
-    margin: 0 $unit * 0.8;
+    flex-direction: column;
+    margin: 0 $unit * 1.6;
     opacity: 1;
     transition: all $animation-duration $animation-curve-default;
 
     > * {
       display: flex;
       vertical-align: inherit;
+    }
+
+    .icon {
+      margin: 0;
+    }
+
+    abbr {
+      font-size: $unit * 1.2;
     }
 
     &:hover {
@@ -53,8 +57,8 @@
   }
 
   .avatar {
-    width: 24px;
-    height: 24px;
+    width: $unit * 2;
+    height: $unit * 2;
   }
 
 }

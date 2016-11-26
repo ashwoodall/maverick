@@ -3,14 +3,14 @@
 
 .gridList {
   flex-wrap: wrap;
-  margin: 0 -24px;
+  margin: 0 -12px;
   transition: all $animation-duration ease-in-out;
 }
 
 .gridTile {
   background-color: $color-background;
   background-clip: padding-box;
-  border: 24px solid transparent;
+  border: 12px solid transparent;
 
   &.column__1 {
     flex: 0 1 50%;

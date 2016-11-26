@@ -14,9 +14,9 @@ const configureClasses = (className, columns) => {
   return classnames(className, classes)
 }
 
-const GridTile = ({ className, columns, children, onClick }) => {
+const GridTile = ({ className, columns, children }) => {
   return (
-    <div className={ configureClasses(className, columns) } data-black-locus='grid-tile' onClick={ () => onClick() }>
+    <div className={ configureClasses(className, columns) } data-black-locus='grid-tile'>
       <Flexbox layout='row' align='center center'>
         { children }
       </Flexbox>

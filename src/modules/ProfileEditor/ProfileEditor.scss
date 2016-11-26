@@ -1,60 +1,66 @@
 @import "~react-toolbox/lib/colors";
 @import "~react-toolbox/lib/globals";
 
-.group {
-  margin: ($baseline-grid * 4) auto;
+.profileEditor {
+  margin: 0 auto;
+  max-width: $layout-breakpoint-sm-tablet;
 
-  p {
-    font-weight: 500;
-    line-height: 1.8rem;
-  }
+  .group {
+    margin: ($baseline-grid * 4) $layout-gutter-width-sm;
 
-  h4, h5, h6 {
-    margin-bottom: $layout-gutter-width-sm;
-  }
+    p {
+      font-weight: 500;
+      line-height: 1.8rem;
+    }
 
-  .noMargin {
-    margin: 0;
-  }
+    h4, h5, h6 {
+      margin-bottom: $layout-gutter-width-sm;
+    }
 
-  .options {
-    flex-wrap: wrap;
-  }
+    .noMargin {
+      margin: 0;
+    }
 
-  .avatar {
-    width: 12rem;
-    height: 12rem;
-    margin: $layout-gutter-width-sm 0;
+    .options {
+      flex-wrap: wrap;
+    }
 
-    .letter {
-      font-size: 6rem;
-      line-height: 12rem;
+    .avatar {
+      width: 12rem;
+      height: 12rem;
+      margin: $layout-gutter-width-sm 0;
+
+      .letter {
+        font-size: 6rem;
+        line-height: 12rem;
+      }
+
+    }
+
+    hr {
+      margin: ($layout-gutter-width-sm * 2) 0;
+    }
+
+    .description {
+
+      .inputElement {
+        height: 128px !important;
+      }
+
+    }
+
+    .examples {
+      margin-bottom: $layout-gutter-width-sm;
+    }
+
+    .inspiration {
+      margin-top: $layout-gutter-width-sm;
+    }
+
+    .notice {
+      margin: $layout-gutter-width-sm 0;
     }
 
   }
-
-  hr {
-    margin: ($layout-gutter-width-sm * 2) 0;
-  }
-
-  .description {
-
-    .inputElement {
-      height: 128px !important;
-    }
-
-  }
-
-  .examples {
-    margin-bottom: $layout-gutter-width-sm;
-  }
-
-  .inspiration {
-    margin-top: $layout-gutter-width-sm;
-  }
-
-  .notice {
-    margin: $layout-gutter-width-sm 0;
-  }
-
+  
 }

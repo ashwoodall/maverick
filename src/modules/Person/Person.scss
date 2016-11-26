@@ -1,0 +1,43 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.person {
+  padding: $layout-gutter-width 0;
+
+  h5 {
+    color: $color-text-secondary;
+  }
+
+  .aside {
+    color: $color-text-secondary;
+    margin-bottom: $baseline-grid;
+  }
+
+  .button {
+    margin-bottom: $baseline-grid;
+  }
+
+  .avatar {
+    font-size: $unit * 10;
+    height: 148px;
+    margin: $baseline-grid auto $layout-gutter-width-sm;
+    width: 148px;
+
+    .letter {
+      line-height: $unit * 15;
+    }
+
+  }
+
+  .introduction {
+    line-height: $unit * 1.8;
+    margin: $layout-gutter-width auto;
+    max-width: 70%;
+    text-align: center;
+  }
+
+  .section {
+    margin-bottom: $layout-gutter-width;
+  }
+
+}

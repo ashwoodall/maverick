@@ -1,5 +1,5 @@
 // Core
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 // Thirdparty
 import { Avatar, Card, CardText } from 'react-toolbox'
@@ -8,19 +8,25 @@ import Flexbox from 'react-material-flexbox'
 // Theme
 import theme from './Person.scss'
 
-const Person = () => (
-  <div className={ theme.person } data-oh-hi='person'>
-    <Card>
+const Person = ({ data, onClick }) => (
+  <div className={ theme.person } data-oh-hi='person' onClick={ () => onClick(data.id) }>
+    <Card className={ theme.card }>
       <CardText>
-        <Avatar className={ theme.avatar } image='https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-1/p320x320/14925568_351751435169655_5558516257312023873_n.jpg?oh=22d89b90395390c2764b6d81462a1ae7&oe=58BD890C' />
+        { data.profile_picture
+            ? (<Avatar className={ theme.avatar } image={ data.profile_picture } />)
+            : (<Avatar className={ theme.avatar } title={ data.first_name } theme={ theme } />) }
         <Flexbox layout='row'>
-          <h5>Brandon C.</h5>
-          <p className={ theme.age }>(29)</p>
+          <h5>{ `${data.first_name} ${data.last_name.charAt(0)}.` }</h5>
         </Flexbox>
-        <p className={ theme.content }>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum felis vel elit aliquam facilisis. Cras gravida massa libero eu finibus felis elementum non. Aliquam vel dui vel dui consequat volutpat. Sed ac tempor libero.</p>
+        <p className={ theme.content }>{ data.introduction }</p>
       </CardText>
     </Card>
   </div>
 )
+
+Person.propTypes = {
+  data: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired
+}
 
 export default Person
