@@ -11,7 +11,7 @@ import Subheader from 'components/Subheader'
 // Theme
 import theme from './Person.scss'
 
-const Person = ({ person }) => (
+const Person = ({ person, startConversation }) => (
   <div className={ theme.person } data-oh-hi='person-module'>
     <Flexbox layout='column' align='start center'>
       { person.profile_picture
@@ -28,7 +28,7 @@ const Person = ({ person }) => (
         <p className={ theme.aside }>I'd like to be invited to...</p>
         <Button className={ theme.button } label='Activity one' raised primary />
         <Button className={ theme.button } label='Activity two' raised primary />
-        <Button className={ theme.button } label='A Conversation' raised primary />
+        <Button className={ theme.button } label='A Conversation' raised primary onClick={ () => startConversation() } />
       </Flexbox>
     </Flexbox>
 

@@ -29,7 +29,7 @@ class HeaderContainer extends Component {
 HeaderContainer.propTypes = {
   active: PropTypes.string,
   setActive: PropTypes.func,
-  location: PropTypes.array
+  location: PropTypes.object
 }
 
 const mapStateToProps = ({ app: { navigation = {} } }) => {

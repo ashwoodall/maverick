@@ -13,3 +13,20 @@ export const getUserById = (id) => {
   }
 }
 
+export const startConversation = (userId, recipientId) => {
+  const action = {
+    key: 'conversation',
+    endpoint: 'conversations',
+    method: 'POST',
+    body: {
+      initiator_id: userId,
+      recipient_id: recipientId
+    },
+    dataType: {}
+  }
+
+  return (dispatch) => {
+    dispatch(createAction('CALL_API', action))
+  }
+}
+
