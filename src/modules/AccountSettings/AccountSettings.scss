@@ -1,0 +1,17 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+button {
+  margin: ($baseline-grid * 2);
+}
+
+p {
+  font-weight: 500;
+  line-height: 1.8rem;
+  }
+
+h4, h5, h6 {
+  margin-top: $baseline-grid;
+  margin-bottom: $baseline-grid;
+  }
+
