@@ -1,9 +1,6 @@
 // Core
 import React, { PropTypes } from 'react'
 
-// Thirdparty
-import Flexbox from 'react-material-flexbox'
-
 // Components
 import Subheader from 'components/Subheader'
 

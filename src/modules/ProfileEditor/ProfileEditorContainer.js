@@ -34,7 +34,8 @@ class ProfileEditorContainer extends Component {
       about_pets: '',
       has_kids: 'noKids',
       number_of_kids: 0,
-      kid_status: []
+      kid_status: [],
+      is_service_member: false
     }
   }
 

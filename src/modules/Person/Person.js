@@ -60,7 +60,8 @@ const Person = ({ person, startConversation }) => (
 )
 
 Person.propTypes = {
-  person: PropTypes.object.isRequired
+  person: PropTypes.object.isRequired,
+  startConversation: PropTypes.func.isRequired
 }
 
 export default Person

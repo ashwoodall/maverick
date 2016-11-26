@@ -38,7 +38,6 @@ const mapStateToProps = ({ api: { person = {}, user = {} } }) => {
   const { data = {} } = person
   const { data: { id = 0 } } = user
 
-
   return { data, currentUser: id }
 }
 

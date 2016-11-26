@@ -136,7 +136,8 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
           <Flexbox layout='column' flex>
             <h6>Current Duty Station</h6>
             <h4>Fort Hood</h4>
-            <Checkbox label='I am a service member too!' checked={ user.is_service_member } onChange={ (value) => handleChange('isServiceMember', value) } />
+            <br />
+            <Checkbox label='I am a service member too!' checked={ user.is_service_member } onChange={ (value) => handleChange('is_service_member', value) } />
           </Flexbox>
         </Flexbox>
       </Panel>

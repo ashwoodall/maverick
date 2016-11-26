@@ -2,10 +2,9 @@
 @import "~react-toolbox/lib/globals";
 
 .footer {
-  background-color: #4d4d4d;
+  border-top: 1px solid $color-divider;
   bottom: 0;
   box-sizing: border-box;
-  color: $color-white;
   display: none;
   position: absolute;
   padding: $layout-gutter-width-sm;
