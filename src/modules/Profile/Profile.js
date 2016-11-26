@@ -1,5 +1,5 @@
 // Core
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 // Thirdparty
 import { Tab, Tabs } from 'react-toolbox'
@@ -14,11 +14,11 @@ import AccountSettings from 'modules/AccountSettings/AccountSettings'
 // Theme
 import theme from './Profile.scss'
 
-const Profile = ({ index, handleInverseTabChange }) => (
+const Profile = ({ index, handleTabChange }) => (
   <div className={ theme.profile } data-oh-hi='profile-module'>
     <div className={ theme.toolbar } />
-    <Container> 
-      <Tabs index={ index } onChange={ handleInverseTabChange } fixed>
+    <Container>
+      <Tabs index={ index } onChange={ handleTabChange } fixed>
         <Tab className={ theme.tab } theme={ theme } label='Profile'>
           <ProfileEditor />
         </Tab>
@@ -32,5 +32,10 @@ const Profile = ({ index, handleInverseTabChange }) => (
     </Container>
   </div>
 )
+
+Profile.propTypes = {
+  index: PropTypes.number.isRequired,
+  handleTabChange: PropTypes.func.isRequired
+}
 
 export default Profile

@@ -7,12 +7,12 @@ import Profile from './Profile'
 class ProfileContainer extends Component {
   state = { inverseIndex: 1 }
 
-  handleInverseTabChange = (index) => {
+  handleTabChange = (index) => {
     this.setState({ index: index })
   }
 
-  render() {
-    return (<Profile index={ this.state.index } handleInverseTabChange={ this.handleInverseTabChange } />)
+  render () {
+    return <Profile index={ this.state.index } handleTabChange={ this.handleTabChange } />
   }
 }
 
