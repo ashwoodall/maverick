@@ -2,16 +2,6 @@ import fetch from 'isomorphic-fetch'
 import { messages } from 'core/constants'
 import { getToken } from 'core/utils'
 
-// Cool little check from http://stackoverflow.com/a/34787336
-const checkStatus = (response) => {
-  if (response.ok) return response
-
-  const error = new Error(messages.error.noLoad)
-  error.response = response
-
-  throw error
-}
-
 /*
  * @name fetchJSON
  * @description makes request using isomorphic fetch
@@ -32,7 +22,6 @@ const fetchJSON = (endpoint, method, body) => {
   if (body) options.body = JSON.stringify(body)
 
   return fetch(endpoint, options)
-    .then(checkStatus)
     .then(response => response.json())
 }
 

@@ -1,0 +1,19 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+
+.messages {
+
+  h2 {
+    color: $color-text-secondary;
+    opacity: 0.54;
+  }
+
+  .icon {
+    color: $color-text-secondary;
+    font-size: $unit * 12;
+    margin: ($unit * 2.4) 0;
+    opacity: 0.54;
+  }
+
+}

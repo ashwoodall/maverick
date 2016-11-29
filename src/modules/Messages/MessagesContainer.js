@@ -15,7 +15,7 @@ class MessagesContainer extends Component {
   render () {
     const { data } = this.props
 
-    return <Messages conversations={ data } />
+    return <Messages messages={ data } />
   }
 }
 

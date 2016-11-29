@@ -9,8 +9,6 @@ export const getAllConversations = (id) => {
   }
 
   return (dispatch) => {
-    dispatch(createAction('CALL_API', action)).then(response => {
-      console.log(response)
-    })
+    dispatch(createAction('CALL_API', action))
   }
 }
