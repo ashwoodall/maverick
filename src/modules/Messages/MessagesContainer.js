@@ -12,20 +12,25 @@ class MessagesContainer extends Component {
     this.props.getAllConversations()
   }
 
+  handleConversationClick = (conversation) => {
+    this.props.getConversation(conversation)
+  }
+
   render () {
     const { data } = this.props
 
-    return <Messages conversations={ data } />
+    return <Messages messages={ data } handleConversationClick={ this.handleConversationClick } />
   }
 }
 
 MessagesContainer.propTypes = {
   data: PropTypes.array.isRequired,
-  getAllConversations: PropTypes.func
+  getAllConversations: PropTypes.func,
+  getConversation: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({ api: { conversations = {} } }) => {
-  const { data = [] } = conversations
+const mapStateToProps = ({ api: { messages = {} } }) => {
+  const { data = [] } = messages
 
   return { data }
 }

@@ -1,0 +1,110 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.conversation {
+  margin-left: $layout-gutter-width-sm;
+
+  .title {
+    padding: ($unit * 1.4) ($unit * 1.6);
+
+    > div {
+
+      &:first-of-type {
+        width: 100%;
+      }
+
+    }
+
+  }
+
+  .text {
+    height: $unit * 24;
+    padding-top: $unit * 1.8;
+    overflow: hidden;
+    overflow-y: auto;
+
+    .wrap {
+      width: 100%;
+    }
+
+  }
+
+  .bubble {
+    border-radius: $unit * 0.4;
+    padding: $baseline-grid;
+    margin: ($unit * 0.4) 0;
+    max-width: 60%;
+  }
+
+  .author {
+
+    .bubble {
+      background-color: $color-divider;
+    }
+
+    .arrow {
+      border-top: ($unit * 0.6) solid transparent;
+      border-bottom: ($unit * 0.6) solid transparent;
+      border-left: ($unit * 0.6) solid $color-divider;
+      height: 0;
+      width: 0;
+    }
+
+  }
+
+  .avatar {
+    font-size: $unit * 1.6;
+    height: $unit * 2;
+    width: $unit * 2;
+
+    .letter {
+      line-height: $unit * 2;
+    }
+
+  }
+
+  .participant {
+
+    .bubble {
+      background-color: #7fdbb0;
+    }
+
+    .arrow {
+      border-top: ($unit * 0.6) solid transparent;
+      border-bottom: ($unit * 0.6) solid transparent;
+      border-right: ($unit * 0.6) solid #7fdbb0;
+      height: 0;
+      width: 0;
+    }
+  }
+
+  .actions {
+    border-top: 1px solid $color-divider;
+
+    .button {
+      width: $unit * 9.2;
+    }
+
+    .input {
+      margin-left: $layout-gutter-width-sm;
+      padding: ($unit * 0.8) 0;
+      width: 100%;
+
+      .inputElement {
+        border-color: transparent;
+        resize: none;
+      }
+
+      .hint {
+        top: $unit * 1.7;
+      }
+
+      .bar {
+        display: none;
+      }
+
+    }
+
+  }
+
+}

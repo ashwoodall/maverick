@@ -1,4 +1,3 @@
-import { merge } from 'lodash'
 import { actionTypes } from 'core/constants'
 
 // Initial state for the global store
@@ -23,9 +22,9 @@ const item = (state = itemState, action) => {
 
   switch (type) {
     case REQUEST:
-      return merge({}, state, { isFetching: true, data: dataType })
+      return Object.assign({}, state, { isFetching: true, data: dataType, message: null })
     case RECEIVE:
-      return merge({}, state, {
+      return Object.assign({}, state, {
         isFetching: false,
         data: payload.data,
         lastUpdated: Date.now(),
@@ -33,7 +32,7 @@ const item = (state = itemState, action) => {
         success: payload.success
       })
     case ERROR:
-      return merge({}, state, { isFetching: false, message: payload.message, success: payload.success })
+      return Object.assign({}, state, { isFetching: false, message: payload.message, success: payload.success })
     default:
       return state
   }
@@ -52,7 +51,7 @@ export default (state = initialState, action) => {
     case RECEIVE:
     case ERROR:
     case REQUEST:
-      return merge({}, state, {
+      return Object.assign({}, state, {
         [key]: item(state[key], action)
       })
     default:

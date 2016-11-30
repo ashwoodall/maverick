@@ -30,7 +30,7 @@ export default store => next => action => {
     }),
     error => next({
       type: ERROR,
-      payload: error,
+      payload: error.response,
       key
     }))
 }
