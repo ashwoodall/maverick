@@ -2,38 +2,35 @@
 import React, { PropTypes } from 'react'
 
 // Thirdparty
-import { Card, CardText, FontIcon } from 'react-toolbox'
+import { FontIcon } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Components
-import MessageList from 'components/MessageList'
+import MessageList from 'components/Messages'
 import Subheader from 'components/Subheader'
 
+// Modules
+import Conversation from 'modules/Conversation'
 
+// Theme
 import theme from './Messages.scss'
 
-const Messages = ({ messages }) => (
+const Messages = ({ messages, handleConversationClick }) => (
   <div className={ theme.messages } data-oh-hi='messages-module'>
     <Subheader title='Messages' />
     { messages.length === 0 &&
       <Flexbox layout='column' align='center center'>
         <FontIcon className={ theme.icon } value='forum' />
         <h2>No messages</h2>
-      </Flexbox> 
+      </Flexbox>
     }
-    { messages.length > 0 && 
+    { messages.length > 0 &&
       <Flexbox layout='row'>
         <Flexbox flex='30'>
-          <Card>
-            <MessageList messages={ messages } />
-          </Card>
+          <MessageList messages={ messages } handleConversationClick={ handleConversationClick } />
         </Flexbox>
         <Flexbox flex>
-          <Card>
-            <CardText>
-              Conversation will go here
-            </CardText>
-          </Card>
+          <Conversation />
         </Flexbox>
       </Flexbox>
     }
@@ -41,7 +38,8 @@ const Messages = ({ messages }) => (
 )
 
 Messages.propTypes = {
-  messages: PropTypes.array.isRequired
+  messages: PropTypes.array.isRequired,
+  handleConversationClick: PropTypes.func.isRequired
 }
 
 export default Messages

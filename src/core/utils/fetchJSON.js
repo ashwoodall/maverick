@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import { messages } from 'core/constants'
 import { getToken } from 'core/utils'
 
 /*
