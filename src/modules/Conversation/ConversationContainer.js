@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import io from 'socket.io-client'
 
 // Modules
 import Conversation from './Conversation'
@@ -9,17 +10,40 @@ import Conversation from './Conversation'
 // Actions
 import * as Actions from './ConversationActions'
 
+const socket = io('http://api.oh-hi.us')
+
 class ConversationContainer extends Component {
   state = { message: '' }
+
+  componentDidMount () {
+    const { currentConversation, receiveMessage, receiveSocket } = this.props
+
+    socket.emit('conversation mounted')
+    socket.on('receive socket', socketID => receiveSocket(socketID))
+    socket.on('new socket message', message => console.log('hello world'))
+  }
+
+  componentDidUpdate () {
+    const { currentConversation, receiveMessage } = this.props
+
+    socket.emit('join conversation', currentConversation.id)
+  }
 
   handleChange = (value) => {
     this.setState({ message: value })
   }
 
   handleSubmit = () => {
-    const { currentConversation, sendMessage } = this.props
+    const { currentConversation, sendMessage, user} = this.props
 
-    sendMessage(currentConversation.id, this.state.message)
+    let newMessage = {
+      convo_id: currentConversation.id,
+      body: this.state.message
+    }
+
+    socket.emit('new message', newMessage)
+
+    sendMessage(newMessage)
 
     this.setState({ message: '' })
   }

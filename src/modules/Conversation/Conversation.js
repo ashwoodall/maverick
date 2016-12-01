@@ -73,7 +73,7 @@ Conversation.propTypes = {
   currentConversation: PropTypes.object.isRequired,
   currentUser: PropTypes.number.isRequired,
   data: PropTypes.array.isRequired,
-  message: PropTypes.object.isRequired,
+  message: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }
