@@ -17,11 +17,11 @@ class Conversation extends Component {
   }
 
   render () {
-    const { currentUser, data, currentConversation, message, handleChange, handleSubmit } = this.props
+    const { currentUser, messages, currentConversation, message, handleChange, handleSubmit } = this.props
 
     return (
       <div className={ theme.conversation } data-oh-hi='conversation'>
-        { data.length > 0 &&
+        { messages.length > 0 &&
           <Card>
             <CardTitle className={ theme.title }>
               <Flexbox layout='row' align='start center' flex>
@@ -34,7 +34,7 @@ class Conversation extends Component {
             <CardText>
               <div className={ theme.text } ref={ (element) => { this.scroller = element } }>
                 <Flexbox layout='column' align='end start'>
-                  { data.map(message => (
+                  { messages.map(message => (
                     <div className={ theme.wrap } key={ message.id }>
                       { message.author === currentUser &&
                         <Flexbox className={ theme.author } layout='row' align='end center'>

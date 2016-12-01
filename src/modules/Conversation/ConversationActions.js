@@ -6,7 +6,10 @@ export const sendMessage = (message) => {
     endpoint: 'messages',
     method: 'POST',
     dataType: {},
-    body: message
+    body: {
+      convo_id: message.convo_id,
+      body: message.body
+    }
   }
 
   return (dispatch) => {

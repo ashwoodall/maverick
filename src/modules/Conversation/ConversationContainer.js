@@ -13,18 +13,30 @@ import * as Actions from './ConversationActions'
 const socket = io('http://api.oh-hi.us')
 
 class ConversationContainer extends Component {
-  state = { message: '' }
+  state = { message: '', messages: [] }
 
   componentDidMount () {
-    const { currentConversation, receiveMessage, receiveSocket } = this.props
+    const { currentConversation, data, receiveMessage, receiveSocket } = this.props
 
     socket.emit('conversation mounted')
     socket.on('receive socket', socketID => receiveSocket(socketID))
-    socket.on('new socket message', message => console.log('hello world'))
+    socket.on('new socket message', message => {
+      let newMessages = this.state.messages
+      newMessages.push(message)
+      this.setState({ messages: newMessages })
+    })
   }
 
   componentDidUpdate () {
-    const { currentConversation, receiveMessage } = this.props
+    const { currentConversation } = this.props
+
+    socket.emit('join conversation', currentConversation.id)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { currentConversation, data } = nextProps
+
+    if (data.length > 0) this.setState({ messages: data })
 
     socket.emit('join conversation', currentConversation.id)
   }
@@ -34,9 +46,10 @@ class ConversationContainer extends Component {
   }
 
   handleSubmit = () => {
-    const { currentConversation, sendMessage, user} = this.props
+    const { currentConversation, sendMessage, currentUser } = this.props
 
     let newMessage = {
+      author: currentUser,
       convo_id: currentConversation.id,
       body: this.state.message
     }
@@ -49,7 +62,7 @@ class ConversationContainer extends Component {
   }
 
   render () {
-    return <Conversation { ...this.props } message={ this.state.message } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
+    return <Conversation { ...this.props } messages={ this.state.messages } message={ this.state.message } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
   }
 }
 
