@@ -17,18 +17,6 @@ export const sendMessage = (message) => {
   }
 }
 
-export const receiveMessage = (message) => {
-  const action = {
-    key: 'conversation',
-    payload: message
-  }
-
-  return (dispatch) => {
-    dispatch(createAction('CALL_APP', action))
-  }
-}
-
-
 export const receiveSocket = (id) => {
   const action = {
     key: 'user',

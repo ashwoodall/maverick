@@ -16,15 +16,11 @@ class ConversationContainer extends Component {
   state = { message: '', messages: [] }
 
   componentDidMount () {
-    const { currentConversation, data, receiveMessage, receiveSocket } = this.props
+    const { receiveSocket } = this.props
 
     socket.emit('conversation mounted')
     socket.on('receive socket', socketID => receiveSocket(socketID))
-    socket.on('new socket message', message => {
-      let newMessages = this.state.messages
-      newMessages.push(message)
-      this.setState({ messages: newMessages })
-    })
+    socket.on('new socket message', message => this.handleNewMessage(message))
   }
 
   componentDidUpdate () {
@@ -34,9 +30,11 @@ class ConversationContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { currentConversation, data } = nextProps
+    const {
+      currentConversation,
+      conversation } = nextProps
 
-    if (data.length > 0) this.setState({ messages: data })
+    if (conversation.data.length > 0) this.setState({ messages: conversation.data })
 
     socket.emit('join conversation', currentConversation.id)
   }
@@ -46,10 +44,13 @@ class ConversationContainer extends Component {
   }
 
   handleSubmit = () => {
-    const { currentConversation, sendMessage, currentUser } = this.props
+    const {
+      currentConversation,
+      sendMessage,
+      user } = this.props
 
     let newMessage = {
-      author: currentUser,
+      author: user.id,
       convo_id: currentConversation.id,
       body: this.state.message
     }
@@ -61,24 +62,44 @@ class ConversationContainer extends Component {
     this.setState({ message: '' })
   }
 
+  handleNewMessage = message => {
+    let newMessages = this.state.messages
+
+    newMessages.push(message)
+
+    this.setState({ messages: newMessages })
+  }
+
   render () {
-    return <Conversation { ...this.props } messages={ this.state.messages } message={ this.state.message } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit } />
+    const {
+      user,
+      currentConversation } = this.props
+
+    return (
+      <Conversation
+        { ...currentConversation }
+        currentUser={ user.id }
+        messages={ this.state.messages }
+        message={ this.state.message }
+        handleChange={ this.handleChange }
+        handleSubmit={ this.handleSubmit } />
+    )
   }
 }
 
 ConversationContainer.propTypes = {
+  conversation: PropTypes.object.isRequired,
   currentConversation: PropTypes.object.isRequired,
-  currentUser: PropTypes.number.isRequired,
-  data: PropTypes.array.isRequired,
-  id: PropTypes.number.isRequired,
-  sendMessage: PropTypes.func.isRequired
+  receiveSocket: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ api: { conversation = {}, user = {} }, app: { currentConversation = {} } }) => {
-  const { data = [] } = conversation
-  const { data: { id = 0 } } = user
+const mapStateToProps = ({ api, app: { currentConversation = {} } }) => {
+  const conversation = api['conversation'] || { data: [] }
+  const user = api['user'] || { data: { id: 0 } }
 
-  return { data, id, currentUser: id, currentConversation }
+  return { currentConversation, conversation, user }
 }
 
 const mapDispatchToProps = (dispatch) => {

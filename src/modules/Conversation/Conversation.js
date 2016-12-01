@@ -17,7 +17,13 @@ class Conversation extends Component {
   }
 
   render () {
-    const { currentUser, messages, currentConversation, message, handleChange, handleSubmit } = this.props
+    const {
+      currentConversation,
+      currentUser,
+      handleChange,
+      handleSubmit,
+      message,
+      messages } = this.props
 
     return (
       <div className={ theme.conversation } data-oh-hi='conversation'>
@@ -58,8 +64,21 @@ class Conversation extends Component {
             </CardText>
             <CardActions className={ theme.actions }>
               <Flexbox layout='row' align='start center' flex>
-                <Input className={ theme.input } theme={ theme } multiline type='text' hint='Say hello...' name='message' value={ message } onChange={ (value) => handleChange(value) } />
-                <Button className={ theme.button } icon='send' label='Send' accent onClick={ () => handleSubmit() } />
+                <Input
+                  className={ theme.input }
+                  theme={ theme }
+                  multiline
+                  type='text'
+                  hint='Say hello...'
+                  name='message'
+                  value={ message }
+                  onChange={ (value) => handleChange(value) } />
+                <Button
+                  className={ theme.button }
+                  icon='send'
+                  label='Send'
+                  accent
+                  onClick={ () => handleSubmit() } />
               </Flexbox>
             </CardActions>
           </Card>
@@ -72,8 +91,8 @@ class Conversation extends Component {
 Conversation.propTypes = {
   currentConversation: PropTypes.object.isRequired,
   currentUser: PropTypes.number.isRequired,
-  data: PropTypes.array.isRequired,
   message: PropTypes.string.isRequired,
+  messages: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 }
