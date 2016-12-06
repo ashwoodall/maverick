@@ -1,9 +1,9 @@
 import { createAction } from 'core/utils'
 
-export const updateUser = (id, user) => {
+export const updateUser = (user) => {
   const action = {
     key: 'user',
-    endpoint: `user/${id}`,
+    endpoint: `user`,
     method: 'PUT',
     body: user,
     dataType: {}

@@ -1,10 +1,10 @@
 import { createAction } from 'core/utils'
 
-export const getUsersByStation = () => {
+export const getUsersByStation = (current_station) => {
   const action = {
     key: 'people',
-    endpoint: 'users/forthood',
-    method: 'get',
+    endpoint: `users/${current_station}`,
+    method: 'GET',
     dataType: []
   }
 

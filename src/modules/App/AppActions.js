@@ -9,16 +9,24 @@ export const getUserByToken = () => {
   }
 
   return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-      .then(response => {
-        let userAction = {
-          key: 'user',
-          endpoint: `user/${response.payload.data.id}`,
-          method: 'GET',
-          dataType: {}
-        }
+    dispatch(createAction('CALL_API', action)).then(response => {
+      if (!response.payload.data.completed_profile) {
+        dispatch(showSnackBar())
+      }
+    })
+  }
+}
 
-        dispatch(createAction('CALL_API', userAction))
-      })
+export const showSnackBar = () => {
+  const action = {
+    key: 'snackbar',
+    payload: {
+      active: true,
+      content: 'As soon as you\'re ready, make sure to <a href="/profile">complete your profile</a>'
+    }
+  }
+
+  return (dispatch) => {
+    dispatch(createAction('CALL_APP', action))
   }
 }

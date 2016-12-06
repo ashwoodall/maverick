@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import Profile from './Profile'
 
 class ProfileContainer extends Component {
-  state = { inverseIndex: 1 }
+  state = { index: 0 }
 
   handleTabChange = (index) => {
     this.setState({ index: index })

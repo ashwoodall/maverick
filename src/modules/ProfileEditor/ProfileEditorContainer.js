@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import update from 'react-addons-update'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { merge } from 'lodash'
+import { forOwn, includes, merge } from 'lodash'
 
 // Modules
 import ProfileEditor from './ProfileEditor'
@@ -33,10 +33,12 @@ class ProfileEditorContainer extends Component {
       has_pets: 'no',
       about_pets: '',
       has_kids: 'noKids',
-      number_of_kids: 0,
+      number_of_kids: '',
       kid_status: [],
-      is_service_member: false
-    }
+      is_service_member: false,
+      completed_profile: false
+    },
+    activityLimit: false
   }
 
   componentWillReceiveProps (nextProps) {
@@ -44,8 +46,15 @@ class ProfileEditorContainer extends Component {
 
     const { data } = nextProps
     const { user } = this.state
+    let newUser = {}
 
-    this.setState({ user: merge({}, user, data) })
+    forOwn(data, (value, key) => {
+      if (value) {
+        newUser[key] = value
+      }
+    })
+
+    this.setState({ user: merge({}, user, newUser) })
   }
 
   handleChange = (name, value) => {
@@ -60,14 +69,24 @@ class ProfileEditorContainer extends Component {
     this.setState(newState)
   }
 
-  handleCheck = (key, field, value) => {
-    let newState
+  handleCheck = (key, field) => {
+    let newArray = this.state.user[key]
 
-    if (this.state.user[key][field]) {
-      newState = update(this.state, { user: { [key]: { $merge: { [field]: false } } } })
+    if (!includes(newArray, field)) {
+      if (newArray.length > 1 && key === 'activities') {
+        this.setState({ activityLimit: true })
+
+        return 
+      }
+
+      newArray.push(field)
     } else {
-      newState = update(this.state, { user: { [key]: { $merge: { [field]: true } } } })
+      this.setState({ activityLimit: false })
+
+      newArray = newArray.filter(item => item !== field)
     }
+
+    const newState = update(this.state, { user: { $merge: { [key]: newArray } } })
 
     this.setState(newState)
   }
@@ -75,7 +94,11 @@ class ProfileEditorContainer extends Component {
   handleSubmit = () => {
     const { updateUser } = this.props
 
-    updateUser(this.props.data.id, { ...this.state.user })
+    updateUser({ ...this.state.user })
+  }
+
+  handleToggle = () => {
+    this.setState({ activityLimit: !this.state.activityLimit });
   }
 
   render () {
@@ -85,7 +108,9 @@ class ProfileEditorContainer extends Component {
       handleCheck={ this.handleCheck }
       handleChange={ this.handleChange }
       handlePanelChange={ this.handlePanelChange }
-      handleSubmit={ this.handleSubmit } />
+      handleSubmit={ this.handleSubmit }
+      handleToggle={ this.handleToggle }
+      limit={ this.state.activityLimit } />
   }
 }
 

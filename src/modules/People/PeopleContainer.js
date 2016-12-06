@@ -3,14 +3,25 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { browserHistory } from 'react-router'
+import { isEqual } from 'lodash'
 
 // Modules
 import People from './People'
 import * as Actions from './PeopleActions'
 
 class PeopleContainer extends Component {
-  componentWillMount () {
-    this.props.getUsersByStation()
+  state = { hasPeople: false }
+
+  shouldComponentUpdate (nextProps) {
+    return isEqual(nextProps.people, this.props.people)
+  }
+
+  componentWillUpdate (nextProps) {
+    const { user } = nextProps
+
+    if (user.data && user.data.current_station) {
+      this.props.getUsersByStation(user.data.current_station)
+    }
   }
 
   handleUserClick = (id) => {
@@ -18,21 +29,23 @@ class PeopleContainer extends Component {
   }
 
   render () {
-    const { data } = this.props
+    const { people } = this.props
 
-    return <People people={ data } onClick={ this.handleUserClick } />
+    return <People people={ people.data } onClick={ this.handleUserClick } />
   }
 }
 
 PeopleContainer.propTypes = {
-  data: PropTypes.array.isRequired,
-  getUsersByStation: PropTypes.func
+  people: PropTypes.object.isRequired,
+  getUsersByStation: PropTypes.func,
+  user: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ api: { people = {} } }) => {
-  const { data = [] } = people
+const mapStateToProps = ({ api }) => {
+  const people = api['people'] || { data: [], isFetching: true }
+  const user = api['user'] || { data: {}, isFetching: true }
 
-  return { data }
+  return { people, user }
 }
 
 const mapDispatchToProps = (dispatch) => {

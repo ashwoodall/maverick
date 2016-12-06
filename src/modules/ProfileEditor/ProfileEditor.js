@@ -1,12 +1,13 @@
 // Core
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
+import { includes } from 'lodash'
 
 // Constants
 import forms from 'core/constants/forms'
 
 // Thirdparty
-import { Avatar, Button, Checkbox, DatePicker, FontIcon, IconButton, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
+import { Avatar, Button, Checkbox, DatePicker, Dialog, FontIcon, IconButton, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Modules
@@ -15,7 +16,7 @@ import theme from './ProfileEditor.scss'
 
 const { activities, kidsAge } = forms
 
-const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelChange, handleSubmit }) => (
+const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handlePanelChange, handleSubmit, handleToggle }) => (
   <div data-oh-hi='profile-editor' className={ theme.profileEditor }>
     <PanelGroup>
       <Panel title='Basic info' subTitle='(required section)' expanded={ expanded.basic } onClick={ () => handlePanelChange('basic', !expanded.basic) }>
@@ -50,7 +51,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
               <p>What are you looking for in a friend?</p>
               <p>What are some things that are most important to you?</p>
             </Flexbox>
-            <Input className={ theme.description } theme={ theme } type='text' value={ user.introduction } multiline label='Introduction' maxLength={ 140 } onChange={ (value) => handleChange('introduction', value) } />
+            <Input className={ theme.description } theme={ theme } type='text' value={ user.introduction } multiline label='Introduction' maxLength={ 300 } onChange={ (value) => handleChange('introduction', value) } />
             <p>(We’ll put this introduction under your picture at the top of your profile.)</p>
             <div className={ theme.inspiration }>
               <p>Need some inspiration?</p>
@@ -61,7 +62,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
             <Flexbox layout='row' className={ theme.options }>
               {activities.map(option => (
                 <Flexbox layout='row' flex='50' flex-sm='100' key={ option.value }>
-                  <Checkbox label={ option.label } checked={ user.activities[option.label] } onChange={ () => handleCheck('activities', option.label) } />
+                  <Checkbox label={ option.label } checked={ includes(user.activities, option.label) } onChange={ () => handleCheck('activities', option.label) } />
                 </Flexbox>
               ))}
             </Flexbox>
@@ -73,7 +74,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
         </Flexbox>
       </Panel>
 
-      <Panel title='Social Media' subTitle='(optional)' expanded={ expanded.social } onClick={ () => handlePanelChange('social', !this.state.expanded.social) }>
+      <Panel title='Social Media' subTitle='(optional)' expanded={ expanded.social } onClick={ () => handlePanelChange('social', !expanded.social) }>
         <Flexbox className={ classnames(theme.group, theme.social) } layout='row' align='center center'>
           <Flexbox layout='column' flex>
             <h5>Links to your social media pages</h5>
@@ -117,7 +118,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
                 <Flexbox layout='row' className={ theme.options }>
                   {kidsAge.map(option => (
                     <Flexbox layout='row' flex='50' flex-sm='100' key={ option.value }>
-                      <Checkbox label={ option.label } checked={ user.kid_status[option.label] } onChange={ () => handleCheck('kid_status', option.label) } />
+                      <Checkbox label={ option.label } checked={ includes(user.kid_status, option.label) } onChange={ () => handleCheck('kid_status', option.label) } />
                     </Flexbox>
                   ))}
                 </Flexbox>
@@ -146,6 +147,15 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
     <Flexbox layout='row' align='end center'>
       <Button label='Save Changes' raised primary onClick={ () => handleSubmit() } />
     </Flexbox>
+
+    <Dialog
+      actions={[{ label: "Ok", onClick: handleToggle }]}
+      active={ limit }
+      onEscKeyDown={ handleToggle }
+      onOverlayClick={ handleToggle }
+      title='Activity Limit Reached'>
+        <p>Whoops, looks like you've selected too many activities. Please select only two.</p>
+    </Dialog>
 
   </div>
 )
