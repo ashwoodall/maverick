@@ -2,7 +2,8 @@
 import React, { PropTypes } from 'react'
 
 // Thirdparty
-import { Tab, Tabs } from 'react-toolbox'
+import { Link, Navigation } from 'react-toolbox'
+import Flexbox from 'react-material-flexbox'
 
 // Components
 import Container from 'components/Container/Container'
@@ -16,19 +17,21 @@ import theme from './Profile.scss'
 
 const Profile = ({ index, handleTabChange }) => (
   <div className={ theme.profile } data-oh-hi='profile-module'>
-    <div className={ theme.toolbar } />
     <Container>
-      <Tabs index={ index } onChange={ handleTabChange } fixed>
-        <Tab className={ theme.tab } theme={ theme } label='Profile'>
-          <ProfileEditor />
-        </Tab>
-        <Tab label='References'>
-          <div>Hello world</div>
-        </Tab>
-        <Tab label='Account Settings'>
-          <AccountSettings />
-        </Tab>
-      </Tabs>
+      <Flexbox layout='row'>
+        <Flexbox flex='15'>
+          <Navigation type='vertical'>
+            <Link className={ index === 0 ? theme.active : null } label='Profile' active={ index === 0 } onClick={ () => handleTabChange(0) } />
+            <Link className={ index === 1 ? theme.active : null } label='References' active={ index === 1 } onClick={ () => handleTabChange(1) } />
+            <Link className={ index === 2 ? theme.active : null } label='Settings' active={ index === 2 } onClick={ () => handleTabChange(2) } />
+          </Navigation>
+        </Flexbox>
+        <Flexbox flex>
+          { index === 0 && <ProfileEditor /> }
+          { index === 1 && <div>Hello world</div> }
+          { index === 2 && <AccountSettings /> }
+        </Flexbox>
+      </Flexbox>
     </Container>
   </div>
 )

@@ -145,7 +145,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
     </PanelGroup>
 
     <Flexbox layout='row' align='end center'>
-      <Button label='Save Changes' raised primary onClick={ () => handleSubmit() } />
+      <Button className={ theme.button } label='Save Changes' raised primary onClick={ () => handleSubmit() } />
     </Flexbox>
 
     <Dialog

@@ -13,6 +13,11 @@
   }
 
   h4, h5, h6 {
+    
+    &:first-of-type {
+      margin: 0 0 $layout-gutter-width;
+    }
+
     margin: $layout-gutter-width 0;
   }
 

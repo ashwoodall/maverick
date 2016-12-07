@@ -3,7 +3,6 @@
 
 .profileEditor {
   margin: 0 auto;
-  max-width: $layout-breakpoint-sm-tablet;
 
   .group {
     margin: ($baseline-grid * 4) $layout-gutter-width-sm;
@@ -61,6 +60,10 @@
       margin: $layout-gutter-width-sm 0;
     }
 
+  }
+
+  .button {
+    margin: $layout-gutter-width-sm 0;
   }
   
 }
