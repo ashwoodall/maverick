@@ -20,7 +20,6 @@ const Messages = ({ messages, handleConversationClick }) => (
                 ? (<Avatar image={ conversation.participant.profile_picture } />)
                 : (<Avatar title={ conversation.participant.first_name } />) }
               caption={ `${conversation.participant.first_name} ${conversation.participant.last_name}` }
-              legend={ `${moment(conversation.lastMessage.timestamp).fromNow()}` }
               onClick={ () => handleConversationClick(conversation) } />
           </div>
         )
