@@ -10,19 +10,20 @@ import Divider from 'components/Divider'
 // Theme
 import theme from './Subheader.scss'
 
-const Subheader = ({ children, title }) => (
+const Subheader = ({ children, title, divider = true }) => (
   <div className={ theme.subheader } data-oh-hi='subheader'>
     <Flexbox layout='row' align='start center'>
       <h3>{ title }</h3>
       <Flexbox flex />
       { children }
     </Flexbox>
-    <Divider />
+    { divider && <Divider /> }
   </div>
 )
 
 Subheader.propTypes = {
   children: PropTypes.node,
+  divider: PropTypes.bool,
   title: PropTypes.string
 }
 

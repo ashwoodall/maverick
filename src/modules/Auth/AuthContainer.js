@@ -12,8 +12,8 @@ import * as Actions from './AuthActions'
 
 // Duty Stations
 const stations = [
-  { value: 'forthood', label: 'Fort Hood' },
-  { value: 'other', label: 'Other' }
+  { value: 'Fort Hood', label: 'Fort Hood' },
+  { value: 'Other', label: 'Other' }
 ]
 
 class AuthContainer extends Component {

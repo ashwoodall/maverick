@@ -3,6 +3,10 @@
 
 .messages {
 
+  .wrapper {
+    border: 1px solid $color-divider;
+  }
+
   h2 {
     color: $color-text-secondary;
     opacity: 0.54;

@@ -9,7 +9,7 @@
   }
 
   .wrapper {
-    max-width: $layout-breakpoint-sm;
+    max-width: $layout-breakpoint-md;
     margin-left: auto;
     margin-right: auto;
   }
@@ -38,14 +38,6 @@
       vertical-align: inherit;
     }
 
-    .icon {
-      margin: 0;
-    }
-
-    abbr {
-      font-size: $unit * 1.2;
-    }
-
     &:hover {
       color: $color-primary;
     }
@@ -54,11 +46,6 @@
       color: $color-primary;
     }
 
-  }
-
-  .avatar {
-    width: $unit * 2;
-    height: $unit * 2;
   }
 
 }

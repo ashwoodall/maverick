@@ -6,43 +6,50 @@ import { browserHistory } from 'react-router'
 
 // Modules
 import Person from './Person'
-import * as Actions from './PersonActions'
+import Actions from './PersonActions'
 
 class PersonContainer extends Component {
   componentWillMount () {
-    this.props.getUserById(this.props.userId)
+    this.props.getUserById(this.props.params.userId)
   }
 
-  handleConversation = () => {
-    this.props.startConversation(this.props.currentUser, this.props.userId)
+  handleConversation = (message) => {
+    let newMessage = {}
+
+    this.props.startConversation(this.props.id, this.props.params.userId, message)
+      .then(result => {
+        if (message) {
+          newMessage.convo_id = result.payload.data.id,
+          newMessage.body = `Lets ${message}`
+
+          this.props.sendMessage(newMessage)
+        }
+      })
 
     browserHistory.push(`/messages`)
   }
 
   render () {
-    const { data } = this.props
+    const { data, isFetching } = this.props
 
-    return <Person person={ data } startConversation={ this.handleConversation } />
+    return isFetching ? null : <Person person={ data } startConversation={ this.handleConversation } />
   }
 }
 
 PersonContainer.propTypes = {
-  currentUser: PropTypes.number.isRequired,
   data: PropTypes.object.isRequired,
   getUserById: PropTypes.func,
-  startConversation: PropTypes.func,
-  userId: PropTypes.string.isRequired
+  id: PropTypes.number.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
+  startConversation: PropTypes.func
 }
 
 const mapStateToProps = ({ api: { person = {}, user = {} } }) => {
-  const { data = {} } = person
+  const { data = {}, isFetching = true } = person
   const { data: { id = 0 } } = user
 
-  return { data, currentUser: id }
+  return { data, id, isFetching }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PersonContainer)
+export default connect(mapStateToProps, Actions)(PersonContainer)

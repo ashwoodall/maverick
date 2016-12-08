@@ -12,7 +12,7 @@ import * as Actions from './AppActions.js'
 class AppContainer extends Component {
 
   componentWillMount () {
-    this.props.getUserByToken()
+    if (sessionStorage.jwt) this.props.getUserByToken()
   }
 
   render () {

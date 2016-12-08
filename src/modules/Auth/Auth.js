@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react'
 
 // Thridparty
-import { Button, Card, Dropdown, Input } from 'react-toolbox'
+import { Button, Card, CardActions, CardText, Dropdown, Input } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Components
@@ -19,14 +19,19 @@ const Auth = ({ email, password, current_station, handleChange, handleSubmit, st
     <Flexbox layout='column' align='start center'>
       <Card className={ theme.card }>
         <Svg source={ HeaderLogo } className={ theme.logo } />
-        <Input type='email' label='Email' name='email' value={ email } onChange={ (value) => handleChange('email', value) } />
-        <Input type='password' label='Password' name='password' value={ password } onChange={ (value) => handleChange('password', value) } />
-        { type === 'register' && <Dropdown label='Select your Duty Station' auto source={ stations } value={ current_station } onChange={ (value) => handleChange('current_station', value) } /> }
-        <Button className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up' } raised primary onClick={ () => handleSubmit() } />
-        { type === 'login' && <a className={ theme.forgot__password } href='#'>Forgot Password?</a> }
+        <CardText>
+          { type === 'login' && <h5>Welcome back.</h5> }
+          <Input type='email' label='Email' name='email' value={ email } onChange={ (value) => handleChange('email', value) } />
+          <Input type='password' label='Password' name='password' value={ password } onChange={ (value) => handleChange('password', value) } />
+          { type === 'login' && <a className={ theme.forgot__password } href='#'>Forgot Password?</a> }
+          { type === 'register' && <Dropdown label='Select your Duty Station' auto source={ stations } value={ current_station } onChange={ (value) => handleChange('current_station', value) } /> }
+        </CardText>
+        <CardActions className={ theme.actions }>
+          <Button className={ theme.button } label={ type === 'login' ? 'Sign up' : 'Login' } href={ type === 'login' ? '/signup' : '/login'  } />
+          <Button className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up' } raised primary onClick={ () => handleSubmit() } />
+        </CardActions>
       </Card>
       <p className={ theme.aside }>
-        { type === 'login' && (<span>Need an account? <a href='/signup'>Sign Up</a></span>) || (<span>Have an account? <a href='/login'>Login</a></span>) }
       </p>
     </Flexbox>
   </div>

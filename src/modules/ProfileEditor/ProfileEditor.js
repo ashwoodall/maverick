@@ -1,12 +1,13 @@
 // Core
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
+import { includes } from 'lodash'
 
 // Constants
 import forms from 'core/constants/forms'
 
 // Thirdparty
-import { Avatar, Button, Checkbox, DatePicker, FontIcon, IconButton, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
+import { Avatar, Button, Checkbox, DatePicker, Dialog, FontIcon, IconButton, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Modules
@@ -15,7 +16,7 @@ import theme from './ProfileEditor.scss'
 
 const { activities, kidsAge } = forms
 
-const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelChange, handleSubmit }) => (
+const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handlePanelChange, handleSubmit, handleToggle }) => (
   <div data-oh-hi='profile-editor' className={ theme.profileEditor }>
     <PanelGroup>
       <Panel title='Basic info' subTitle='(required section)' expanded={ expanded.basic } onClick={ () => handlePanelChange('basic', !expanded.basic) }>
@@ -31,7 +32,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
             <Avatar className={ theme.avatar } theme={ theme } icon='camera_alt' />
             <Input type='text' label='First name' name='firstname' value={ user.first_name } onChange={ (value) => handleChange('first_name', value) } />
             <Input type='text' label='Last name' name='lastname' value={ user.last_name } onChange={ (value) => handleChange('last_name', value) } />
-            <DatePicker label='Birthdate' value={ user.birth_date } sundayFirstDayOfWeek onChange={ (value) => handleChange('birth_date', value) } />
+            <Input type='text' label='Birth Date' hint='MM/DD/YYYY' name='birthdate' value={ user.birth_date } onChange={ (value) => handleChange('birth_date', value) } />
             <Input type='text' label='Hometown' name='hometown' value={ user.hometown } onChange={ (value) => handleChange('hometown', value) } />
           </Flexbox>
         </Flexbox>
@@ -50,7 +51,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
               <p>What are you looking for in a friend?</p>
               <p>What are some things that are most important to you?</p>
             </Flexbox>
-            <Input className={ theme.description } theme={ theme } type='text' value={ user.introduction } multiline label='Introduction' maxLength={ 140 } onChange={ (value) => handleChange('introduction', value) } />
+            <Input className={ theme.description } theme={ theme } type='text' value={ user.introduction } multiline label='Introduction' maxLength={ 300 } onChange={ (value) => handleChange('introduction', value) } />
             <p>(We’ll put this introduction under your picture at the top of your profile.)</p>
             <div className={ theme.inspiration }>
               <p>Need some inspiration?</p>
@@ -61,7 +62,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
             <Flexbox layout='row' className={ theme.options }>
               {activities.map(option => (
                 <Flexbox layout='row' flex='50' flex-sm='100' key={ option.value }>
-                  <Checkbox label={ option.label } checked={ user.activities[option.label] } onChange={ () => handleCheck('activities', option.label) } />
+                  <Checkbox label={ option.label } checked={ includes(user.activities, option.label) } onChange={ () => handleCheck('activities', option.label) } />
                 </Flexbox>
               ))}
             </Flexbox>
@@ -73,7 +74,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
         </Flexbox>
       </Panel>
 
-      <Panel title='Social Media' subTitle='(optional)' expanded={ expanded.social } onClick={ () => handlePanelChange('social', !this.state.expanded.social) }>
+      <Panel title='Social Media' subTitle='(optional)' expanded={ expanded.social } onClick={ () => handlePanelChange('social', !expanded.social) }>
         <Flexbox className={ classnames(theme.group, theme.social) } layout='row' align='center center'>
           <Flexbox layout='column' flex>
             <h5>Links to your social media pages</h5>
@@ -101,7 +102,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
               <RadioButton label='Yes' value='yes' />
               <RadioButton label='No' value='no' />
             </RadioGroup>
-            { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } onChange={ (value) => handleChange('aboutPets', value) } /> : <span /> }
+            { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } onChange={ (value) => handleChange('about_pets', value) } /> : <span /> }
             <br />
             <h5>Kids</h5>
             <h6>Do you have any kids?</h6>
@@ -117,7 +118,7 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
                 <Flexbox layout='row' className={ theme.options }>
                   {kidsAge.map(option => (
                     <Flexbox layout='row' flex='50' flex-sm='100' key={ option.value }>
-                      <Checkbox label={ option.label } checked={ user.kid_status[option.label] } onChange={ () => handleCheck('kid_status', option.label) } />
+                      <Checkbox label={ option.label } checked={ includes(user.kid_status, option.label) } onChange={ () => handleCheck('kid_status', option.label) } />
                     </Flexbox>
                   ))}
                 </Flexbox>
@@ -144,8 +145,18 @@ const ProfileEditor = ({ user, expanded, handleCheck, handleChange, handlePanelC
     </PanelGroup>
 
     <Flexbox layout='row' align='end center'>
-      <Button label='Save Changes' raised primary onClick={ () => handleSubmit() } />
+      { user.completed_profile && <a href={ `/person/${user.id}` }>Preview Profile</a> }
+      <Button className={ theme.button } label='Save Changes' raised primary onClick={ () => handleSubmit() } />
     </Flexbox>
+
+    <Dialog
+      actions={[{ label: "Ok", onClick: handleToggle }]}
+      active={ limit }
+      onEscKeyDown={ handleToggle }
+      onOverlayClick={ handleToggle }
+      title='Activity Limit Reached'>
+        <p>Whoops, looks like you've selected too many activities. Please select only two.</p>
+    </Dialog>
 
   </div>
 )

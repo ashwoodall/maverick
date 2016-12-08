@@ -3,8 +3,8 @@
 
 .panel {
   background-color: $color-white;
+  border: 1px solid $color-divider;
   border-radius: 4px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   padding: 0 $layout-gutter-width;
   max-height: $standard-increment-desktop;
   overflow: hidden;
@@ -69,17 +69,16 @@
 .panelGroup {
   display: flex;
   flex-direction: column;
-  padding: $layout-gutter-width-sm 0;
 
   .panel {
-    border-bottom: 1px solid $color-divider;
+    margin-top: -1px;
 
     &.expanded {
-      border-bottom-color: transparent;
+      margin: $layout-gutter-width 0;
     }
 
-    &.lastPanel {
-      border: none;
+    &.firstPanel {
+      margin-top: 0
     }
 
   }

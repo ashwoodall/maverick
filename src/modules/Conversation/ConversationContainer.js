@@ -24,19 +24,17 @@ class ConversationContainer extends Component {
   }
 
   componentDidUpdate () {
-    const { currentConversation } = this.props
+    const { conversation } = this.props
 
-    socket.emit('join conversation', currentConversation.id)
+    socket.emit('join conversation', conversation.data.id)
   }
 
   componentWillReceiveProps (nextProps) {
-    const {
-      currentConversation,
-      conversation } = nextProps
+    const { conversation, messages } = nextProps
 
-    if (conversation.data.length > 0) this.setState({ messages: conversation.data })
+    if (messages.data.length > 0) this.setState({ messages: messages.data })
 
-    socket.emit('join conversation', currentConversation.id)
+    socket.emit('join conversation', conversation.data.id)
   }
 
   handleChange = (value) => {
@@ -44,14 +42,11 @@ class ConversationContainer extends Component {
   }
 
   handleSubmit = () => {
-    const {
-      currentConversation,
-      sendMessage,
-      user } = this.props
+    const { conversation, sendMessage, user } = this.props
 
     let newMessage = {
-      author: user.id,
-      convo_id: currentConversation.id,
+      author: user.data.id,
+      convo_id: conversation.data.id,
       body: this.state.message
     }
 
@@ -71,35 +66,34 @@ class ConversationContainer extends Component {
   }
 
   render () {
-    const {
-      user,
-      currentConversation } = this.props
+    const { conversation, messages, user } = this.props
+    const isReady = !conversation.isFetching && !messages.isFetching
 
-    return (
+    return isReady ?
       <Conversation
-        { ...currentConversation }
-        currentUser={ user.id }
+        conversation={ conversation.data }
+        currentUser={ user.data.id }
         messages={ this.state.messages }
         message={ this.state.message }
         handleChange={ this.handleChange }
-        handleSubmit={ this.handleSubmit } />
-    )
+        handleSubmit={ this.handleSubmit } /> : null
   }
 }
 
 ConversationContainer.propTypes = {
   conversation: PropTypes.object.isRequired,
-  currentConversation: PropTypes.object.isRequired,
+  messages: PropTypes.object.isRequired,
   receiveSocket: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ api, app: { currentConversation = {} } }) => {
-  const conversation = api['conversation'] || { data: [] }
+const mapStateToProps = ({ api }) => {
+  const conversation = api['conversation'] || { data: {}, isFetching: true }
+  const messages = api['messages'] || { data: [], isFetching: true }
   const user = api['user'] || { data: { id: 0 } }
 
-  return { currentConversation, conversation, user }
+  return { conversation, messages, user }
 }
 
 const mapDispatchToProps = (dispatch) => {

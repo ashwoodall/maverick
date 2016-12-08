@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 // Modules
 import Messages from './Messages'
-import * as Actions from './MessagesActions'
+import Actions from './MessagesActions'
 
 class MessagesContainer extends Component {
   componentWillMount () {
@@ -14,29 +14,30 @@ class MessagesContainer extends Component {
 
   handleConversationClick = (conversation) => {
     this.props.getConversation(conversation)
+      .then(result => {
+        this.props.getMessages(conversation)
+      })
   }
 
   render () {
-    const { data } = this.props
+    const { data, isFetching } = this.props
 
-    return <Messages messages={ data } handleConversationClick={ this.handleConversationClick } />
+    return isFetching ? null : <Messages conversations={ data } handleConversationClick={ this.handleConversationClick } />
   }
 }
 
 MessagesContainer.propTypes = {
   data: PropTypes.array.isRequired,
   getAllConversations: PropTypes.func,
-  getConversation: PropTypes.func.isRequired
+  getConversation: PropTypes.func.isRequired,
+  getMessages: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = ({ api: { messages = {} } }) => {
-  const { data = [] } = messages
+const mapStateToProps = ({ api: { conversations = {} } }) => {
+  const { data = [], isFetching = true } = conversations
 
-  return { data }
+  return { data, isFetching }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesContainer)
+export default connect(mapStateToProps, Actions)(MessagesContainer)

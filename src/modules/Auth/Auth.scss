@@ -2,6 +2,11 @@
 @import "~react-toolbox/lib/globals";
 
 .auth {
+
+  h5 {
+    color: $color-text-secondary;
+    margin: 16px 0;
+  }
   
   .logo {
     height: 64px;
@@ -9,12 +14,19 @@
   }
 
   .card {
+    box-shadow: none;
     padding: 32px;
-    max-width: 350px;
+    max-width: 400px;
+  }
+
+  .actions {
+    justify-content: flex-end;
+    margin-top: 24px;
   }
 
   .button {
-    margin: 16px 0;
+    margin-left: 16px;
+    min-width: 96px;
   }
 
   .forgot__password {

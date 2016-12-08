@@ -1,4 +1,5 @@
 import { createAction } from 'core/utils'
+import { browserHistory } from 'react-router'
 
 export const getUserByToken = () => {
   const action = {
@@ -9,16 +10,28 @@ export const getUserByToken = () => {
   }
 
   return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-      .then(response => {
-        let userAction = {
-          key: 'user',
-          endpoint: `user/${response.payload.data.id}`,
-          method: 'GET',
-          dataType: {}
-        }
+    dispatch(createAction('CALL_API', action)).then(response => {
+      if (!response.payload.success) {
+        sessionStorage.clear()
+        
+        browserHistory.push('/login')
+      }
 
-        dispatch(createAction('CALL_API', userAction))
-      })
+      if (response.payload.data && !response.payload.data.completed_profile) dispatch(showSnackBar())
+    })
+  }
+}
+
+export const showSnackBar = () => {
+  const action = {
+    key: 'snackbar',
+    payload: {
+      active: true,
+      content: 'As soon as you\'re ready, make sure to <a href="/profile">complete your profile</a>'
+    }
+  }
+
+  return (dispatch) => {
+    dispatch(createAction('CALL_APP', action))
   }
 }

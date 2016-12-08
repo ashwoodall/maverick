@@ -7,10 +7,10 @@ import Container from 'components/Container'
 // Modules
 import PersonContainer from 'modules/Person'
 
-const Person = ({ params }) => (
+const Person = (props) => (
   <div data-oh-hi='person-view'>
     <Container>
-      <PersonContainer { ...params } />
+      <PersonContainer { ...props }/>
     </Container>
   </div>
 )

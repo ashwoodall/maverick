@@ -3,14 +3,16 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { browserHistory } from 'react-router'
+import { isEqual } from 'lodash'
 
 // Modules
 import People from './People'
 import * as Actions from './PeopleActions'
 
 class PeopleContainer extends Component {
+
   componentWillMount () {
-    this.props.getUsersByStation()
+    this.props.getUsersByStation('Fort Hood')
   }
 
   handleUserClick = (id) => {
@@ -18,21 +20,22 @@ class PeopleContainer extends Component {
   }
 
   render () {
-    const { data } = this.props
+    const { data, isFetching } = this.props
 
-    return <People people={ data } onClick={ this.handleUserClick } />
+    return isFetching ? null : <People people={ data } onClick={ this.handleUserClick } />
   }
 }
 
 PeopleContainer.propTypes = {
   data: PropTypes.array.isRequired,
-  getUsersByStation: PropTypes.func
+  getUsersByStation: PropTypes.func,
+  isFetching: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = ({ api: { people = {} } }) => {
-  const { data = [] } = people
+  const { data = [], isFetching = true } = people
 
-  return { data }
+  return { data, isFetching }
 }
 
 const mapDispatchToProps = (dispatch) => {

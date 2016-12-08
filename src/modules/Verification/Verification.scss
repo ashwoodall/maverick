@@ -23,6 +23,7 @@
   }
 
   .card {
+    box-shadow: none;
     padding: $layout-gutter-width-sm * 2;
     margin-bottom: $layout-gutter-width-sm;
     max-width: 350px;

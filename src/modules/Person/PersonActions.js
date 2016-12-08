@@ -1,6 +1,6 @@
 import { createAction } from 'core/utils'
 
-export const getUserById = (id) => {
+const getUserById = (id) => {
   const action = {
     key: 'person',
     endpoint: `user/${id}`,
@@ -8,12 +8,25 @@ export const getUserById = (id) => {
     dataType: {}
   }
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-  }
+  return createAction('CALL_API', action)
 }
 
-export const startConversation = (userId, recipientId) => {
+const sendMessage = (message) => {
+  const action = {
+    key: 'message',
+    endpoint: 'messages',
+    method: 'POST',
+    dataType: {},
+    body: {
+      convo_id: message.convo_id,
+      body: message.body
+    }
+  }
+
+  return createAction('CALL_API', action)
+}
+
+const startConversation = (userId, recipientId) => {
   const action = {
     key: 'conversation',
     endpoint: 'conversations',
@@ -25,8 +38,12 @@ export const startConversation = (userId, recipientId) => {
     dataType: {}
   }
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-  }
+  return createAction('CALL_API', action)
+}
+
+export default {
+  getUserById: getUserById,
+  sendMessage: sendMessage,
+  startConversation: startConversation
 }
 

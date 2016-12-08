@@ -40,4 +40,14 @@
     margin-bottom: $layout-gutter-width;
   }
 
+  .link {
+    display: block;
+    font-size: $unit * 2;
+    margin: $baseline-grid 0;
+
+    .icon {
+      font-size: $unit * 2;
+    }
+  }
+
 }

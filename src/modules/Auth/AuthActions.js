@@ -1,5 +1,5 @@
-import { browserHistory } from 'react-router'
 import { createAction } from 'core/utils'
+import { browserHistory } from 'react-router'
 
 export const login = (user) => {
   const action = {
@@ -13,8 +13,9 @@ export const login = (user) => {
   return (dispatch) => {
     dispatch(createAction('CALL_API', action))
       .then(response => {
+        console.log(response)
         sessionStorage.setItem('jwt', response.payload.token)
-        browserHistory.push('/profile')
+        browserHistory.push('/')
       })
   }
 }
