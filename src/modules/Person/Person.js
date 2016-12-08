@@ -1,5 +1,6 @@
 // Core
 import React, { PropTypes } from 'react'
+import moment from 'moment'
 
 // Thirdparty
 import { Avatar, Button, Link } from 'react-toolbox'
@@ -18,7 +19,7 @@ const Person = ({ person, startConversation }) => (
         ? (<Avatar className={ theme.avatar } image={ person.profile_picture } />)
         : (<Avatar className={ theme.avatar } title={ person.first_name } theme={ theme } />) }
       <h3>{ `${person.first_name} ${person.last_name}` }</h3>
-      <h5>{ `${person.age} | ${person.current_station}`}</h5>
+      <h5>{ `${moment().diff(person.birth_date, 'years')} | ${person.current_station}`}</h5>
     </Flexbox>
 
     <p className={ theme.introduction }>{ person.introduction }</p>
@@ -26,8 +27,9 @@ const Person = ({ person, startConversation }) => (
     <Flexbox layout='row' align='center center'>
       <Flexbox layout='column' flex='30'>
         <p className={ theme.aside }>I'd like to be invited to...</p>
-        <Button className={ theme.button } label='Activity one' raised primary />
-        <Button className={ theme.button } label='Activity two' raised primary />
+        { person.activities.length > 0 && person.activities.map(activity => (
+          <Button key={ activity } className={ theme.button } label={ activity} raised primary onClick={ () => startConversation(activity) } />
+        ))}
         <Button className={ theme.button } label='A Conversation' raised primary onClick={ () => startConversation() } />
       </Flexbox>
     </Flexbox>
@@ -35,21 +37,21 @@ const Person = ({ person, startConversation }) => (
     <Flexbox className={ theme.section } layout='column'>
       <Subheader title='About me' />
       <p>{ `Hometown: ${person.hometown}`}</p>
-      <p>{ `Currently Serving: ${person.is_service_member}`}</p>
+      { person.is_service_member && <p>Currently Serving</p> }
     </Flexbox>
 
     <Flexbox className={ theme.section } layout='column'>
       <Subheader title='Family' />
-      { person.has_kids && <p>{ `Kids: ${person.number_of_kids} (${person.kids_ages.toString()})`}</p> }
+      { person.has_kids == 'hasKids' && <p>{ `Kids: ${person.number_of_kids} (${person.kids_ages.toString()})`}</p> }
       { person.has_pets && <p>{ `Pets: ${person.about_pets}`}</p> }
     </Flexbox>
 
     <Flexbox className={ theme.section } layout='column'>
       <Subheader title='Social' />
-      { person.facebook && <Link href={ person.facebook } icon='facebook' label='Facebook' /> }
-      { person.twitter && <Link href={ person.twitter } icon='twitter' label='Twitter' /> }
-      { person.instagram && <Link href={ person.instagram } icon='instagram' label='Instagram' /> }
-      { person.pinterest && <Link href={ person.pinterest } icon='pinterest' label='Pinterest' /> }
+      { person.facebook && <Link className={ theme.link } theme={ theme } href={ person.facebook } target='_blank' icon={ <i className='mdi mdi-facebook'></i> } label='Facebook' /> }
+      { person.twitter && <Link className={ theme.link } theme={ theme } href={ person.twitter } target='_blank'icon={ <i className='mdi mdi-twitter'></i> } label='Twitter' /> }
+      { person.instagram && <Link className={ theme.link } theme={ theme } href={ person.instagram } target='_blank' icon={ <i className='mdi mdi-instagram'></i> } label='Instagram' /> }
+      { person.pinterest && <Link className={ theme.link } theme={ theme } href={ person.pinterest } target='_blank' icon={ <i className='mdi mdi-pinterest'></i> } label='Pinterest' /> }
     </Flexbox>
 
     <Flexbox className={ theme.section } layout='column'>

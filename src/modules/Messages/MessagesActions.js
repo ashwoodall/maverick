@@ -1,38 +1,40 @@
 import { createAction } from 'core/utils'
 
-export const getAllConversations = (id) => {
+const getAllConversations = (id) => {
   const action = {
-    key: 'messages',
+    key: 'conversations',
     endpoint: 'conversations',
     method: 'GET',
     dataType: []
   }
-
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-  }
+  
+  return createAction('CALL_API', action)
 }
 
-export const getConversation = (conversation) => {
+const getConversation = (conversation) => {
   const action = {
     key: 'conversation',
+    endpoint: `conversations/${conversation.id}`,
+    method: 'GET',
+    dataType: {}
+  }
+
+  return createAction('CALL_API', action)
+}
+
+const getMessages = (conversation) => {
+  const action = {
+    key: 'messages',
     endpoint: `messages/${conversation.id}`,
     method: 'GET',
     dataType: []
   }
 
-  const appAction = {
-    key: 'currentConversation',
-    payload: {
-      firstname: conversation.participant.first_name,
-      lastname: conversation.participant.last_name,
-      profilePicture: conversation.participant.profile_picture,
-      id: conversation.id
-    }
-  }
+  return createAction('CALL_API', action)
+}
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-    dispatch(createAction('CALL_APP', appAction))
-  }
+export default {
+  getAllConversations: getAllConversations,
+  getConversation: getConversation,
+  getMessages: getMessages
 }

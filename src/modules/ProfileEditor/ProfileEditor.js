@@ -32,7 +32,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
             <Avatar className={ theme.avatar } theme={ theme } icon='camera_alt' />
             <Input type='text' label='First name' name='firstname' value={ user.first_name } onChange={ (value) => handleChange('first_name', value) } />
             <Input type='text' label='Last name' name='lastname' value={ user.last_name } onChange={ (value) => handleChange('last_name', value) } />
-            <DatePicker label='Birthdate' value={ user.birth_date } sundayFirstDayOfWeek onChange={ (value) => handleChange('birth_date', value) } />
+            <Input type='text' label='Birth Date' hint='MM/DD/YYYY' name='birthdate' value={ user.birth_date } onChange={ (value) => handleChange('birth_date', value) } />
             <Input type='text' label='Hometown' name='hometown' value={ user.hometown } onChange={ (value) => handleChange('hometown', value) } />
           </Flexbox>
         </Flexbox>
@@ -102,7 +102,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
               <RadioButton label='Yes' value='yes' />
               <RadioButton label='No' value='no' />
             </RadioGroup>
-            { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } onChange={ (value) => handleChange('aboutPets', value) } /> : <span /> }
+            { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } onChange={ (value) => handleChange('about_pets', value) } /> : <span /> }
             <br />
             <h5>Kids</h5>
             <h6>Do you have any kids?</h6>
@@ -145,6 +145,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
     </PanelGroup>
 
     <Flexbox layout='row' align='end center'>
+      { user.completed_profile && <a href={ `/person/${user.id}` }>Preview Profile</a> }
       <Button className={ theme.button } label='Save Changes' raised primary onClick={ () => handleSubmit() } />
     </Flexbox>
 

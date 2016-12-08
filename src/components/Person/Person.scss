@@ -5,6 +5,10 @@
   cursor: pointer;
   width: 100%;
 
+  .card {
+    box-shadow: none;
+  }
+
   h5 {
     color: $color-text-secondary;
   }
@@ -37,6 +41,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
   }
 
 }

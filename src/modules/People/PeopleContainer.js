@@ -10,18 +10,9 @@ import People from './People'
 import * as Actions from './PeopleActions'
 
 class PeopleContainer extends Component {
-  state = { hasPeople: false }
 
-  shouldComponentUpdate (nextProps) {
-    return isEqual(nextProps.people, this.props.people)
-  }
-
-  componentWillUpdate (nextProps) {
-    const { user } = nextProps
-
-    if (user.data && user.data.current_station) {
-      this.props.getUsersByStation(user.data.current_station)
-    }
+  componentWillMount () {
+    this.props.getUsersByStation('Fort Hood')
   }
 
   handleUserClick = (id) => {
@@ -29,23 +20,22 @@ class PeopleContainer extends Component {
   }
 
   render () {
-    const { people } = this.props
+    const { data, isFetching } = this.props
 
-    return <People people={ people.data } onClick={ this.handleUserClick } />
+    return isFetching ? null : <People people={ data } onClick={ this.handleUserClick } />
   }
 }
 
 PeopleContainer.propTypes = {
-  people: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   getUsersByStation: PropTypes.func,
-  user: PropTypes.object.isRequired
+  isFetching: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = ({ api }) => {
-  const people = api['people'] || { data: [], isFetching: true }
-  const user = api['user'] || { data: {}, isFetching: true }
+const mapStateToProps = ({ api: { people = {} } }) => {
+  const { data = [], isFetching = true } = people
 
-  return { people, user }
+  return { data, isFetching }
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,4 +1,5 @@
 import { createAction } from 'core/utils'
+import { browserHistory } from 'react-router'
 
 export const getUserByToken = () => {
   const action = {
@@ -10,9 +11,13 @@ export const getUserByToken = () => {
 
   return (dispatch) => {
     dispatch(createAction('CALL_API', action)).then(response => {
-      if (!response.payload.data.completed_profile) {
-        dispatch(showSnackBar())
+      if (!response.payload.success) {
+        sessionStorage.clear()
+        
+        browserHistory.push('/login')
       }
+
+      if (response.payload.data && !response.payload.data.completed_profile) dispatch(showSnackBar())
     })
   }
 }

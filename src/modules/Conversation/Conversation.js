@@ -17,31 +17,25 @@ class Conversation extends Component {
   }
 
   render () {
-    const {
-      currentConversation,
-      currentUser,
-      handleChange,
-      handleSubmit,
-      message,
-      messages } = this.props
+    const { conversation, currentUser, handleChange, handleSubmit, message, messages } = this.props
 
     return (
       <div className={ theme.conversation } data-oh-hi='conversation'>
         { messages.length > 0 &&
-          <Card>
+          <Card className={ theme.card }>
             <CardTitle className={ theme.title }>
               <Flexbox layout='row' align='start center' flex>
-                <h5>{ `${currentConversation.firstname} ${currentConversation.lastname}` }</h5>
+                <h5>{ `${conversation.participant.first_name} ${conversation.participant.last_name}` }</h5>
                 <Flexbox flex />
                 <IconButton icon='delete' />
                 <IconButton icon='report' />
               </Flexbox>
             </CardTitle>
-            <CardText>
+            <CardText className={ theme.cardText }>
               <div className={ theme.text } ref={ (element) => { this.scroller = element } }>
                 <Flexbox layout='column' align='end start'>
                   { messages.map(message => (
-                    <div className={ theme.wrap } key={ message.id }>
+                    <div className={ theme.wrap } key={ message.body }>
                       { message.author === currentUser &&
                         <Flexbox className={ theme.author } layout='row' align='end center'>
                           <div className={ theme.bubble }>{ message.body }</div>
@@ -50,9 +44,9 @@ class Conversation extends Component {
                       }
                       { message.author !== currentUser &&
                         <Flexbox className={ theme.participant } layout='row' align='start center'>
-                          { currentConversation.profilePicture
-                            ? (<Avatar className={ theme.avatar } theme={ theme } image={ currentConversation.profilePicture } />)
-                            : (<Avatar className={ theme.avatar } theme={ theme } title={ currentConversation.firstname } />) }
+                          { conversation.participant.profile_picture
+                            ? (<Avatar className={ theme.avatar } theme={ theme } image={ conversation.participant.profile_Picture } />)
+                            : (<Avatar className={ theme.avatar } theme={ theme } title={ conversation.participant.first_name } />) }
                           <div className={ theme.arrow } />
                           <div className={ theme.bubble }>{ message.body }</div>
                         </Flexbox>
@@ -89,7 +83,7 @@ class Conversation extends Component {
 }
 
 Conversation.propTypes = {
-  currentConversation: PropTypes.object.isRequired,
+  conversation: PropTypes.object.isRequired,
   currentUser: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
   messages: PropTypes.array.isRequired,

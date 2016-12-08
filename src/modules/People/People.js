@@ -9,9 +9,9 @@ import Person from 'components/Person'
 const PeopleList = ({ people, onClick }) => (
   <div data-oh-hi='people-list'>
     <GridList>
-      {map(people, item => {
-        if (item.first_name) return <GridTile key={ `person_${item.id}` } columns={ 2 }><Person data={ item } onClick={ onClick } /></GridTile>
-      })}
+      {people.map(item => (
+        <GridTile key={ `person_${item.id}` } columns={ 2 }><Person data={ item } onClick={ onClick } /></GridTile>
+      ))}
     </GridList>
   </div>
 )

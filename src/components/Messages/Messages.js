@@ -5,28 +5,27 @@ import moment from 'moment'
 // Thirdpart
 import { Avatar, Card, List, ListDivider, ListItem, ListSubHeader } from 'react-toolbox'
 
+// Theme
+import theme from './Messages.scss'
+
 const Messages = ({ messages, handleConversationClick }) => (
-  <div data-oh-hi='message-list'>
-    <Card>
-      <List selectable ripple>
-        <ListSubHeader caption='My Messages' />
-        { messages.map((conversation, index) => {
-          return (
-            <div key={ conversation.id }>
-              <ListDivider />
-              <ListItem
-                selectable
-                avatar={ conversation.participant.profile_picture
-                  ? (<Avatar image={ conversation.participant.profile_picture } />)
-                  : (<Avatar title={ conversation.participant.first_name } />) }
-                caption={ `${conversation.participant.first_name} ${conversation.participant.last_name}` }
-                legend={ `${moment(conversation.lastMessage.timestamp).fromNow()}` }
-                onClick={ () => handleConversationClick(conversation) } />
-            </div>
-          )
-        })}
-      </List>
-    </Card>
+  <div className={ theme.messageList } data-oh-hi='message-list'>
+    <List className={ theme.list } selectable ripple>
+      { messages.map((conversation, index) => {
+        return (
+          <div key={ conversation.id }>
+            <ListItem
+              selectable
+              avatar={ conversation.participant.profile_picture
+                ? (<Avatar image={ conversation.participant.profile_picture } />)
+                : (<Avatar title={ conversation.participant.first_name } />) }
+              caption={ `${conversation.participant.first_name} ${conversation.participant.last_name}` }
+              legend={ `${moment(conversation.lastMessage.timestamp).fromNow()}` }
+              onClick={ () => handleConversationClick(conversation) } />
+          </div>
+        )
+      })}
+    </List>
   </div>
 )
 
