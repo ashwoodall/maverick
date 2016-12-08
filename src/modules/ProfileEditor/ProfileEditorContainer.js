@@ -10,6 +10,24 @@ import moment from 'moment'
 import ProfileEditor from './ProfileEditor'
 import * as Actions from './ProfileEditorActions'
 
+const mergeUser = (apiUser, user) => {
+  let newUser = {}
+
+  forOwn(apiUser, (value, key) => {
+    if (value) {
+      if (key === 'birth_date') {
+        newUser[key] = moment(value).format('MM/DD/YYYY')
+      } else if (key === 'has_pets') {
+        newUser[key] = value ? 'yes' : 'no'
+      } else {
+        newUser[key] = value
+      }
+    }
+  })
+
+  return merge({}, user, newUser)
+}
+
 class ProfileEditorContainer extends Component {
   state = {
     expanded: {
@@ -43,25 +61,17 @@ class ProfileEditorContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps === this.props) return
-
     const { data } = nextProps
     const { user } = this.state
-    let newUser = {}
 
-    forOwn(data, (value, key) => {
-      if (value) {
-        if (key === 'birth_date') {
-          newUser[key] = moment(value).format('MM/DD/YYYY')
-        } else if (key === 'has_pets') {
-          newUser[key] = value ? 'yes' : 'no'
-        }else {
-          newUser[key] = value
-        }
-      }
-    })
+    this.setState({ user: mergeUser(data, user) })
+  }
 
-    this.setState({ user: merge({}, user, newUser) })
+  componentDidMount () {
+    const { data } = this.props
+    const { user } = this.state
+
+    this.setState({ user: mergeUser(data, user) })
   }
 
   handleChange = (name, value) => {
