@@ -1,18 +1,19 @@
 @import "~react-toolbox/lib/colors";
 @import "~react-toolbox/lib/globals";
 
-.messages {
+.references {
 
-  h2 {
+  h4 {
     color: $color-text-secondary;
-    opacity: 0.54;
+  }
+
+  .content {
+    min-height: $unit * 24;
   }
 
   .icon {
     color: $color-text-secondary;
-    font-size: $unit * 12;
-    margin: ($unit * 2.4) 0;
-    opacity: 0.54;
+    font-size: $unit * 3.6;
   }
 
 }

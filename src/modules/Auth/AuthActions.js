@@ -13,7 +13,6 @@ export const login = (user) => {
   return (dispatch) => {
     dispatch(createAction('CALL_API', action))
       .then(response => {
-        console.log(response)
         sessionStorage.setItem('jwt', response.payload.token)
         browserHistory.push('/')
       })

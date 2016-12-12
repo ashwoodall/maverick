@@ -13,7 +13,7 @@ export const getUserByToken = () => {
     dispatch(createAction('CALL_API', action)).then(response => {
       if (!response.payload.success) {
         sessionStorage.clear()
-        
+
         browserHistory.push('/login')
       }
 

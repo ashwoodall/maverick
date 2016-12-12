@@ -1,16 +1,13 @@
 // Core
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // Thirdparty
 import { Snackbar } from 'react-toolbox'
 
-// Modules 
+// Modules
 import * as Actions from './SnackbarActions'
-
-// Theme
-import theme from './Snackbar.scss'
 
 class SnackbarContainer extends Component {
 
@@ -21,15 +18,21 @@ class SnackbarContainer extends Component {
   render () {
     const { active, content } = this.props
 
-    return <Snackbar 
+    return <Snackbar
       action='Dismiss'
       active={ active }
       timeout={ 5000 }
       onClick={ this.handleSnackbarClick }
       onTimeout={ this.handleSnackbarClick }
-      type='cancel'><div dangerouslySetInnerHTML={{__html: content }}/></Snackbar>
+      type='cancel'><div dangerouslySetInnerHTML={{ __html: content }} /></Snackbar>
   }
 
+}
+
+SnackbarContainer.propTypes = {
+  active: PropTypes.bool.isRequired,
+  closeSnackBar: PropTypes.func.isRequired,
+  content: PropTypes.node.isRequired
 }
 
 const mapPropsToState = ({ app: { snackbar } }) => {

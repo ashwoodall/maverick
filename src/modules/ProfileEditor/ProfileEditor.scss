@@ -69,5 +69,10 @@
   .button {
     margin: $layout-gutter-width-sm 0;
   }
+
+  .link {
+    cursor: pointer;
+    color: $color-primary;
+  }
   
 }

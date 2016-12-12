@@ -1,5 +1,10 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
 .Snackbar {
-   .action {
-     color: $color-primary;
+
+  .action {
+    color: $color-primary;
   }
+
 }

@@ -1,8 +1,9 @@
 // Core
 import React, { Component, PropTypes } from 'react'
+import moment from 'moment'
 
 // Thirdparty
-import { Avatar, Button, Card, CardActions, CardText, CardTitle, IconButton, Input } from 'react-toolbox'
+import { Avatar, Button, IconButton, Input, List, ListItem, ListDivider } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Theme
@@ -10,7 +11,7 @@ import theme from './Conversation.scss'
 
 class Conversation extends Component {
 
-  componentDidUpdate () {
+  componentDidMount () {
     if (!this.scroller) return
 
     this.scroller.scrollTop = this.scroller.scrollHeight
@@ -21,61 +22,64 @@ class Conversation extends Component {
 
     return (
       <div className={ theme.conversation } data-oh-hi='conversation'>
+        <Flexbox layout='row' flex align='start center'>
+          <h4 className={ theme.title }>{ `${conversation.participant.first_name} ${conversation.participant.last_name.charAt(0)}.` }</h4>
+          <Flexbox flex />
+          <IconButton className={ theme.fontIcon } icon='flag' />
+          <IconButton className={ theme.fontIcon } icon='delete' />
+        </Flexbox>
+        <ListDivider />
         { messages.length > 0 &&
-          <Card className={ theme.card }>
-            <CardTitle className={ theme.title }>
-              <Flexbox layout='row' align='start center' flex>
-                <h5>{ `${conversation.participant.first_name} ${conversation.participant.last_name}` }</h5>
-                <Flexbox flex />
-                <IconButton icon='delete' />
-                <IconButton icon='report' />
-              </Flexbox>
-            </CardTitle>
-            <CardText className={ theme.cardText }>
-              <div className={ theme.text } ref={ (element) => { this.scroller = element } }>
-                <Flexbox layout='column' align='end start'>
-                  { messages.map(message => (
-                    <div className={ theme.wrap } key={ message.body }>
-                      { message.author === currentUser &&
-                        <Flexbox className={ theme.author } layout='row' align='end center'>
-                          <div className={ theme.bubble }>{ message.body }</div>
-                          <div className={ theme.arrow } />
-                        </Flexbox>
+          <Flexbox layout='column'>
+            <div className={ theme.messages } ref={ (element) => { this.scroller = element } }>
+              <Flexbox layout='column' align='end start'>
+                <List>
+                  { messages.map((message, index) => (
+                    <div key={ `message_${message.id}` }>
+                      { message.author === currentUser.id &&
+                        <ListItem
+                          className={ theme.listItem }
+                          theme={ theme }
+                          avatar={ currentUser.profile_picture ? (<Avatar className={ theme.avatar } theme={ theme } image={ currentUser.profile_Picture } />) : (<Avatar className={ theme.avatar } theme={ theme } title={ currentUser.first_name } />) }
+                          caption={ `${currentUser.first_name} ${currentUser.last_name.charAt(0)}.` }
+                          legend={ message.body }
+                          rightIcon={ <span>{ `${moment(message.timestamp).fromNow()}` }</span> } />
+
                       }
-                      { message.author !== currentUser &&
-                        <Flexbox className={ theme.participant } layout='row' align='start center'>
-                          { conversation.participant.profile_picture
-                            ? (<Avatar className={ theme.avatar } theme={ theme } image={ conversation.participant.profile_Picture } />)
-                            : (<Avatar className={ theme.avatar } theme={ theme } title={ conversation.participant.first_name } />) }
-                          <div className={ theme.arrow } />
-                          <div className={ theme.bubble }>{ message.body }</div>
-                        </Flexbox>
+                      { message.author !== currentUser.id &&
+                        <ListItem
+                          className={ theme.listItem }
+                          theme={ theme }
+                          key={ `message_${message.id}` }
+                          avatar={ conversation.participant.profile_picture ? (<Avatar className={ theme.avatar } theme={ theme } image={ conversation.participant.profile_Picture } />) : (<Avatar className={ theme.avatar } theme={ theme } title={ conversation.participant.first_name } />) }
+                          caption={ `${conversation.participant.first_name} ${conversation.participant.last_name.charAt(0)}.` }
+                          legend={ message.body }
+                          rightIcon={ <span>{ `${moment(message.timestamp).fromNow()}` }</span> } />
                       }
+                      { index !== messages.length - 1 && <ListDivider inset /> }
                     </div>
                   )) }
-                </Flexbox>
-              </div>
-            </CardText>
-            <CardActions className={ theme.actions }>
-              <Flexbox layout='row' align='start center' flex>
-                <Input
-                  className={ theme.input }
-                  theme={ theme }
-                  multiline
-                  type='text'
-                  hint='Say hello...'
-                  name='message'
-                  value={ message }
-                  onChange={ (value) => handleChange(value) } />
-                <Button
-                  className={ theme.button }
-                  icon='send'
-                  label='Send'
-                  accent
-                  onClick={ () => handleSubmit() } />
+                </List>
               </Flexbox>
-            </CardActions>
-          </Card>
+            </div>
+            <Flexbox className={ theme.actions } layout='row' align='start center' flex>
+              <Input
+                className={ theme.input }
+                theme={ theme }
+                multiline
+                type='text'
+                hint='Say hello...'
+                name='message'
+                value={ message }
+                onChange={ (value) => handleChange(value) } />
+              <Button
+                className={ theme.button }
+                icon='send'
+                label='Send'
+                accent
+                onClick={ () => handleSubmit() } />
+            </Flexbox>
+          </Flexbox>
         }
       </div>
     )
@@ -84,7 +88,7 @@ class Conversation extends Component {
 
 Conversation.propTypes = {
   conversation: PropTypes.object.isRequired,
-  currentUser: PropTypes.number.isRequired,
+  currentUser: PropTypes.object.isRequired,
   message: PropTypes.string.isRequired,
   messages: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired,

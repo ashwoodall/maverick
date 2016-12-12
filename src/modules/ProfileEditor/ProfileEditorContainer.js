@@ -57,7 +57,8 @@ class ProfileEditorContainer extends Component {
       is_service_member: false,
       completed_profile: false
     },
-    activityLimit: false
+    activityLimit: false,
+    showExample: false
   }
 
   componentWillReceiveProps (nextProps) {
@@ -93,7 +94,7 @@ class ProfileEditorContainer extends Component {
       if (newArray.length > 1 && key === 'activities') {
         this.setState({ activityLimit: true })
 
-        return 
+        return
       }
 
       newArray.push(field)
@@ -106,6 +107,10 @@ class ProfileEditorContainer extends Component {
     const newState = update(this.state, { user: { $merge: { [key]: newArray } } })
 
     this.setState(newState)
+  }
+
+  handleExampleToggle = () => {
+    this.setState({ showExample: !this.state.showExample })
   }
 
   handleSubmit = () => {
@@ -121,7 +126,7 @@ class ProfileEditorContainer extends Component {
   }
 
   handleToggle = () => {
-    this.setState({ activityLimit: !this.state.activityLimit });
+    this.setState({ activityLimit: !this.state.activityLimit })
   }
 
   render () {
@@ -130,10 +135,12 @@ class ProfileEditorContainer extends Component {
       expanded={ this.state.expanded }
       handleCheck={ this.handleCheck }
       handleChange={ this.handleChange }
+      handleExampleToggle={ this.handleExampleToggle }
       handlePanelChange={ this.handlePanelChange }
       handleSubmit={ this.handleSubmit }
       handleToggle={ this.handleToggle }
-      limit={ this.state.activityLimit } />
+      limit={ this.state.activityLimit }
+      showExample={ this.state.showExample } />
   }
 }
 

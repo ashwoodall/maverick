@@ -1,6 +1,5 @@
 // Core
 import React, { PropTypes } from 'react'
-import { map } from 'lodash'
 
 // Thirdparty
 import { GridList, GridTile } from 'components/GridList'

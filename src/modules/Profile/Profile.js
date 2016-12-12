@@ -9,8 +9,9 @@ import Flexbox from 'react-material-flexbox'
 import Container from 'components/Container/Container'
 
 // Modules
-import ProfileEditor from 'modules/ProfileEditor/ProfileEditorContainer'
-import AccountSettings from 'modules/AccountSettings/AccountSettings'
+import ProfileEditor from 'modules/ProfileEditor'
+import AccountSettings from 'modules/AccountSettings'
+import References from 'modules/References'
 
 // Theme
 import theme from './Profile.scss'
@@ -28,7 +29,7 @@ const Profile = ({ index, handleTabChange }) => (
         </Flexbox>
         <Flexbox flex>
           { index === 0 && <ProfileEditor /> }
-          { index === 1 && <div>Hello world</div> }
+          { index === 1 && <References /> }
           { index === 2 && <AccountSettings /> }
         </Flexbox>
       </Flexbox>

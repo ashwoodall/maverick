@@ -10,7 +10,7 @@ import PersonContainer from 'modules/Person'
 const Person = (props) => (
   <div data-oh-hi='person-view'>
     <Container>
-      <PersonContainer { ...props }/>
+      <PersonContainer { ...props } />
     </Container>
   </div>
 )

@@ -48,6 +48,16 @@
     .icon {
       font-size: $unit * 2;
     }
+
+  }
+
+  .content {
+    min-height: $unit * 24;
+  }
+
+  .icon {
+    color: $color-text-secondary;
+    font-size: $unit * 3.6;
   }
 
 }

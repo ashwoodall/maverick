@@ -27,12 +27,10 @@ const Auth = ({ email, password, current_station, handleChange, handleSubmit, st
           { type === 'register' && <Dropdown label='Select your Duty Station' auto source={ stations } value={ current_station } onChange={ (value) => handleChange('current_station', value) } /> }
         </CardText>
         <CardActions className={ theme.actions }>
-          <Button className={ theme.button } label={ type === 'login' ? 'Sign up' : 'Login' } href={ type === 'login' ? '/signup' : '/login'  } />
+          <Button className={ theme.button } label={ type === 'login' ? 'Sign up' : 'Login' } href={ type === 'login' ? '/signup' : '/login' } />
           <Button className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up' } raised primary onClick={ () => handleSubmit() } />
         </CardActions>
       </Card>
-      <p className={ theme.aside }>
-      </p>
     </Flexbox>
   </div>
 )

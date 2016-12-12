@@ -9,13 +9,10 @@ import Flexbox from 'react-material-flexbox'
 import MessageList from 'components/Messages'
 import Subheader from 'components/Subheader'
 
-// Modules
-import Conversation from 'modules/Conversation'
-
 // Theme
 import theme from './Messages.scss'
 
-const Messages = ({ conversation, conversations, handleConversationClick, messages }) => (
+const Messages = ({ conversations, handleConversationClick }) => (
   <div className={ theme.messages } data-oh-hi='messages-module'>
     <Subheader title='Messages' divider={ false } />
     { conversations.length === 0 &&
@@ -25,13 +22,8 @@ const Messages = ({ conversation, conversations, handleConversationClick, messag
       </Flexbox>
     }
     { conversations.length > 0 &&
-      <Flexbox className={ theme.wrapper } layout='row'>
-        <Flexbox flex='30'>
-          <MessageList messages={ conversations } handleConversationClick={ handleConversationClick } />
-        </Flexbox>
-        <Flexbox flex>
-          <Conversation />
-        </Flexbox>
+      <Flexbox layout='row' flex>
+        <MessageList messages={ conversations } handleConversationClick={ handleConversationClick } />
       </Flexbox>
     }
   </div>

@@ -1,5 +1,16 @@
 import { createAction } from 'core/utils'
 
+const getReferences = (id) => {
+  const action = {
+    key: 'references',
+    endpoint: `references/${id}`,
+    method: 'GET',
+    dataType: []
+  }
+
+  return createAction('CALL_API', action)
+}
+
 const getUserById = (id) => {
   const action = {
     key: 'person',
@@ -42,6 +53,7 @@ const startConversation = (userId, recipientId) => {
 }
 
 export default {
+  getReferences: getReferences,
   getUserById: getUserById,
   sendMessage: sendMessage,
   startConversation: startConversation

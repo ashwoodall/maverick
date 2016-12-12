@@ -1,41 +1,35 @@
 @import "~react-toolbox/lib/colors";
 @import "~react-toolbox/lib/globals";
 
-.auth {
+.reference {
 
-  h5 {
+  h4 {
     color: $color-text-secondary;
-    margin: 16px 0;
+  }
+
+  p {
+    margin: $layout-gutter-width-sm 0;
   }
 
   .logo {
     height: 64px;
-    margin-bottom: 16px;
+    margin-bottom: $layout-gutter-width-sm;
   }
 
   .card {
     box-shadow: none;
-    padding: 32px;
-    max-width: 400px;
+    padding: ($layout-gutter-width-sm * 2);
+    max-width: 500px;
   }
 
   .actions {
     justify-content: flex-end;
-    margin-top: 24px;
+    margin-top: $layout-gutter-width-sm;
   }
 
   .button {
-    margin-left: 16px;
+    margin-left: $layout-gutter-width-sm;
     min-width: 96px;
-  }
-
-  .forgot__password {
-    margin-top: $baseline-grid;
-    text-align: center;
-  }
-
-  .aside {
-    margin-top: $baseline-grid;
   }
   
 }

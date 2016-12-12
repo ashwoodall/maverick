@@ -7,7 +7,7 @@ import { includes } from 'lodash'
 import forms from 'core/constants/forms'
 
 // Thirdparty
-import { Avatar, Button, Checkbox, DatePicker, Dialog, FontIcon, IconButton, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
+import { Avatar, Button, Checkbox, Dialog, FontIcon, IconButton, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Modules
@@ -16,7 +16,7 @@ import theme from './ProfileEditor.scss'
 
 const { activities, kidsAge } = forms
 
-const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handlePanelChange, handleSubmit, handleToggle }) => (
+const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handleExampleToggle, handlePanelChange, handleSubmit, handleToggle, showExample }) => (
   <div data-oh-hi='profile-editor' className={ theme.profileEditor }>
     <PanelGroup>
       <Panel title='Basic info' subTitle='(required section)' expanded={ expanded.basic } onClick={ () => handlePanelChange('basic', !expanded.basic) }>
@@ -55,7 +55,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
             <p>(We’ll put this introduction under your picture at the top of your profile.)</p>
             <div className={ theme.inspiration }>
               <p>Need some inspiration?</p>
-              <p>Check out some <a href='/'>example introductions.</a></p>
+              <p>Check out some <span className={ theme.link } onClick={ () => handleExampleToggle() } >example introductions.</span></p>
             </div>
             <ListDivider />
             <h5>What are the top two ways you would feel comfortable meeting up with new people?</h5>
@@ -150,24 +150,37 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
     </Flexbox>
 
     <Dialog
-      actions={[{ label: "Ok", onClick: handleToggle }]}
+      actions={ [{ label: 'Ok', onClick: handleExampleToggle }] }
+      active={ showExample }
+      onEscKeyDown={ handleExampleToggle }
+      onOverlayClick={ handleExampleToggle }
+      title='Need some inspiration? Check out this eample:'>
+      <p><i>“Hi, I’m Allison! I love just hanging out, drinking wine, and watching Netflix together. I’m looking for others who understand what it’s like to be a military spouse.”</i></p>
+    </Dialog>
+
+    <Dialog
+      actions={ [{ label: 'Ok', onClick: handleToggle }] }
       active={ limit }
       onEscKeyDown={ handleToggle }
       onOverlayClick={ handleToggle }
       title='Activity Limit Reached'>
-        <p>Whoops, looks like you've selected too many activities. Please select only two.</p>
+      <p>Whoops, looks like you've selected too many activities. Please select only two.</p>
     </Dialog>
 
   </div>
 )
 
 ProfileEditor.propTypes = {
-  user: PropTypes.object,
-  expanded: PropTypes.object,
-  handleCheck: PropTypes.func,
-  handleChange: PropTypes.func,
-  handlePanelChange: PropTypes.func,
-  handleSubmit: PropTypes.func
+  expanded: PropTypes.object.isRequired,
+  limit: PropTypes.bool.isRequired,
+  handleCheck: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleExampleToggle: PropTypes.func.isRequired,
+  handlePanelChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleToggle: PropTypes.func.isRequired,
+  showExample: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired
 }
 
 export default ProfileEditor

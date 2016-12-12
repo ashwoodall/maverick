@@ -1,7 +1,7 @@
 // Core
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { browserHistory } from 'react-router'
 
 // Modules
 import Messages from './Messages'
@@ -13,10 +13,7 @@ class MessagesContainer extends Component {
   }
 
   handleConversationClick = (conversation) => {
-    this.props.getConversation(conversation)
-      .then(result => {
-        this.props.getMessages(conversation)
-      })
+    browserHistory.push(`/messages/${conversation.id}`)
   }
 
   render () {
@@ -29,8 +26,6 @@ class MessagesContainer extends Component {
 MessagesContainer.propTypes = {
   data: PropTypes.array.isRequired,
   getAllConversations: PropTypes.func,
-  getConversation: PropTypes.func.isRequired,
-  getMessages: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired
 }
 
