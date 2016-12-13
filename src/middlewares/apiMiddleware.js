@@ -16,13 +16,13 @@ export default store => next => action => {
   if (type !== CALL_API) return next(action)
 
   const [ REQUEST, RECEIVE, ERROR ] = types
-  const { body, endpoint, key, method, dataType } = payload
+  const { body, headers, endpoint, key, method, dataType } = payload
 
   // Dispatching that the request is being made
   next({ type: REQUEST, key, dataType })
 
   // making request and dispatching response
-  return fetchJSON(endpoint, method, body).then(
+  return fetchJSON(endpoint, method, headers, body).then(
     response => next({
       type: RECEIVE,
       payload: response,

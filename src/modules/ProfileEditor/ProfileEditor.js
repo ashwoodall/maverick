@@ -7,11 +7,14 @@ import { includes } from 'lodash'
 import forms from 'core/constants/forms'
 
 // Thirdparty
-import { Avatar, Button, Checkbox, Dialog, FontIcon, IconButton, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
+import { Avatar, Button, Checkbox, Dialog, FontIcon, Input, ListDivider, RadioGroup, RadioButton } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Modules
 import { Panel, PanelGroup } from 'components/Panel'
+import UploadFile from 'components/UploadFile'
+
+// Theme
 import theme from './ProfileEditor.scss'
 
 const { activities, kidsAge } = forms
@@ -27,7 +30,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
             <br />
             <Flexbox layout='row' align='start center'>
               <h6 className={ theme.noMargin }>Profile Picture</h6>
-              <IconButton icon='edit' />
+              <UploadFile />
             </Flexbox>
             <Avatar className={ theme.avatar } theme={ theme } icon='camera_alt' />
             <Input type='text' label='First name' name='firstname' value={ user.first_name } onChange={ (value) => handleChange('first_name', value) } />

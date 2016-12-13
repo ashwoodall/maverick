@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import { getToken } from 'core/utils'
 
 /*
  * @name fetchJSON
@@ -8,15 +7,12 @@ import { getToken } from 'core/utils'
  * @param {string}           method   enpoint method
  * @param {string || object} body     endpoint body
  */
-const fetchJSON = (endpoint, method, body) => {
+const fetchJSON = (endpoint, method, headers, body) => {
   let options = {
     method: method,
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    }
+    headers: headers
   }
+
 
   if (body) options.body = JSON.stringify(body)
 

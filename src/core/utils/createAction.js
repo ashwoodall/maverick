@@ -1,4 +1,5 @@
 import actionTypes from 'core/constants/actionTypes'
+import { getToken } from 'core/utils'
 
 const {
   CALL_API,
@@ -38,7 +39,7 @@ const action = (type, action) => {
  */
 const apiAction = (action) => {
   // Builds url for api
-  const url = `http://api.oh-hi.us/${action.endpoint}`
+  let url = action.external ? action.endpoint : `http://api.oh-hi.us/${action.endpoint}`
 
   /*
    * Action object expects:
@@ -49,11 +50,18 @@ const apiAction = (action) => {
    * - body     (optional)
    */
 
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': getToken()
+  }
+
   return {
     type: CALL_API,
     types: [REQUEST, RECEIVE, ERROR],
     payload: {
       body: action.body ? action.body : null,
+      headers: action.headers ? action.headers : headers,
       endpoint: url,
       key: action.key,
       method: action.method,

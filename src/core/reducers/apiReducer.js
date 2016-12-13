@@ -32,7 +32,7 @@ const item = (state = itemState, action) => {
         success: payload.success
       })
     case ERROR:
-      return Object.assign({}, state, { isFetching: false, message: payload.message, success: payload.success })
+      return Object.assign({}, state, { isFetching: false, message: payload ? payload.messages : '', success: payload ? payload.success : '' })
     default:
       return state
   }
