@@ -13,8 +13,7 @@ const fetchJSON = (endpoint, method, headers, body) => {
     headers: headers
   }
 
-
-  if (body) options.body = JSON.stringify(body)
+  if (body) options.body = body
 
   return fetch(endpoint, options)
     .then(response => response.json())

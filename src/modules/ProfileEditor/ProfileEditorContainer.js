@@ -10,7 +10,7 @@ import moment from 'moment'
 import ProfileEditor from './ProfileEditor'
 import * as Actions from './ProfileEditorActions'
 
-const mergeUser = (apiUser, user) => {
+const mergeUser = (apiUser, user, file) => {
   let newUser = {}
 
   forOwn(apiUser, (value, key) => {
@@ -24,6 +24,10 @@ const mergeUser = (apiUser, user) => {
       }
     }
   })
+
+  if (file) {
+    newUser['profile_picture'] = file
+  }
 
   return merge({}, user, newUser)
 }
@@ -40,7 +44,7 @@ class ProfileEditorContainer extends Component {
     user: {
       first_name: '',
       last_name: '',
-      avatar: '',
+      profile_picture: '',
       birth_date: '',
       hometown: '',
       introduction: '',
@@ -62,10 +66,10 @@ class ProfileEditorContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { data } = nextProps
+    const { data, file } = nextProps
     const { user } = this.state
 
-    this.setState({ user: mergeUser(data, user) })
+    this.setState({ user: mergeUser(data, user, file) })
   }
 
   componentDidMount () {
@@ -130,7 +134,10 @@ class ProfileEditorContainer extends Component {
   }
 
   render () {
-    return <ProfileEditor
+    const { isFetching } = this.props
+
+    return !isFetching 
+      ? <ProfileEditor
       user={ this.state.user }
       expanded={ this.state.expanded }
       handleCheck={ this.handleCheck }
@@ -140,17 +147,22 @@ class ProfileEditorContainer extends Component {
       handleSubmit={ this.handleSubmit }
       handleToggle={ this.handleToggle }
       limit={ this.state.activityLimit }
-      showExample={ this.state.showExample } />
+      showExample={ this.state.showExample } /> : null
   }
 }
 
 ProfileEditorContainer.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.object.isRequired,
+  file: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   updateUser: PropTypes.func
 }
 
-const mapPropsToState = ({ api: { user: { data = {} } } }) => {
-  return { data }
+const mapPropsToState = ({ api, app }) => {
+  const { data, isFetching } = api['user'] || { data: {}, isFetching: true }
+  const { file } = app['fileUpload'] || { file: '' }
+
+  return { data, file, isFetching }
 }
 
 const mapDispatchToProps = (dispatch) => {

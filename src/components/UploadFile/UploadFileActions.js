@@ -11,33 +11,23 @@ const getCredentials = (file) => {
   return createAction('CALL_API', action)
 }
 
-const setFile = (url) => {
+const uploadFile = (file, request, url) => {
+  let xhr = new XMLHttpRequest()
+  
+  xhr.open('PUT', request)
+  xhr.setRequestHeader('Cache-Control', 'public')
+  xhr.setRequestHeader('x-amz-acl', 'public-read')
+  xhr.send(file)
+
   const action = {
     key: 'fileUpload',
     payload: {
-      url: url
+      file: url
     }
   }
 
   return createAction('CALL_APP', action)
-} 
-
-const uploadFile = (file, request, url) => {
-  const action = {
-    key: 'fileUpload',
-    external: true,
-    endpoint: request,
-    method: 'PUT',
-    headers: {
-      'Content-Type': file.type,
-      'x-amz-acl': 'public-read'
-    },
-    body: { file: file },
-    dataType: { url: url }
-  }
-
-  return createAction('CALL_API', action)
 }
 
-export default { getCredentials, setFile, uploadFile }
+export default { getCredentials, uploadFile }
 

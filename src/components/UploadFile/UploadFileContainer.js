@@ -16,13 +16,13 @@ class UploadFileContainer extends Component {
   }
 
   handleSubmmit = () => {
-    console.log(this.state.file)
-
     this.props.getCredentials(this.state.file).then(response => {
       const { payload: { data } } = response
       
       this.props.uploadFile(this.state.file, data.signedRequest, data.url)
     })
+
+    this.setState({ showDropzone: false })
   }
 
   handleToggle = () => {

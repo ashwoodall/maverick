@@ -14,7 +14,7 @@ const UploadImage = ({ handleDrop, handleSubmmit, handleToggle, showDropzone }) 
       onEscKeyDown={ handleToggle }
       onOverlayClick={ handleToggle }
       title='Upload Profile Picture'>
-        <Dropzone onDrop={ handleDrop }>
+        <Dropzone accept='image/*' multiple={ false } onDrop={ handleDrop }>
           <div>Drag file here, or click to select files to upload.</div>
         </Dropzone>
     </Dialog>

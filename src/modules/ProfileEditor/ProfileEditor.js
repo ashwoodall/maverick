@@ -32,7 +32,8 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
               <h6 className={ theme.noMargin }>Profile Picture</h6>
               <UploadFile />
             </Flexbox>
-            <Avatar className={ theme.avatar } theme={ theme } icon='camera_alt' />
+            { user.profile_picture && <Avatar className={ theme.avatar } theme={ theme } image={ user.profile_picture } /> }
+            { !user.profile_picture && <Avatar className={ theme.avatar } theme={ theme } icon='camera_alt' /> }
             <Input type='text' label='First name' name='firstname' value={ user.first_name } onChange={ (value) => handleChange('first_name', value) } />
             <Input type='text' label='Last name' name='lastname' value={ user.last_name } onChange={ (value) => handleChange('last_name', value) } />
             <Input type='text' label='Birth Date' hint='MM/DD/YYYY' name='birthdate' value={ user.birth_date } onChange={ (value) => handleChange('birth_date', value) } />
