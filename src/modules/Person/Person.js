@@ -17,7 +17,7 @@ const Person = ({ limited, person, references, startConversation }) => (
   <div className={ theme.person } data-oh-hi='person-module'>
     <Flexbox layout='column' align='start center'>
       { person.profile_picture
-        ? (<Avatar className={ theme.avatar } image={ person.profile_picture } />)
+        ? (<Avatar cover className={ theme.avatar } image={ person.profile_picture } />)
         : (<Avatar className={ theme.avatar } title={ person.first_name } theme={ theme } />) }
       <h3>{ `${person.first_name} ${person.last_name}` }</h3>
       <h5>{ `${moment().diff(person.birth_date, 'years')} | ${person.current_station}`}</h5>

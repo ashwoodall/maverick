@@ -11,23 +11,16 @@ const getCredentials = (file) => {
   return createAction('CALL_API', action)
 }
 
-const uploadFile = (file, request, url) => {
-  let xhr = new XMLHttpRequest()
-  
-  xhr.open('PUT', request)
-  xhr.setRequestHeader('Cache-Control', 'public')
-  xhr.setRequestHeader('x-amz-acl', 'public-read')
-  xhr.send(file)
-
+const setFile = (file) => {
   const action = {
     key: 'fileUpload',
     payload: {
-      file: url
+      file: file
     }
   }
 
   return createAction('CALL_APP', action)
 }
 
-export default { getCredentials, uploadFile }
+export default { getCredentials, setFile }
 

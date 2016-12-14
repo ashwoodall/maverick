@@ -18,11 +18,22 @@ class UploadFileContainer extends Component {
   handleSubmmit = () => {
     this.props.getCredentials(this.state.file).then(response => {
       const { payload: { data } } = response
-      
-      this.props.uploadFile(this.state.file, data.signedRequest, data.url)
-    })
+      const xhr = new XMLHttpRequest()
 
-    this.setState({ showDropzone: false })
+      xhr.open('PUT', data.signedRequest)
+      xhr.setRequestHeader('Content-type', this.state.file.type)
+      xhr.setRequestHeader('x-amz-acl', 'public-read')
+      xhr.send(this.state.file)
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          this.props.setFile(data.url)
+          this.setState({ showDropzone: false })
+        }
+      }
+      xhr.onerror = () => {
+        alert('File could not be uploaded')
+      }
+    })
   }
 
   handleToggle = () => {

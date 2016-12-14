@@ -18,7 +18,7 @@ const Person = ({ data, onClick }) => {
           <CardText>
             <Flexbox layout='column' align='center center'>
               { data.profile_picture
-                  ? (<Avatar className={ theme.avatar } image={ data.profile_picture } />)
+                  ? (<Avatar cover className={ theme.avatar } image={ data.profile_picture } />)
                   : (<Avatar className={ theme.avatar } title={ data.first_name } theme={ theme } />) }
               <Flexbox layout='row'>
                 <h5>{ `${data.first_name} ${data.last_name.charAt(0)}.` }</h5>
