@@ -5,7 +5,7 @@ import React from 'react'
 import { Dialog, IconButton } from 'react-toolbox'
 import Dropzone from 'react-dropzone'
 
-const UploadImage = ({ handleDrop, handleSubmmit, handleToggle, showDropzone }) => (
+const UploadImage = ({ file, handleDrop, handleSubmmit, handleToggle, showDropzone }) => (
   <div data-oh-hi='upload-file'>
     <IconButton icon='file_upload' onClick={ () => handleToggle() } />
     <Dialog
@@ -14,8 +14,9 @@ const UploadImage = ({ handleDrop, handleSubmmit, handleToggle, showDropzone }) 
       onEscKeyDown={ handleToggle }
       onOverlayClick={ handleToggle }
       title='Upload Profile Picture'>
-        <Dropzone accept='image/*' multiple={ false } onDrop={ handleDrop }>
-          <div>Drag file here, or click to select files to upload.</div>
+        <Dropzone style={{ alignItems: 'center', border: 'none', display: 'flex', flexDirection: 'column', height: '150px', justifyContent: 'center', overflow: 'hidden', width: '100%' }} accept='image/*' multiple={ false } onDrop={ handleDrop }>
+          <div>Drag image here, or click to select images to upload.</div>
+          <p>{ file.name }</p>
         </Dropzone>
     </Dialog>
   </div>
