@@ -1,5 +1,7 @@
+import cookie from 'react-cookie'
+
 const isAuthorized = () => {
-  return !!sessionStorage.jwt
+  return !!cookie.load('jwt')
 }
 
 export default isAuthorized

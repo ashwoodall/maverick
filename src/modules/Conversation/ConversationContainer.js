@@ -9,7 +9,7 @@ import Conversation from './Conversation'
 // Actions
 import Actions from './ConversationActions'
 
-const socket = io('http://api.oh-hi.us')
+const socket = io('http://localhost:8080')
 
 class ConversationContainer extends Component {
   state = { message: '', messages: [] }

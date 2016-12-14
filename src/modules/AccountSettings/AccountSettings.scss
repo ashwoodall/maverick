@@ -12,13 +12,13 @@
     line-height: $unit * 1.8;
   }
 
-  h4, h5, h6 {
+  h5 {
     
     &:first-of-type {
-      margin: 0 0 $layout-gutter-width;
+      margin: 0 0 $layout-gutter-width-sm;
     }
 
-    margin: $layout-gutter-width 0;
+    margin: $layout-gutter-width-sm 0;
   }
 
 }

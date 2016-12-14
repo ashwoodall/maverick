@@ -14,24 +14,49 @@ import HeaderLogo from 'assets/oh-hi_Logo_2-03.svg'
 // Theme
 import theme from './Auth.scss'
 
-const Auth = ({ email, password, current_station, handleChange, handleSubmit, stations, type }) => (
+const Auth = ({ handleChange, handleSubmit, handleValidation, message, stations, type, user, validation }) => (
   <div className={ theme.auth } data-oh-hi='auth'>
-    <Flexbox layout='column' align='start center'>
-      <Card className={ theme.card }>
-        <Svg source={ HeaderLogo } className={ theme.logo } />
-        <CardText>
-          { type === 'login' && <h5>Welcome back.</h5> }
-          <Input type='email' label='Email' name='email' value={ email } onChange={ (value) => handleChange('email', value) } />
-          <Input type='password' label='Password' name='password' value={ password } onChange={ (value) => handleChange('password', value) } />
-          { type === 'login' && <a className={ theme.forgot__password } href='#'>Forgot Password?</a> }
-          { type === 'register' && <Dropdown label='Select your Duty Station' auto source={ stations } value={ current_station } onChange={ (value) => handleChange('current_station', value) } /> }
-        </CardText>
-        <CardActions className={ theme.actions }>
-          <Button className={ theme.button } label={ type === 'login' ? 'Sign up' : 'Login' } href={ type === 'login' ? '/signup' : '/login' } />
-          <Button className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up' } raised primary onClick={ () => handleSubmit() } />
-        </CardActions>
-      </Card>
-    </Flexbox>
+    <form role='form' onSubmit={ handleSubmit } >
+      <Flexbox layout='column' align='start center'>
+        <Card className={ theme.card }>
+          <Svg source={ HeaderLogo } className={ theme.logo } />
+          <CardText>
+            { type === 'login' && <h5>Welcome back.</h5> }
+            { type === 'register' && <p>Oh-hi is currently available to members stationed at Fort Hood, please join our <a href='/'>mailing list</a> to be notified when it becomes available at your duty station.</p> }
+            { message && <p className={ theme.error }>{ message }</p> }
+            <Input
+              type='email'
+              label='Email'
+              name='email'
+              value={ user.email }
+              error={ validation.email }
+              onBlur={ () => handleValidation('email', user.email) }
+              onChange={ (value) => handleChange('email', value) } />
+            <Input
+              type='password'
+              label='Password'
+              name='password'
+              value={ user.password }
+              error={ validation.password }
+              onBlur={ () => handleValidation('password', user.password) }
+              onChange={ (value) => handleChange('password', value) } />
+            { type === 'login' && <a className={ theme.forgot__password } href='#'>Forgot Password?</a> }
+            { type === 'register' &&
+              <Dropdown auto disabled
+                allowBlank={ false }
+                label='Select your Duty Station'
+                source={ stations }
+                value={ user.current_station }
+                onChange={ (value) => handleChange('current_station', value) } /> 
+            }
+          </CardText>
+          <CardActions className={ theme.actions }>
+            <Button className={ theme.button } label={ type === 'login' ? 'Sign up' : 'Login' } href={ type === 'login' ? '/signup' : '/login' } />
+            <Button type='submit' className={ theme.button } label={ type === 'login' ? 'login' : 'Sign Up' } raised primary />
+          </CardActions>
+        </Card>
+      </Flexbox>
+    </form>
   </div>
 )
 

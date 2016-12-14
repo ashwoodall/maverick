@@ -1,5 +1,7 @@
+import cookie from 'react-cookie'
+
 const getToken = () => {
-  return sessionStorage.jwt
+  return cookie.load('jwt')
 }
 
 export default getToken

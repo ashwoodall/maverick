@@ -18,7 +18,7 @@ const {
  * @param {object} action object for action to consume
  */
 const action = (type, action) => {
-  if (!action) return console.error('No action given')
+  if (!action) return
 
   switch (type) {
     case CALL_API:
@@ -39,7 +39,7 @@ const action = (type, action) => {
  */
 const apiAction = (action) => {
   // Builds url for api
-  let url = action.external ? action.endpoint : `http://api.oh-hi.us/${action.endpoint}`
+  let url = action.external ? action.endpoint : `http://localhost:8080/${action.endpoint}`
 
   /*
    * Action object expects:

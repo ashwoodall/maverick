@@ -5,6 +5,10 @@
   margin: $layout-gutter-width-sm 0;
   position: relative;
 
+  .content {
+    margin-top: $layout-gutter-width-sm;
+  }
+
   .active {
     color: $color-primary;
     font-weight: 700;

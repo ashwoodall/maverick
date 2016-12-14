@@ -13,7 +13,6 @@ import theme from './References.scss'
 
 const References = ({ index, handleSubmit, handleTabChange, published, unpublished, userId }) => (
   <div className={ theme.references } data-oh-hi='references'>
-    <h5>Your friend references</h5>
     <Flexbox layout='column'>
       <Tabs index={ index } onChange={ handleTabChange }>
         <Tab label={ `Published (${published.length})` }>

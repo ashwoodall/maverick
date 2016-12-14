@@ -1,7 +1,7 @@
 import { createAction } from 'core/utils'
 import { browserHistory } from 'react-router'
 
-export const login = (user) => {
+const login = (user) => {
   const action = {
     key: 'user',
     endpoint: 'auth/login',
@@ -10,25 +10,19 @@ export const login = (user) => {
     dataType: {}
   }
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-      .then(response => {
-        sessionStorage.setItem('jwt', response.payload.token)
-        browserHistory.push('/')
-      })
-  }
+ return createAction('CALL_API', action)
 }
 
-export const register = (user) => {
+const register = (user) => {
   const action = {
-    key: 'register',
+    key: 'user',
     endpoint: 'auth/register',
     method: 'POST',
     body: user,
     dataType: {}
   }
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-  }
+  return createAction('CALL_API', action)
 }
+
+export default { login, register }

@@ -2,17 +2,29 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import cookie from 'react-cookie'
 
 // Components
 import App from './App'
 
 // Actions
-import * as Actions from './AppActions.js'
+import Actions from './AppActions.js'
 
 class AppContainer extends Component {
 
   componentWillMount () {
-    if (sessionStorage.jwt) this.props.getUserByToken()
+    if (cookie.load('jwt')) {
+      this.props.getUserByToken().then(response => {
+        const { payload: { data = {}, success = false }} = response
+
+        if (!success) {
+          cookie.remove('jwt')
+          browserHistory.push('/login')
+        }
+
+        if (data && !data.completed_profile) this.props.showSnackBar()
+      })
+    }
   }
 
   render () {
@@ -29,8 +41,4 @@ AppContainer.propTypes = {
   getUserByToken: PropTypes.func
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch)
-}
-
-export default connect(null, mapDispatchToProps)(AppContainer)
+export default connect(null, Actions)(AppContainer)

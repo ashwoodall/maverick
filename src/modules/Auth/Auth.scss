@@ -5,28 +5,36 @@
 
   h5 {
     color: $color-text-secondary;
-    margin: 16px 0;
+    margin: $layout-gutter-width-sm 0;
+  }
+
+  p {
+    margin-bottom: $baseline-grid;
+  }
+
+  .error {
+    color: rgb(222, 50, 38);
   }
 
   .logo {
-    height: 64px;
-    margin-bottom: 16px;
+    height: $standard-increment-desktop;
+    margin-bottom: $layout-gutter-width-sm;
   }
 
   .card {
     box-shadow: none;
-    padding: 32px;
-    max-width: 400px;
+    padding: $layout-gutter-width-sm * 2;
+    max-width: $unit * 40;
   }
 
   .actions {
     justify-content: flex-end;
-    margin-top: 24px;
+    margin-top: $layout-gutter-width;
   }
 
   .button {
-    margin-left: 16px;
-    min-width: 96px;
+    margin-left: $layout-gutter-width-sm;
+    min-width: $unit * 9.6;
   }
 
   .forgot__password {

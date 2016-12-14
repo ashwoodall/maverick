@@ -7,14 +7,12 @@ import Flexbox from 'react-material-flexbox'
 
 // Components
 import MessageList from 'components/Messages'
-import Subheader from 'components/Subheader'
 
 // Theme
 import theme from './Messages.scss'
 
 const Messages = ({ conversations, handleConversationClick }) => (
   <div className={ theme.messages } data-oh-hi='messages-module'>
-    <Subheader title='Messages' divider={ false } />
     { conversations.length === 0 &&
       <Flexbox layout='column' align='center center'>
         <FontIcon className={ theme.icon } value='forum' />
