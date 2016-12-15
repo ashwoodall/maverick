@@ -39,7 +39,7 @@ const action = (type, action) => {
  */
 const apiAction = (action) => {
   // Builds url for api
-  let url = action.external ? action.endpoint : `http://localhost:8080/${action.endpoint}`
+  let url = action.external ? action.endpoint : `http://api.oh-hi.us/${action.endpoint}`
 
   /*
    * Action object expects:
