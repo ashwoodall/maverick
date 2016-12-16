@@ -10,6 +10,18 @@
     padding: 0;
   }
 
+  .listItem {
+
+    .right {
+
+      span[data-react-toolbox="font-icon"] {
+        font-size: $unit * 1.2;
+      }
+
+    }
+
+  }
+
   .divider {
     margin: 0;
   }

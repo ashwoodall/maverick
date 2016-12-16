@@ -1,14 +1,13 @@
 // Core
 import React, { Component, PropTypes } from 'react'
 import update from 'react-addons-update'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { forOwn, includes, merge } from 'lodash'
 import moment from 'moment'
 
 // Modules
 import ProfileEditor from './ProfileEditor'
-import * as Actions from './ProfileEditorActions'
+import Actions from './ProfileEditorActions'
 
 const mergeUser = (apiUser, user, file) => {
   let newUser = {}
@@ -16,7 +15,7 @@ const mergeUser = (apiUser, user, file) => {
   forOwn(apiUser, (value, key) => {
     if (value) {
       if (key === 'birth_date') {
-        newUser[key] = moment(value).format('MM/DD/YYYY')
+        newUser[key] = new Date(value)
       } else if (key === 'has_pets') {
         newUser[key] = value ? 'yes' : 'no'
       } else {
@@ -117,7 +116,9 @@ class ProfileEditorContainer extends Component {
     this.setState({ showExample: !this.state.showExample })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault()
+    
     const { updateUser } = this.props
 
     let userClone = this.state.user
@@ -165,8 +166,4 @@ const mapPropsToState = ({ api, app }) => {
   return { data, file, isFetching }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch)
-}
-
-export default connect(mapPropsToState, mapDispatchToProps)(ProfileEditorContainer)
+export default connect(mapPropsToState, Actions)(ProfileEditorContainer)

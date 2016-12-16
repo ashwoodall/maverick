@@ -14,25 +14,18 @@ class PersonContainer extends Component {
   }
 
   handleConversation = (message) => {
-    let newMessage = {}
+    const { startConversation, person } = this.props
 
-    this.props.startConversation(this.props.user.id, this.props.params.userId, message)
-      .then(result => {
-        if (message) {
-          newMessage.convo_id = result.payload.data.id
-          newMessage.body = `Lets ${message}`
+    startConversation(person.data, message)
 
-          this.props.sendMessage(newMessage)
-        }
-      })
-
-    browserHistory.push(`/messages`)
+    browserHistory.push(`/messages/new`)
   }
 
   render () {
     const { person, references, user } = this.props
+    const isReady = person.isFetching || user.isFetching
 
-    return person.isFetching ? null : <Person limited={ user.data.completed_profile } person={ person.data } references={ references.data } startConversation={ this.handleConversation } />
+    return isReady ? null : <Person limited={ user.data.completed_profile } person={ person.data } references={ references.data } startConversation={ this.handleConversation } />
   }
 }
 
@@ -42,7 +35,6 @@ PersonContainer.propTypes = {
   params: PropTypes.object.isRequired,
   person: PropTypes.object.isRequired,
   references: PropTypes.object.isRequired,
-  sendMessage: PropTypes.func.isRequired,
   startConversation: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 }

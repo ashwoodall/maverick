@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import io from 'socket.io-client'
 
 // Modules
-import Conversation from './Conversation'
+import Conversation from 'components/Conversation'
 
 // Actions
 import Actions from './ConversationActions'
@@ -73,7 +73,7 @@ class ConversationContainer extends Component {
 
   render () {
     const { conversation, messages, user } = this.props
-    const isReady = !conversation.isFetching && !messages.isFetching
+    const isReady = !conversation.isFetching && !messages.isFetching && !user.isFetching
 
     return isReady
       ? <Conversation

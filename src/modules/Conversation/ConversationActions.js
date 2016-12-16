@@ -48,9 +48,4 @@ const sendMessage = (message) => {
   return createAction('CALL_API', action)
 }
 
-export default {
-  getConversation: getConversation,
-  getMessages: getMessages,
-  receiveSocket: receiveSocket,
-  sendMessage: sendMessage
-}
+export default { getConversation, getMessages, receiveSocket, sendMessage }

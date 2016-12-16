@@ -22,40 +22,20 @@ const getUserById = (id) => {
   return createAction('CALL_API', action)
 }
 
-const sendMessage = (message) => {
+const startConversation = (person, message) => {
   const action = {
     key: 'message',
-    endpoint: 'messages',
-    method: 'POST',
-    dataType: {},
-    body: {
-      convo_id: message.convo_id,
-      body: message.body
+    payload: {
+      userId: person.id,
+      first_name: person.first_name,
+      last_name: person.last_name,
+      profile_picture: person.profile_picture,
+      message: message
     }
   }
 
-  return createAction('CALL_API', action)
+  return createAction('CALL_APP', action)
 }
 
-const startConversation = (userId, recipientId) => {
-  const action = {
-    key: 'conversation',
-    endpoint: 'conversations',
-    method: 'POST',
-    body: {
-      initiator_id: userId,
-      recipient_id: recipientId
-    },
-    dataType: {}
-  }
-
-  return createAction('CALL_API', action)
-}
-
-export default {
-  getReferences: getReferences,
-  getUserById: getUserById,
-  sendMessage: sendMessage,
-  startConversation: startConversation
-}
+export default { getReferences, getUserById, startConversation }
 

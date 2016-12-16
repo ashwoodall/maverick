@@ -9,22 +9,25 @@ import Flexbox from 'react-material-flexbox'
 import Svg from 'components/Svg/Svg'
 
 // Logo
-import HeaderLogo from 'assets/oh-hi_Logo_2-03.svg'
+import HeaderLogo from 'assets/oh-hi_Logo.png'
 
 // Theme
 import theme from './Auth.scss'
 
 const Auth = ({ handleChange, handleSubmit, handleValidation, message, stations, type, user, validation }) => (
   <div className={ theme.auth } data-oh-hi='auth'>
-    <form role='form' onSubmit={ handleSubmit } >
+    <form role='form' onSubmit={ handleSubmit }>
       <Flexbox layout='column' align='start center'>
         <Card className={ theme.card }>
-          <Svg source={ HeaderLogo } className={ theme.logo } />
+          <Flexbox layout='row' align='center center'>
+            <img src={ HeaderLogo } className={ theme.logo } />
+          </Flexbox>
           <CardText>
             { type === 'login' && <h5>Welcome back.</h5> }
             { type === 'register' && <p>Oh-hi is currently available to members stationed at Fort Hood, please join our <a href='/'>mailing list</a> to be notified when it becomes available at your duty station.</p> }
             { message && <p className={ theme.error }>{ message }</p> }
             <Input
+              required
               type='email'
               label='Email'
               name='email'
@@ -33,6 +36,7 @@ const Auth = ({ handleChange, handleSubmit, handleValidation, message, stations,
               onBlur={ () => handleValidation('email', user.email) }
               onChange={ (value) => handleChange('email', value) } />
             <Input
+              required
               type='password'
               label='Password'
               name='password'

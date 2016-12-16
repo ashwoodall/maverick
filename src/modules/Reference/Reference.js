@@ -9,7 +9,7 @@ import Flexbox from 'react-material-flexbox'
 import Svg from 'components/Svg/Svg'
 
 // Logo
-import HeaderLogo from 'assets/oh-hi_Logo_2-03.svg'
+import HeaderLogo from 'assets/oh-hi_Logo.png'
 
 // Theme
 import theme from './Reference.scss'
@@ -19,7 +19,9 @@ const Reference = ({ data, handleChange, handleSubmit, reference, submitted }) =
     { !submitted &&
       <Flexbox layout='column' align='start center'>
         <Card className={ theme.card }>
-          <Svg source={ HeaderLogo } className={ theme.logo } />
+          <Flexbox layout='row' align='center center'>
+            <img src={ HeaderLogo } className={ theme.logo } />
+          </Flexbox>
           <CardText>
             <h4>Is { data.first_name } { data.last_name.charAt(0) }. a friend of yours?</h4>
             <h4>Leave { data.first_name } a friend reference.</h4>
@@ -35,7 +37,7 @@ const Reference = ({ data, handleChange, handleSubmit, reference, submitted }) =
     }
     { submitted &&
       <Flexbox layout='column' align='center center'>
-        <Svg source={ HeaderLogo } className={ theme.logo } />
+        <img src={ HeaderLogo } className={ theme.logo } />
         <h4>Thanks for leaving your reference!</h4>
         <p>We'll let { data.first_name } know it's available.</p>
         <a href={ `/person/${data.id}` }>Return to { data.first_name }'s profile.</a>

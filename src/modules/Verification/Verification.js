@@ -5,7 +5,7 @@ import Flexbox from 'react-material-flexbox'
 
 import Svg from 'components/Svg/Svg'
 
-import HeaderLogo from 'assets/oh-hi_Logo_2-03.svg'
+import HeaderLogo from 'assets/oh-hi_Logo.png'
 
 import theme from './Verification.scss'
 
@@ -13,7 +13,7 @@ const Verification = ({ email }) => (
   <div className={ theme.verification } data-oh-hi='Verification'>
     <Flexbox layout='column' align='start center'>
       <Card className={ theme.card }>
-        <Svg source={ HeaderLogo } className={ theme.logo } />
+        <img src={ HeaderLogo } className={ theme.logo } />
         <Flexbox layout='column' align='center center'>
           <h3>Check your email!</h3>
           <FontIcon className={ theme.mail } value='mail_outline' />

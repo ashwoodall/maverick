@@ -1,1 +1,1 @@
-export default from './AccountSettings'
+export default from './AccountSettingsContainer'

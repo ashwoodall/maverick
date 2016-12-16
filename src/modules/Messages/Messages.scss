@@ -2,6 +2,7 @@
 @import "~react-toolbox/lib/globals";
 
 .messages {
+  margin-top: $layout-gutter-width;
 
   h2 {
     color: $color-text-secondary;

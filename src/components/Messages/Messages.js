@@ -1,5 +1,6 @@
 // Core
 import React, { PropTypes } from 'react'
+import moment from 'moment'
 
 // Thirdpart
 import { Avatar, List, ListDivider, ListItem } from 'react-toolbox'
@@ -13,11 +14,15 @@ const Messages = ({ messages, handleConversationClick }) => (
       { messages.map((conversation, index) => (
         <div key={ conversation.id }>
           <ListItem
+            className={ theme.listItem }
+            theme={ theme }
             selectable
             avatar={ conversation.participant.profile_picture
               ? (<Avatar image={ conversation.participant.profile_picture } />)
               : (<Avatar title={ conversation.participant.first_name } />) }
             caption={ `${conversation.participant.first_name} ${conversation.participant.last_name}` }
+            legend={ conversation.lastMessage.body }
+            rightIcon={ <span>{ `${moment(conversation.lastMessage.timestamp).fromNow()}`  }</span> }
             onClick={ () => handleConversationClick(conversation) } />
           { index !== messages.length - 1 && <ListDivider className={ theme.divider } theme={ theme } divider /> }
         </div>

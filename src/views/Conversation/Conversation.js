@@ -6,11 +6,13 @@ import Container from 'components/Container'
 
 // Modules
 import ConversationContainer from 'modules/Conversation'
+import NewMessageContainer from 'modules/NewMessage'
 
 const Conversation = (props) => (
   <div data-oh-hi='conversation-view'>
     <Container>
-      <ConversationContainer { ...props } />
+      { props.params.conversationId !== 'new' && <ConversationContainer { ...props } /> }
+      { props.params.conversationId === 'new' && <NewMessageContainer /> }
     </Container>
   </div>
 )

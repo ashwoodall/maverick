@@ -11,6 +11,12 @@ import theme from './Conversation.scss'
 
 class Conversation extends Component {
 
+  componentWillReceiveProps () {
+    if (!this.scroller) return
+
+    this.scroller.scrollTop = this.scroller.scrollHeight
+  }
+
   componentDidMount () {
     if (!this.scroller) return
 
@@ -25,14 +31,13 @@ class Conversation extends Component {
         <Flexbox layout='row' flex align='start center'>
           <h4 className={ theme.title }>{ `${conversation.participant.first_name} ${conversation.participant.last_name.charAt(0)}.` }</h4>
           <Flexbox flex />
-          <IconButton className={ theme.fontIcon } icon='flag' />
           <IconButton className={ theme.fontIcon } icon='delete' />
         </Flexbox>
         <ListDivider />
-        { messages.length > 0 &&
-          <Flexbox layout='column'>
-            <div className={ theme.messages } ref={ (element) => { this.scroller = element } }>
-              <Flexbox layout='column' align='end start'>
+        <Flexbox layout='column'>
+          <div className={ theme.messages } ref={ (element) => { this.scroller = element } }>
+            <Flexbox layout='column' align='end start'>
+              { messages.length > 0 &&
                 <List>
                   { messages.map((message, index) => (
                     <div key={ `message_${message.id}` }>
@@ -40,7 +45,7 @@ class Conversation extends Component {
                         <ListItem
                           className={ theme.listItem }
                           theme={ theme }
-                          avatar={ currentUser.profile_picture ? (<Avatar className={ theme.avatar } theme={ theme } image={ currentUser.profile_Picture } />) : (<Avatar className={ theme.avatar } theme={ theme } title={ currentUser.first_name } />) }
+                          avatar={ currentUser.profile_picture ? (<Avatar cover image={ currentUser.profile_picture } />) : (<Avatar title={ currentUser.first_name } />) }
                           caption={ `${currentUser.first_name} ${currentUser.last_name.charAt(0)}.` }
                           legend={ message.body }
                           rightIcon={ <span>{ `${moment(message.timestamp).fromNow()}` }</span> } />
@@ -51,7 +56,7 @@ class Conversation extends Component {
                           className={ theme.listItem }
                           theme={ theme }
                           key={ `message_${message.id}` }
-                          avatar={ conversation.participant.profile_picture ? (<Avatar className={ theme.avatar } theme={ theme } image={ conversation.participant.profile_Picture } />) : (<Avatar className={ theme.avatar } theme={ theme } title={ conversation.participant.first_name } />) }
+                          avatar={ conversation.participant.profile_picture ? (<Avatar cover image={ conversation.participant.profile_picture } />) : (<Avatar title={ conversation.participant.first_name } />) }
                           caption={ `${conversation.participant.first_name} ${conversation.participant.last_name.charAt(0)}.` }
                           legend={ message.body }
                           rightIcon={ <span>{ `${moment(message.timestamp).fromNow()}` }</span> } />
@@ -60,27 +65,27 @@ class Conversation extends Component {
                     </div>
                   )) }
                 </List>
-              </Flexbox>
-            </div>
-            <Flexbox className={ theme.actions } layout='row' align='start center' flex>
-              <Input
-                className={ theme.input }
-                theme={ theme }
-                multiline
-                type='text'
-                hint='Say hello...'
-                name='message'
-                value={ message }
-                onChange={ (value) => handleChange(value) } />
-              <Button
-                className={ theme.button }
-                icon='send'
-                label='Send'
-                accent
-                onClick={ () => handleSubmit() } />
+              }
             </Flexbox>
+          </div>
+          <Flexbox className={ theme.actions } layout='row' align='start center' flex>
+            <Input
+              className={ theme.input }
+              theme={ theme }
+              multiline
+              type='text'
+              hint='Say hello...'
+              name='message'
+              value={ message }
+              onChange={ (value) => handleChange(value) } />
+            <Button
+              className={ theme.button }
+              icon='send'
+              label='Send'
+              accent
+              onClick={ () => handleSubmit() } />
           </Flexbox>
-        }
+        </Flexbox>
       </div>
     )
   }
