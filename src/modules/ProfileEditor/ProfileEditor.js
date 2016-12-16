@@ -30,12 +30,12 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
               <h5>Some quick information about yourself</h5>
               <p>We need some basic information to add to your profile</p>
               <br />
-              <Flexbox layout='row' align='start center'>
-                <h6 className={ theme.noMargin }>Profile Picture</h6>
+              <h6 className={ theme.noMargin }>Profile Picture</h6>
+              <Flexbox className={ theme.upload } layout='column' align='start center'>
+                { user.profile_picture && <Avatar cover className={ theme.avatar } theme={ theme } image={ user.profile_picture } /> }
+                { !user.profile_picture && <Avatar className={ theme.avatar } theme={ theme } icon='camera_alt' /> }
                 <UploadFile />
               </Flexbox>
-              { user.profile_picture && <Avatar cover className={ theme.avatar } theme={ theme } image={ user.profile_picture } /> }
-              { !user.profile_picture && <Avatar className={ theme.avatar } theme={ theme } icon='camera_alt' /> }
               <Input
                 required
                 type='text'

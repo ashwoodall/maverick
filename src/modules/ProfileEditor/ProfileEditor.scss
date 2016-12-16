@@ -16,8 +16,9 @@
       margin-bottom: $layout-gutter-width-sm;
     }
 
-    .noMargin {
-      margin: 0;
+    .upload {
+      margin-bottom: $layout-gutter-width-sm;
+      max-width: $unit * 12;
     }
 
     .options {
