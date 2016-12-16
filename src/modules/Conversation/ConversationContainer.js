@@ -15,10 +15,11 @@ class ConversationContainer extends Component {
   state = { message: '', messages: [] }
 
   componentWillMount () {
-    this.props.getConversation(this.props.params.conversationId)
-      .then(result => {
-        this.props.getMessages(this.props.params.conversationId)
-      })
+    const { getConversation, getMessages, params } = this.props
+
+    getConversation(this.props.params.conversationId).then(result => {
+      getMessages(params.conversationId)
+    })
   }
 
   componentDidMount () {
@@ -56,11 +57,13 @@ class ConversationContainer extends Component {
       body: this.state.message
     }
 
-    socket.emit('new message', newMessage)
+    sendMessage(newMessage).then(response => {
+      const { payload: { data = [] } } = response
 
-    sendMessage(newMessage)
+      socket.emit('new message', data[0])
 
-    this.setState({ message: '' })
+      this.setState({ message: '' })
+    })
   }
 
   handleNewMessage = message => {

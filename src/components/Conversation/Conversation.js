@@ -11,16 +11,16 @@ import theme from './Conversation.scss'
 
 class Conversation extends Component {
 
-  componentWillReceiveProps () {
-    if (!this.scroller) return
-
-    this.scroller.scrollTop = this.scroller.scrollHeight
+  componentDidMount () {
+    const messageList = this.refs.messageList
+    
+    messageList.scrollTop = messageList.scrollHeight
   }
 
-  componentDidMount () {
-    if (!this.scroller) return
-
-    this.scroller.scrollTop = this.scroller.scrollHeight
+  componentDidUpdate () {
+    const messageList = this.refs.messageList
+    
+    messageList.scrollTop = messageList.scrollHeight
   }
 
   render () {
@@ -35,7 +35,7 @@ class Conversation extends Component {
         </Flexbox>
         <ListDivider />
         <Flexbox layout='column'>
-          <div className={ theme.messages } ref={ (element) => { this.scroller = element } }>
+          <div className={ theme.messages } ref='messageList'>
             <Flexbox layout='column' align='end start'>
               { messages.length > 0 &&
                 <List>
