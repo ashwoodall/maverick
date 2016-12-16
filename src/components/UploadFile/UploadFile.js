@@ -21,7 +21,7 @@ const UploadImage = ({ file, handleDrop, handleSubmmit, handleToggle, showDropzo
   <div data-oh-hi='upload-file'>
     <Button label='Change Picture' primary onClick={ () => handleToggle() } />
     <Dialog
-      actions={ [{ label: 'Cancel', onClick: handleToggle }, { label: 'Upload', onClick: handleSubmmit }] }
+      actions={ [{ label: 'Cancel', onClick: handleToggle }, { label: 'Upload', disabled: file.name ? false : true, onClick: handleSubmmit }] }
       active={ showDropzone }
       onEscKeyDown={ handleToggle }
       onOverlayClick={ handleToggle }
