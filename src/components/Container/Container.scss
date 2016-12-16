@@ -7,18 +7,3 @@
   max-width: $layout-breakpoint-md;
 }
 
-@media (max-width: $layout-breakpoint-md) {
-  .container {
-    margin-left: $layout-gutter-width;
-    margin-right: $layout-gutter-width;
-  }
-}
-
-@media (max-width: $layout-breakpoint-xs) {
-  .container {
-    margin-left: $layout-gutter-width-sm;
-    margin-right: $layout-gutter-width-sm;
-  }
-}
-
-

@@ -98,7 +98,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
               </div>
               <ListDivider />
               <h5>What are the top two ways you would feel comfortable meeting up with new people?</h5>
-              <Flexbox layout='row' className={ theme.options }>
+              <Flexbox layout='row' layout-xs='column' className={ theme.options }>
                 {activities.map(option => (
                   <Flexbox layout='row' flex='50' flex-sm='100' key={ option.value }>
                     <Checkbox
@@ -177,7 +177,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
                 <div>
                   <Input type='text' label='How many kids?' name='aboutKids' value={ user.number_of_kids } onChange={ (value) => handleChange('number_of_kids', value) } />
                   <h6>What are their age ranges?</h6>
-                  <Flexbox layout='row' className={ theme.options }>
+                  <Flexbox layout='row' layout-xs='column' className={ theme.options }>
                     {kidsAge.map(option => (
                       <Flexbox layout='row' flex='50' flex-sm='100' key={ option.value }>
                         <Checkbox

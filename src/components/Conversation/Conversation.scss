@@ -11,6 +11,11 @@
     height: $unit * 48;
     overflow: hidden;
     overflow-y: auto;
+
+    @media screen and (max-width: $layout-breakpoint-sm) {
+      height: 100%;
+    }
+
   }
 
   .fontIcon {
@@ -44,6 +49,13 @@
 
   .actions {
     border: 1px solid $color-divider;
+
+    @media screen and (max-width: $layout-breakpoint-sm) {
+      bottom: $layout-gutter-width-sm;
+      left: $layout-gutter-width-sm;
+      position: absolute;
+      right: $layout-gutter-width-sm;
+    }
 
     .button {
       margin-right: 8px;

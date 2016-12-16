@@ -28,7 +28,7 @@ const Person = ({ limited, person, references, startConversation }) => (
     { limited &&
       <div>
         <Flexbox layout='row' align='center center'>
-          <Flexbox layout='column' flex='30'>
+          <Flexbox className={ theme.activities } layout='column' flex>
             <p className={ theme.aside }>I'd like to be invited to...</p>
             { person.activities.length > 0 && person.activities.map(activity => (
               <Button key={ activity } className={ theme.button } label={ activity } raised primary onClick={ () => startConversation(activity) } />

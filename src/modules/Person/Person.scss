@@ -8,6 +8,11 @@
     color: $color-text-secondary;
   }
 
+  .activities {
+    max-width: $unit * 25;
+    margin-bottom: $layout-gutter-width-sm;
+  }
+
   .aside {
     color: $color-text-secondary;
     margin-bottom: $baseline-grid;

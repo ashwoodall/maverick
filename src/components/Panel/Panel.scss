@@ -26,6 +26,11 @@
 
     .subTitle {
       color: $color-text-secondary;
+
+      @media screen and (max-width: $layout-breakpoint-sm) {
+        display: none;
+      }
+      
     }
 
     .icon {
@@ -45,7 +50,7 @@
   &.expanded {
     border-radius: 4px;
     margin: $layout-gutter-width 0;
-    max-height: 999px;
+    max-height: 9999px;
     transition: all $animation-duration $animation-curve-default;
 
     &.firstPanel {

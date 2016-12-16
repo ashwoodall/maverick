@@ -15,9 +15,9 @@ import theme from './Profile.scss'
 
 const Profile = ({ index, handleTabChange }) => (
   <div className={ theme.profile } data-oh-hi='profile-module'>
-    <Flexbox layout='row'>
-      <Flexbox flex='15'>
-        <Navigation type='vertical'>
+    <Flexbox layout='row' layout-sm='column' layout-xs='column'>
+      <Flexbox flex='15' flex-sm='100' flex-xs='100'>
+        <Navigation className={ theme.navigation } type='vertical'>
           <Link className={ index === 0 ? theme.active : null } label='Profile' active={ index === 0 } onClick={ () => handleTabChange(0) } />
           <Link className={ index === 1 ? theme.active : null } label='References' active={ index === 1 } onClick={ () => handleTabChange(1) } />
           <Link className={ index === 2 ? theme.active : null } label='Settings' active={ index === 2 } onClick={ () => handleTabChange(2) } />

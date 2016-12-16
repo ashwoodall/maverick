@@ -6,7 +6,7 @@
 
   p {
     text-align: center;
-    line-height: 1.8rem;
+    line-height: $unit * 1.8;
   }
 
   h5 {
@@ -14,7 +14,7 @@
   }
 
   .logo {
-    height: 64px;
+    width: $standard-increment-desktop * 2;
     margin-bottom: $layout-gutter-width-sm;
   }
 

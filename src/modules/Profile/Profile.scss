@@ -9,6 +9,23 @@
     margin-top: $layout-gutter-width-sm;
   }
 
+  .navigation {
+    @media screen and (max-width: $layout-breakpoint-md) {
+      display: flex;
+      padding-left: 0;
+
+      a {
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+
+      }
+
+    }
+
+  }
+
   .active {
     color: $color-primary;
     font-weight: 700;
