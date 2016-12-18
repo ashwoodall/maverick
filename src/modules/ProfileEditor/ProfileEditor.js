@@ -171,7 +171,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
               <RadioGroup name='hasKids' value={ user.has_kids } onChange={ (value) => handleChange('has_kids', value) }>
                 <RadioButton label='Yes' value='hasKids' />
                 <RadioButton label='No' value='noKids' />
-                <RadioButton label='Expection my first' value='expecting' />
+                <RadioButton label='Expecting my first' value='expecting' />
               </RadioGroup>
               { user.has_kids === 'hasKids' ? (
                 <div>
