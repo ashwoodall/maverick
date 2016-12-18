@@ -51,16 +51,12 @@ class ConversationContainer extends Component {
   handleSubmit = () => {
     const { conversation, sendMessage, user } = this.props
 
-    let newMessage = {
-      author: user.data.id,
-      convo_id: conversation.data.id,
-      body: this.state.message
-    }
+    let recipientId = user.data.id === conversation.data.recipient_id ? conversation.data.initiator_id : conversation.data.recipient_id
 
-    sendMessage(newMessage).then(response => {
-      const { payload: { data = [] } } = response
+    sendMessage(recipientId, this.state.message).then(response => {
+      const { payload: { data = {} } } = response
 
-      socket.emit('new message', data[0])
+      socket.emit('new message', data)
 
       this.setState({ message: '' })
     })

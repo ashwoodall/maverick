@@ -48,7 +48,7 @@ class Conversation extends Component {
                           avatar={ currentUser.profile_picture ? (<Avatar cover image={ currentUser.profile_picture } />) : (<Avatar title={ currentUser.first_name } />) }
                           caption={ `${currentUser.first_name} ${currentUser.last_name.charAt(0)}.` }
                           legend={ message.body }
-                          rightIcon={ <span>{ `${moment(message.timestamp).fromNow()}` }</span> } />
+                          rightIcon={ <span>{ `${moment(message.created_at).fromNow()}` }</span> } />
 
                       }
                       { message.author !== currentUser.id &&
@@ -59,7 +59,7 @@ class Conversation extends Component {
                           avatar={ conversation.participant.profile_picture ? (<Avatar cover image={ conversation.participant.profile_picture } />) : (<Avatar title={ conversation.participant.first_name } />) }
                           caption={ `${conversation.participant.first_name} ${conversation.participant.last_name.charAt(0)}.` }
                           legend={ message.body }
-                          rightIcon={ <span>{ `${moment(message.timestamp).fromNow()}` }</span> } />
+                          rightIcon={ <span>{ `${moment(message.created_at).fromNow()}` }</span> } />
                       }
                       { index !== messages.length - 1 && <ListDivider inset /> }
                     </div>

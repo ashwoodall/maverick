@@ -33,15 +33,15 @@ const receiveSocket = (id) => {
   return createAction('CALL_APP', action)
 }
 
-const sendMessage = (message) => {
+const sendMessage = (recipientId, message) => {
   const action = {
     key: 'message',
     endpoint: 'messages',
     method: 'POST',
     dataType: {},
     body: {
-      convo_id: message.convo_id,
-      body: message.body
+      recipient_id: recipientId,
+      body: message
     }
   }
 

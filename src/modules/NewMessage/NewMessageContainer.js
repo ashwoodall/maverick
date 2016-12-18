@@ -1,4 +1,4 @@
-// Core
+ // Core
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { find } from 'lodash'
@@ -31,19 +31,11 @@ class NewMessageContainer extends Component {
   }
 
   handleSubmit = () => {
-    const { message, startConversation, sendMessage, user } = this.props
+    const { message, sendMessage } = this.props
 
-    startConversation(user.id, message.userId)
-      .then(result => {
-        let newMessage = {
-          convo_id: result.payload.data.id,
-          body: this.state.message
-        }
-
-        sendMessage(newMessage).then(response => {
-          browserHistory.push(`/messages/${result.payload.data.id}`)
-        })
-      })
+    sendMessage(message.userId, this.state.message).then(response => {
+      browserHistory.push(`/messages/${response.payload.data.convo_id}`)
+    })
   }
 
   render () {
@@ -62,7 +54,7 @@ class NewMessageContainer extends Component {
 
 NewMessageContainer.propTypes = {
   message: PropTypes.object.isRequired,
-  startConversation: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 }
 

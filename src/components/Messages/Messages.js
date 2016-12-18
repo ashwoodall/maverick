@@ -21,8 +21,8 @@ const Messages = ({ messages, handleConversationClick }) => (
               ? (<Avatar image={ conversation.participant.profile_picture } />)
               : (<Avatar title={ conversation.participant.first_name } />) }
             caption={ `${conversation.participant.first_name} ${conversation.participant.last_name}` }
-            legend={ conversation.lastMessage.body }
-            rightIcon={ <span>{ `${moment(conversation.lastMessage.timestamp).fromNow()}`  }</span> }
+            legend={ conversation.last_message_snippet }
+            rightIcon={ <span>{ `${moment(conversation.updated_at).fromNow()}`  }</span> }
             onClick={ () => handleConversationClick(conversation) } />
           { index !== messages.length - 1 && <ListDivider className={ theme.divider } theme={ theme } divider /> }
         </div>
