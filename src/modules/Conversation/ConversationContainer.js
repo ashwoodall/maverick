@@ -9,16 +9,25 @@ import Conversation from 'components/Conversation'
 // Actions
 import Actions from './ConversationActions'
 
-const socket = io('http://api.oh-hi.us')
+const socket = io('http://localhost:8080')
 
 class ConversationContainer extends Component {
-  state = { message: '', messages: [] }
+  state = { message: '' }
 
   componentWillMount () {
-    const { getConversation, getMessages, params } = this.props
-
-    getConversation(this.props.params.conversationId).then(result => {
+    const {
+      getConversation,
+      getMessages,
+      getUnreadConversationCount,
+      params,
+      updateReadStatus } = this.props
+    
+    getConversation(params.conversationId).then(result => {
       getMessages(params.conversationId)
+
+      updateReadStatus(params.conversationId).then(response => {
+        getUnreadConversationCount()
+      })
     })
   }
 
@@ -26,7 +35,6 @@ class ConversationContainer extends Component {
     const { receiveSocket } = this.props
 
     socket.emit('conversation mounted')
-    socket.on('receive socket', socketID => receiveSocket(socketID))
     socket.on('new socket message', message => this.handleNewMessage(message))
   }
 
@@ -48,6 +56,14 @@ class ConversationContainer extends Component {
     this.setState({ message: value })
   }
 
+  handleFocus = () => {
+    const { getUnreadConversationCount, params, updateReadStatus } = this.props
+
+    updateReadStatus(params.conversationId).then(response => {
+      getUnreadConversationCount()
+    })
+  }
+
   handleSubmit = () => {
     const { conversation, sendMessage, user } = this.props
 
@@ -56,30 +72,28 @@ class ConversationContainer extends Component {
     sendMessage(recipientId, this.state.message).then(response => {
       const { payload: { data = {} } } = response
 
-      socket.emit('new message', data)
+      socket.emit('new message', { message: data, recipient: recipientId })
 
       this.setState({ message: '' })
     })
   }
 
   handleNewMessage = message => {
-    let newMessages = this.state.messages
+    const { getMessages, params } = this.props
 
-    newMessages.push(message)
-
-    this.setState({ messages: newMessages })
+    getMessages(params.conversationId)
   }
 
   render () {
     const { conversation, messages, user } = this.props
-    const isReady = !conversation.isFetching && !messages.isFetching && !user.isFetching
 
-    return isReady
+    return !conversation.isFetching
       ? <Conversation
         conversation={ conversation.data }
         currentUser={ user.data }
-        messages={ this.state.messages }
+        messages={ messages.data }
         message={ this.state.message }
+        handleFocus={ this.handleFocus }
         handleChange={ this.handleChange }
         handleSubmit={ this.handleSubmit } /> : null
   }
@@ -91,8 +105,8 @@ ConversationContainer.propTypes = {
   getMessages: PropTypes.func.isRequired,
   messages: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired,
-  receiveSocket: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
+  updateReadStatus: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 }
 

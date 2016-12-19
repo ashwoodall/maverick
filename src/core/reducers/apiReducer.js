@@ -22,7 +22,7 @@ const item = (state = itemState, action) => {
 
   switch (type) {
     case REQUEST:
-      return Object.assign({}, state, { isFetching: true, data: dataType, message: null })
+      return Object.assign({}, state, { isFetching: true, data: state.data ? state.data : dataType, message: null })
     case RECEIVE:
       return Object.assign({}, state, {
         isFetching: false,

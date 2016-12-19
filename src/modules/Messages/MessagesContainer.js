@@ -9,7 +9,9 @@ import Actions from './MessagesActions'
 
 class MessagesContainer extends Component {
   componentWillMount () {
-    this.props.getAllConversations()
+    const { getAllConversations } = this.props
+    
+    getAllConversations()
   }
 
   handleConversationClick = (conversation) => {

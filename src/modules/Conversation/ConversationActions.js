@@ -22,15 +22,15 @@ const getMessages = (conversation) => {
   return createAction('CALL_API', action)
 }
 
-const receiveSocket = (id) => {
+const getUnreadConversationCount = () => {
   const action = {
-    key: 'user',
-    payload: {
-      socketId: id
-    }
+    key: 'unread',
+    endpoint: 'unread/conversations',
+    method: 'GET',
+    dataType: {}
   }
 
-  return createAction('CALL_APP', action)
+  return createAction('CALL_API', action)
 }
 
 const sendMessage = (recipientId, message) => {
@@ -48,4 +48,14 @@ const sendMessage = (recipientId, message) => {
   return createAction('CALL_API', action)
 }
 
-export default { getConversation, getMessages, receiveSocket, sendMessage }
+const updateReadStatus = (conversation) => {
+  const action = {
+    endpoint: `conversations/${conversation}/is_read`,
+    method: 'PUT',
+    dataType: {}
+  }
+
+  return createAction('CALL_API', action)
+}
+
+export default { getConversation, getMessages, getUnreadConversationCount, sendMessage, updateReadStatus }

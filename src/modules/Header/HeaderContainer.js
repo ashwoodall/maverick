@@ -22,20 +22,24 @@ class HeaderContainer extends Component {
   }
 
   render () {
-    return <Header active={ this.props.active } handleClick={ this.handleNavigate } />
+    const { count } = this.props
+
+    return <Header active={ this.props.active } handleClick={ this.handleNavigate } count={ count } />
   }
 }
 
 HeaderContainer.propTypes = {
   active: PropTypes.string,
+  count: PropTypes.number.isRequired,
   setActive: PropTypes.func,
   location: PropTypes.object
 }
 
-const mapStateToProps = ({ app: { navigation = {} } }) => {
+const mapStateToProps = ({ app: { navigation = {} }, api }) => {
   const { active = '' } = navigation
+  const { data: { count = 0 } } = api['unread'] || { data: {} }
 
-  return { active }
+  return { active, count }
 }
 
 const mapDispatchToProps = (dispatch) => {

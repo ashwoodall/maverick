@@ -1,6 +1,28 @@
 import { createAction } from 'core/utils'
 import { browserHistory } from 'react-router'
 
+const getAllConversations = (id) => {
+  const action = {
+    key: 'conversations',
+    endpoint: 'conversations',
+    method: 'GET',
+    dataType: []
+  }
+
+  return createAction('CALL_API', action)
+}
+
+const getUnreadConversationCount = () => {
+  const action = {
+    key: 'unread',
+    endpoint: 'unread/conversations',
+    method: 'GET',
+    dataType: {}
+  }
+
+  return createAction('CALL_API', action)
+}
+
 const getUserByToken = () => {
   const action = {
     key: 'user',
@@ -24,4 +46,4 @@ const showSnackBar = () => {
   return createAction('CALL_APP', action)
 }
 
-export default { getUserByToken, showSnackBar }
+export default { getAllConversations, getUnreadConversationCount, getUserByToken, showSnackBar }

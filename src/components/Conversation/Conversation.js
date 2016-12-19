@@ -24,7 +24,7 @@ class Conversation extends Component {
   }
 
   render () {
-    const { conversation, currentUser, handleChange, handleSubmit, message, messages } = this.props
+    const { conversation, currentUser, handleChange, handleFocus, handleSubmit, message, messages } = this.props
 
     return (
       <div className={ theme.conversation } data-oh-hi='conversation'>
@@ -77,6 +77,7 @@ class Conversation extends Component {
               hint='Say hello...'
               name='message'
               value={ message }
+              onFocus= { handleFocus }
               onChange={ (value) => handleChange(value) } />
             <Button
               className={ theme.button }

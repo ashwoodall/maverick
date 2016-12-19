@@ -11,6 +11,4 @@ const getAllConversations = (id) => {
   return createAction('CALL_API', action)
 }
 
-export default {
-  getAllConversations: getAllConversations
-}
+export default { getAllConversations }

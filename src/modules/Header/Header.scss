@@ -27,10 +27,21 @@
     align-items: center;
     color: $color-text-secondary;
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     margin: 0 $unit * 1.6;
     opacity: 1;
     transition: all $animation-duration $animation-curve-default;
+
+    .icon {
+      color: $color-white;
+      background-color: $palette-red-400;
+      border-radius: $unit * 0.2;
+      font-size: 1.3rem;
+      margin: 0;
+      margin-left: $unit * 0.5;
+      margin-top: $unit * 0.3;
+      padding: 0 ($unit * 0.4);
+    }
 
     > * {
       display: flex;

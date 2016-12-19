@@ -1,6 +1,7 @@
 // Core
 import React, { PropTypes } from 'react'
 import moment from 'moment'
+import classnames from 'classnames'
 
 // Thirdpart
 import { Avatar, List, ListDivider, ListItem } from 'react-toolbox'
@@ -14,7 +15,7 @@ const Messages = ({ messages, handleConversationClick }) => (
       { messages.map((conversation, index) => (
         <div key={ conversation.id }>
           <ListItem
-            className={ theme.listItem }
+            className={ conversation.is_read ? theme.listItem : classnames(theme.listItem, theme.notify) }
             theme={ theme }
             selectable
             avatar={ conversation.participant.profile_picture
@@ -22,7 +23,7 @@ const Messages = ({ messages, handleConversationClick }) => (
               : (<Avatar title={ conversation.participant.first_name } />) }
             caption={ `${conversation.participant.first_name} ${conversation.participant.last_name}` }
             legend={ conversation.last_message_snippet }
-            rightIcon={ <span>{ `${moment(conversation.updated_at).fromNow()}`  }</span> }
+            rightIcon={ conversation.is_read ? <span>{ `${moment(conversation.updated_at).fromNow()}`  }</span> : 'fiber_manual_record' }
             onClick={ () => handleConversationClick(conversation) } />
           { index !== messages.length - 1 && <ListDivider className={ theme.divider } theme={ theme } divider /> }
         </div>

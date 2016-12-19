@@ -18,6 +18,24 @@
         font-size: $unit * 1.2;
       }
 
+      .material-icons {
+        color: $palette-red-400;
+        font-size: $unit * 1.6;
+      }
+
+    }
+
+  }
+
+  .notify {
+
+    .right {
+
+      span[data-react-toolbox="font-icon"] {
+        color: $palette-red-400;
+        font-size: $unit * 1.6;
+      }
+      
     }
 
   }
