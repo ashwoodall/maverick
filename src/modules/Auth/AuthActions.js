@@ -1,5 +1,4 @@
 import { createAction } from 'core/utils'
-import { browserHistory } from 'react-router'
 
 const login = (user) => {
   const action = {

@@ -1,4 +1,5 @@
 // Views
+import Activate from 'modules/Activate'
 import App from 'views/App/App'
 import Conversation from 'views/Conversation'
 import Login from 'views/Login/Login'
@@ -34,6 +35,7 @@ const paths = {
       onEnter: requireAuth
     },
     children: [
+      { components: { main: Activate }, label: 'Activate', path: 'activate' },
       { components: { main: Conversation, header: Header, footer: Footer }, label: 'Conversation', path: 'messages/:conversationId', onEnter: requireAuth },
       { components: { main: Login }, label: 'Login', path: 'login', onEnter: isLoggedIn },
       { components: { main: Messages, header: Header, footer: Footer }, label: 'Messages', path: 'messages', onEnter: requireAuth },

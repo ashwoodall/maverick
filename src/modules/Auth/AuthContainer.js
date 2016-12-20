@@ -8,7 +8,7 @@ import cookie from 'react-cookie'
 
 // Modules
 import Auth from './Auth'
-import Verification from 'modules/Verification/Verification'
+import Verification from 'components/Verification'
 
 // Api
 import Actions from './AuthActions'
@@ -45,7 +45,7 @@ class AuthContainer extends Component {
 
     if (type === 'login') {
       login({ ...this.state.user }).then(response => {
-        const { payload: { success = false, token = '' }} = response
+        const { payload: { success = false, token = '' } } = response
 
         if (success) {
           cookie.save('jwt', token, { path: '/' });
@@ -72,10 +72,10 @@ class AuthContainer extends Component {
   }
 
   render () {
-    const { success, type, message } = this.props
+    const { message, success, type } = this.props
 
     return (
-      <div>
+      <div data-oh-hi='auth-container'>
         { success && <Verification email={ this.state.user.email } /> }
         { !success &&
           <Auth
@@ -94,17 +94,17 @@ class AuthContainer extends Component {
 }
 
 AuthContainer.propTypes = {
-  type: PropTypes.string.isRequired,
-  success: PropTypes.bool,
-  login: PropTypes.func,
-  register: PropTypes.func,
-  message: PropTypes.string
+  login: PropTypes.func.isRequired,
+  message: PropTypes.string,
+  register: PropTypes.func.isRequired,
+  success: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired
 }
 
 const mapPropsToState = ({ api: { user = {} } }) => {
-  const { success = false, message = null } = user
+  const { message = null, success = false } = user
 
-  return { success, message }
+  return { message, success }
 }
 
 export default connect(mapPropsToState, Actions)(AuthContainer)

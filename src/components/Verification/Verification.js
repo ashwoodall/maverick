@@ -10,10 +10,12 @@ import HeaderLogo from 'assets/oh-hi_Logo.png'
 import theme from './Verification.scss'
 
 const Verification = ({ email }) => (
-  <div className={ theme.verification } data-oh-hi='Verification'>
+  <div className={ theme.verification } data-oh-hi='verification'>
     <Flexbox layout='column' align='start center'>
       <Card className={ theme.card }>
-        <img src={ HeaderLogo } className={ theme.logo } />
+        <Flexbox layout='row' align='center center'>
+          <img src={ HeaderLogo } className={ theme.logo } />
+        </Flexbox>
         <Flexbox layout='column' align='center center'>
           <h3>Check your email!</h3>
           <FontIcon className={ theme.mail } value='mail_outline' />

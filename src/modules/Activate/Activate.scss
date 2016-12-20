@@ -1,0 +1,29 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.activate {
+  color: $color-text-secondary;
+
+  h3 {
+    color: $color-text-secondary;
+    margin: $layout-gutter-width-sm 0;
+  }
+
+  p {
+    margin-bottom: $layout-gutter-width-sm * 2;
+    text-align: center;
+  }
+
+  .logo {
+    width: $standard-increment-desktop * 2;
+    margin-bottom: $layout-gutter-width-sm;
+  }
+
+  .card {
+    box-shadow: none;
+    padding: $layout-gutter-width-sm * 2;
+    margin-bottom: $layout-gutter-width-sm;
+    max-width: $unit * 40;
+  }
+
+}

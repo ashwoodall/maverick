@@ -4,8 +4,8 @@ import React from 'react'
 // Modules
 import Auth from 'modules/Auth/AuthContainer'
 
-const Signup = () => (
-  <Auth type='register' />
+const Signup = (props) => (
+  <Auth type='register' { ...props } />
 )
 
 export default Signup
