@@ -12,7 +12,7 @@ import App from './App'
 // Actions
 import Actions from './AppActions.js'
 
-const socket = io('http://localhost:8080')
+const socket = io('http://www.api.oh-hi.us')
 
 class AppContainer extends Component {
 
