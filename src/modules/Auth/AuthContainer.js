@@ -8,7 +8,6 @@ import cookie from 'react-cookie'
 
 // Modules
 import Auth from './Auth'
-import Verification from 'components/Verification'
 
 // Api
 import Actions from './AuthActions'
@@ -54,7 +53,9 @@ class AuthContainer extends Component {
         
       })
     } else if (type === 'register') {
-      register({ ...this.state.user })
+      register({ ...this.state.user }).then(response => {
+        browserHistory.push(`/verification/${this.state.user.email}`)
+      })
     }
   }
 
@@ -72,24 +73,17 @@ class AuthContainer extends Component {
   }
 
   render () {
-    const { message, success, type } = this.props
+    const { message, type } = this.props
 
-    return (
-      <div data-oh-hi='auth-container'>
-        { success && <Verification email={ this.state.user.email } /> }
-        { !success &&
-          <Auth
-            handleChange={ this.handleChange }
-            handleSubmit={ this.handleSubmit }
-            handleValidation={ this.handleValidation }
-            message={ message }
-            stations={ stations }
-            type={ type }
-            user={ this.state.user }
-            validation={ this.state.validation } />
-        }
-      </div>
-    )
+    return <Auth
+      handleChange={ this.handleChange }
+      handleSubmit={ this.handleSubmit }
+      handleValidation={ this.handleValidation }
+      message={ message }
+      stations={ stations }
+      type={ type }
+      user={ this.state.user }
+      validation={ this.state.validation } />
   }
 }
 

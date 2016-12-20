@@ -5,6 +5,12 @@
   margin: $layout-gutter-width-sm 0;
   position: relative;
 
+  .button {
+    position: absolute;
+    top: -($standard-increment-desktop);
+    right: 0;
+  }
+
   .content {
     margin-top: $layout-gutter-width-sm;
   }

@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import cookie from 'react-cookie'
 import io from 'socket.io-client'
+import { isEmpty } from 'lodash'
+import { browserHistory } from 'react-router'
 
 // Components
 import App from './App'
@@ -19,17 +21,13 @@ class AppContainer extends Component {
 
     if (cookie.load('jwt')) {
       getUserByToken().then(response => {
-        const { payload: { data = {}, success = false }} = response
+        const { payload: { success = false }} = response
 
         if (!success) {
           cookie.remove('jwt')
           browserHistory.push('/login')
         }
 
-        getUnreadConversationCount()
-
-        if (data && !data.completed_profile) showSnackBar()
-        if (data && data.id) socket.emit('user-connected', data.id)
       })
     }
   }
@@ -44,6 +42,18 @@ class AppContainer extends Component {
     })
   }
 
+  componentWillReceiveProps (nextProps) {
+    const { data, getUnreadConversationCount, showSnackBar } = nextProps
+
+    if (isEmpty(data)) return 
+
+    socket.emit('user-connected', data.id)
+
+    getUnreadConversationCount()
+
+    if (!data.completed_profile) showSnackBar()
+  }
+
   render () {
     const { header, footer, main } = this.props
 
@@ -52,6 +62,7 @@ class AppContainer extends Component {
 }
 
 AppContainer.propTypes = {
+  data: PropTypes.object.isRequired,
   header: PropTypes.element,
   footer: PropTypes.element,
   main: PropTypes.element.isRequired,
@@ -60,4 +71,10 @@ AppContainer.propTypes = {
   showSnackBar: PropTypes.func.isRequired
 }
 
-export default connect(null, Actions)(AppContainer)
+const mapStateToProps = ({ api: { user = {} } }) => {
+  const { data = {} } = user
+
+  return { data }
+}
+
+export default connect(mapStateToProps, Actions)(AppContainer)

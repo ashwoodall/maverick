@@ -1,0 +1,36 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.forgot {
+
+  h5 {
+    color: $color-text-secondary;
+    margin: $layout-gutter-width-sm 0;
+  }
+
+  p {
+    margin-bottom: $baseline-grid;
+  }
+
+  .logo {
+    width: $standard-increment-desktop * 2;
+    margin-bottom: $layout-gutter-width-sm;
+  }
+
+  .card {
+    box-shadow: none;
+    padding: $layout-gutter-width-sm * 2;
+    max-width: $unit * 40;
+  }
+
+  .actions {
+    justify-content: flex-end;
+    margin-top: $layout-gutter-width;
+  }
+
+  .button {
+    margin-left: $layout-gutter-width-sm;
+    min-width: $unit * 9.6;
+  }
+  
+}

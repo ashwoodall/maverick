@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react'
 
 // Thirdparty
-import { Link, Navigation } from 'react-toolbox'
+import { Button, Link, Navigation } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Modules
@@ -13,8 +13,9 @@ import References from 'modules/References'
 // Theme
 import theme from './Profile.scss'
 
-const Profile = ({ index, handleTabChange }) => (
+const Profile = ({ index, handleTabChange, handleLogOut }) => (
   <div className={ theme.profile } data-oh-hi='profile-module'>
+    <Button className={ theme.button } label='Logout' onClick={ () => handleLogOut() } />
     <Flexbox layout='row' layout-sm='column' layout-xs='column'>
       <Flexbox flex='15' flex-sm='100' flex-xs='100'>
         <Navigation className={ theme.navigation } type='vertical'>

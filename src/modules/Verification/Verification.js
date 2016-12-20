@@ -1,12 +1,14 @@
+// Core
 import React, { PropTypes } from 'react'
-import { Card, FontIcon } from 'react-toolbox'
 
+// Thirdparty
+import { Card, FontIcon } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
-import Svg from 'components/Svg/Svg'
-
+// Assets
 import HeaderLogo from 'assets/oh-hi_Logo.png'
 
+// Theme
 import theme from './Verification.scss'
 
 const Verification = ({ email }) => (
@@ -24,11 +26,9 @@ const Verification = ({ email }) => (
             <p>We sent an email to:</p>
             <h5>{email}</h5>
           </Flexbox>
-          <p>Click the link in the email to activate your account.</p>
+          <p>Please click the link in the email to proceed.</p>
         </Flexbox>
       </Card>
-      <p>Can't find the email? <a href='/resend'>Resend</a></p>
-      <p>Need to change your email address? <a href='/changeEmail'>Change Email</a></p>
     </Flexbox>
   </div>
 )

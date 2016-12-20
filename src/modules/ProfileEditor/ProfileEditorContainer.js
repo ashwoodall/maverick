@@ -4,6 +4,7 @@ import update from 'react-addons-update'
 import { connect } from 'react-redux'
 import { forOwn, includes, merge } from 'lodash'
 import moment from 'moment'
+import { validate } from 'core/utils'
 
 // Modules
 import ProfileEditor from './ProfileEditor'
@@ -60,8 +61,22 @@ class ProfileEditorContainer extends Component {
       is_service_member: false,
       completed_profile: false
     },
+    validation: {
+      first_name: '',
+      last_name: '',
+      profile_picture: '',
+      birth_date: '',
+      hometown: '',
+      introduction: '',
+      facebook: '',
+      twitter: '',
+      instagram: '',
+      pinterest: '',
+      about_pets: ''
+    },
     activityLimit: false,
-    showExample: false
+    showExample: false,
+    isComplete: false
   }
 
   componentWillReceiveProps (nextProps) {
@@ -118,8 +133,16 @@ class ProfileEditorContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
+    const { user } = this.state
+
+    if (!user.first_name || !user.last_name || !user.birth_date || !user.hometown || !user.introduction || user.activities.length === 0) {
+      alert('Please complete required sections')
+
+      return
+    }
     
-    const { updateUser } = this.props
+    const { showFirstSave, showSnackBar, updateUser } = this.props
 
     let userClone = this.state.user
 
@@ -127,11 +150,28 @@ class ProfileEditorContainer extends Component {
       if (value === '') delete userClone[key]
     })
 
-    updateUser(userClone)
+    if (!this.state.user.completed_profile) showFirstSave()
+
+    updateUser(userClone).then(result => {
+      showSnackBar()
+    })
   }
 
   handleToggle = () => {
     this.setState({ activityLimit: !this.state.activityLimit })
+  }
+
+  handleValidation = (type, field, value) => {
+    let message = validate(type, value)
+    let newState 
+
+    if (message) {
+      newState = update(this.state, { validation: { $merge: { [field]: message } } })
+    } else {
+      newState = update(this.state, { validation: { $merge: { [field]: '' } } })
+    }
+
+    this.setState(newState)
   }
 
   render () {
@@ -147,8 +187,10 @@ class ProfileEditorContainer extends Component {
       handlePanelChange={ this.handlePanelChange }
       handleSubmit={ this.handleSubmit }
       handleToggle={ this.handleToggle }
+      handleValidation={ this.handleValidation }
       limit={ this.state.activityLimit }
-      showExample={ this.state.showExample } /> : null
+      showExample={ this.state.showExample }
+      validation={ this.state.validation } /> : null
   }
 }
 
@@ -156,7 +198,9 @@ ProfileEditorContainer.propTypes = {
   data: PropTypes.object.isRequired,
   file: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  updateUser: PropTypes.func
+  showFirstSave: PropTypes.func.isRequired,
+  showSnackBar: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired
 }
 
 const mapPropsToState = ({ api, app }) => {

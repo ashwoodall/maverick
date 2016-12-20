@@ -5,9 +5,6 @@ import React, { PropTypes } from 'react'
 import { Button, Card, CardActions, CardText, Dropdown, Input } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
-// Components
-import Svg from 'components/Svg/Svg'
-
 // Logo
 import HeaderLogo from 'assets/oh-hi_Logo.png'
 
@@ -44,7 +41,7 @@ const Auth = ({ handleChange, handleSubmit, handleValidation, message, stations,
               error={ validation.password }
               onBlur={ () => handleValidation('password', user.password) }
               onChange={ (value) => handleChange('password', value) } />
-            { type === 'login' && <a className={ theme.forgot__password } href='#'>Forgot Password?</a> }
+            { type === 'login' && <a className={ theme.forgot__password } href='/forgot'>Forgot Password?</a> }
             { type === 'register' &&
               <Dropdown auto disabled
                 allowBlank={ false }

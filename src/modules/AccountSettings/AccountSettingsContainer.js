@@ -9,7 +9,7 @@ import AccountSettings from './AccountSettings'
 import Actions from './AccountSettingsActions.js'
 
 class AccountSettingsContainer extends Component {
-  state = { active: false, disabled: false }
+  state = { active: false, disabled: false, delete: false }
 
   componentWillMount () {
     const { data } = this.props
@@ -48,17 +48,23 @@ class AccountSettingsContainer extends Component {
     this.setState({ active: !this.state.active })
   }
 
+  handleToggleDelete = () => {
+    this.setState({ delete: !this.state.delete })
+  }
+
   render () {
     const { data, isFetching } = this.props
 
     return !isFetching ?
       <AccountSettings
         active={ this.state.active }
+        showDelete={ this.state.delete }
         disabled={ this.state.disabled }
         handleEnable={ this.handleEnable }
         handleDisable={ this.handleDisable }
         handleDelete={ this.handleDelete }
         handleToggle={ this.handleToggle }
+        handleToggleDelete={ this.handleToggleDelete }
         user={ data } /> : null
   }
 }

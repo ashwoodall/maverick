@@ -11,7 +11,7 @@ import Divider from 'components/Divider'
 // Theme
 import theme from './AccountSettings.scss'
 
-const AccountSettings = ({ active, disabled, handleEnable, handleDelete, handleDisable, handleToggle, user }) => (
+const AccountSettings = ({ active, disabled, handleEnable, handleDelete, handleDisable, handleToggle, handleToggleDelete, showDelete, user }) => (
   <div className={ theme.accountSettings } data-oh-hi='account-settings'>
     <Flexbox layout='column'>
       { !disabled &&
@@ -37,7 +37,7 @@ const AccountSettings = ({ active, disabled, handleEnable, handleDelete, handleD
       <h5>Delete My Account</h5>
       <p>If you delete your account, all your data will be permanently deleted. This cannot be undone.</p>
       <Flexbox layout='row' align='end center'>
-        <Button label='Delete Account' raised onClick={ () => handleDelete() } />
+        <Button label='Delete Account' raised onClick={ () => handleToggleDelete() } />
       </Flexbox>
     </Flexbox>
     <Dialog
@@ -50,6 +50,16 @@ const AccountSettings = ({ active, disabled, handleEnable, handleDelete, handleD
         { !user.profile_picture && <Avatar icon='camera_alt' /> }
         <h4>Temporarily disable your account?</h4>
         <p>No one will be able to view your profile while your account is disabled. You may re-enable your account anytime.</p>
+      </Flexbox>
+    </Dialog>
+    <Dialog
+      actions={ [{ label: 'Cancel', onClick: handleToggleDelete }, { label: 'Delete Account', onClick: handleDelete }] }
+      active={ showDelete }
+      onEscKeyDown={ handleToggleDelete} 
+      onOverlayClick={ handleToggleDelete }>
+      <Flexbox layout='column' align='center center'>
+        <h4>Delete your account?</h4>
+        <p>All profile information and messages will be archived. If you decide later to return to Oh-hi, you will have to sign up again.</p>
       </Flexbox>
     </Dialog>
   </div>

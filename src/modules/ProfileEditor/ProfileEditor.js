@@ -20,7 +20,7 @@ import theme from './ProfileEditor.scss'
 
 const { activities, kidsAge } = forms
 
-const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handleExampleToggle, handlePanelChange, handleSubmit, handleToggle, showExample }) => (
+const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handleExampleToggle, handlePanelChange, handleSubmit, handleToggle, handleValidation, showExample, validation }) => (
   <div data-oh-hi='profile-editor' className={ theme.profileEditor }>
     <form role='form' onSubmit={ handleSubmit }>
       <PanelGroup>
@@ -42,6 +42,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
                 label='First name'
                 name='firstname'
                 value={ user.first_name }
+                maxLength={ 35 }
                 onChange={ (value) => handleChange('first_name', value) } />
               <Input
                 required
@@ -49,8 +50,10 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
                 label='Last name'
                 name='lastname'
                 value={ user.last_name }
+                maxLength={ 35 }
                 onChange={ (value) => handleChange('last_name', value) } />
               <DatePicker
+                required
                 label='Birthdate'
                 onChange={ (value) => handleChange('birth_date', value) }
                 value={ user.birth_date }
@@ -63,6 +66,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
                 label='Hometown'
                 name='hometown'
                 value={ user.hometown }
+                maxLength={ 50 }
                 onChange={ (value) => handleChange('hometown', value) } />
             </Flexbox>
           </Flexbox>
@@ -89,7 +93,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
                 value={ user.introduction }
                 multiline
                 label='Introduction'
-                maxLength={ 300 }
+                maxLength={ 1200 }
                 onChange={ (value) => handleChange('introduction', value) } />
               <p>(We’ll put this introduction under your picture at the top of your profile.)</p>
               <div className={ theme.inspiration }>
@@ -124,28 +128,36 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
               <br />
               <p className={ theme.notice }>Oh-hi won’t post anything to your accounts or pull any information from them.</p>
               <Input
-                type='text'
+                type='url'
                 label='Facebook'
                 name='facebook'
                 value={ user.facebook }
+                error={ validation.facebook }
+                onBlur={ () => handleValidation('url', 'facebook', user.facebook) }
                 onChange={ (value) => handleChange('facebook', value) } />
               <Input
-                type='text'
+                type='url'
                 label='Twitter'
                 name='twitter'
                 value={ user.twitter }
+                error={ validation.twitter }
+                onBlur={ () => handleValidation('url', 'twitter', user.twitter) }
                 onChange={ (value) => handleChange('twitter', value) } />
               <Input
-                type='text'
+                type='url'
                 label='Instagram'
                 name='instagram'
                 value={ user.instagram }
+                error={ validation.instagram }
+                onBlur={ () => handleValidation('url', 'instagram', user.instagram) }
                 onChange={ (value) => handleChange('instagram', value) } />
               <Input
-                type='text'
+                type='url'
                 label='Pinterest'
                 name='pinterest'
                 value={ user.pinterest }
+                error={ validation.pinterest }
+                onBlur={ () => handleValidation('url', 'pinterest', user.pinterest) }
                 onChange={ (value) => handleChange('pinterest', value) } />
             </Flexbox>
           </Flexbox>
@@ -164,7 +176,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
                 <RadioButton label='Yes' value='yes' />
                 <RadioButton label='No' value='no' />
               </RadioGroup>
-              { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } onChange={ (value) => handleChange('about_pets', value) } /> : <span /> }
+              { user.has_pets === 'yes' ? <Input type='text' label='Tell us about your pets' name='aboutPets' value={ user.about_pets } maxLength={ 500 } onChange={ (value) => handleChange('about_pets', value) } /> : <span /> }
               <br />
               <h5>Kids</h5>
               <h6>Do you have any kids?</h6>
