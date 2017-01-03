@@ -1,7 +1,6 @@
 {
   "watch": [
-    "server/*",
-    "webpack/*",
-    "server.js"
+    "bin/*",
+    "config/*"
   ]
 }

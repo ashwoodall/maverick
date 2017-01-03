@@ -4,13 +4,11 @@ We all need friends. We need people we can depend on, confide in, and just hang 
 
 ## Prerequisites
 
-- Node 4.2.0
-- Npm 2.14.7
-- MongoDB
+- Node ^4.2.0
+- Npm ^2.14.7
 
 ## Technologies Used
 
-**Front End**
 - React
 - Redux
 - React Redux Router
@@ -20,36 +18,15 @@ We all need friends. We need people we can depend on, confide in, and just hang 
 - Enzyme
 - Eslint
 
-**Server**
-- MongoDB
-- Mongoose
-- Express
-- Passport
-
 
 ## Installation
-
-**Front End**
 
 ```
   npm install
 ```
 
 
-**Server**
-
-Setup [MongoDB](http://mongodb.github.io/node-mongodb-native/2.2/quick-start/?_ga=1.89799955.907223301.1471219050) as described in mongoDB documentation
-
-
-## Starting the Application
-
-#### Lets first boot up MongoDB
-
-```
-  mongod
-```
-
-#### Building the frontend
+#### Building the code
 
 You have access to many processes on the frontend. Chose the ony most applicable to your needs:
 
@@ -57,11 +34,8 @@ You have access to many processes on the frontend. Chose the ony most applicable
 |------------------|-----------|
 |clean|Removes the current dist/ folder|
 |compile|Compiles static files into dist/|
-|build|Runs linting, tests and comiles source|
-|build:dev|Same as build, except it starts a dev server|
-|build:prod|Same as build, except it sets the node environment to production|
-|test|Runs unit tests once|
-|test:watch|Runs unit tests and watches for changes|
+|deploy|Runs linting, tests and comiles source|
+|dev|Same as build, except it starts a dev server|
 |lint|Lints both js and scss files|
 |lint:js|Lints js files|
 |lint:sass|Lints scss files|
@@ -74,28 +48,23 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 
 #### Project Layout
 
-The project is spilt into two main sections, client code sits in `client` while the server code sits in `server`. App specific scripts are stored in `bin`. All build configurations are store in `config`.
+Client code sits in `src`, app specific scripts are stored in `bin`. All build configurations are store in `config`.
 
 ```
 .
-├── bin                 # Build scripts
-├── config              # Build config
-├── src                 # Application source
-│   └── client          # Client side code
-│   │   ├── assets      # Static assets
-│   │   ├── core        # Core Files
-│   │   ├── middlewares # Redux Middlewares
-│   │   ├── modules     # React Modules
-│   │   └── views       # React Views
-│   │ 
-│   │
-│   └── server          # Server side code
-
+├── bin             # Build scripts
+├── config          # Build config
+├── src             # Application source
+│   ├── assets      # Static assets
+│   ├── core        # Core Files
+│   ├── middlewares # Redux Middlewares
+│   ├── modules     # React Modules
+│   └── views       # React Views
 ```
 
 #### Modules
 
-For the front end we are taking a module layout approach (domain). Each module should be self contained holding the logic for react, reduct, and styling. This folder is contained within `client/app/modules`
+For the front end we are taking a module layout approach (domain). Each module should be self contained holding the logic for react, reduct, and styling. This folder is contained within `src/modules`
 
 ```
 .
@@ -109,7 +78,7 @@ For the front end we are taking a module layout approach (domain). Each module s
 
 #### Views
 
-Views should remain stateless, their only responsibility is laying out the modules needed for that view. This folder is contained within `client/app/views`
+Views should remain stateless, their only responsibility is laying out the modules needed for that view. This folder is contained within `src/views`
 
 ```
 .
@@ -176,9 +145,7 @@ export const getUser = (user) => {
     dataType: {}
   }
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-  }
+  return createAction('CALL_API', action)
 }
 ```
 
@@ -192,9 +159,7 @@ export const toggleSideNav = (isOpen) => {
     }
   }
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_APP', action))
-  }
+  return createAction('CALL_APP', action)
 }
 ```
 
@@ -245,17 +210,15 @@ import { bindActionCreators } from 'redux'
 
 import Component from 'my-stateless-component'
 
+import Actions from './my-container-actions'
+
 const mapStateToProps = ({ app: { stuff = {} } }) => {
   const { param } = stuff
 
   return { param }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export default connect(mapStateToProps, Actions)(Component)
 ```
 
 Stateless Component:
@@ -300,16 +263,3 @@ That route object must look like:
 #### Theming 
 
 We use [React-toolbox](http://react-toolbox.com/#/install) for our source of material components and style. If any theming needs to be done on a component please follow their guide for doing so.
-
-
-#### MongoDB
-
-The MongoDB code is also seperated in separete modules. This modules hold all files needed for a specific endpoint. We are using [Mongoose](http://mongoosejs.com/) as our ODM for MongoDB
-
-```
-.
-└── Module        # Module Folder
-    ├── Module.js # Endpoint handler
-    ├── routes.js # API routes
-    └── schema.js # Data model
-```
