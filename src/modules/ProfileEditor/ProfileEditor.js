@@ -233,7 +233,7 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
       active={ showExample }
       onEscKeyDown={ handleExampleToggle }
       onOverlayClick={ handleExampleToggle }
-      title='Need some inspiration? Check out this eample:'>
+      title='Need some inspiration? Check out this example:'>
       <p><i>“Hi, I’m Allison! I love just hanging out, drinking wine, and watching Netflix together. I’m looking for others who understand what it’s like to be a military spouse.”</i></p>
     </Dialog>
 
