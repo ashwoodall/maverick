@@ -1,5 +1,16 @@
 import { createAction } from 'core/utils'
 
+const deleteConversation = (conversation) => {
+  const action = {
+    key: 'conversation',
+    endpoint: `conversations/${conversation}/soft_delete`,
+    method: 'PUT',
+    dataType: {}
+  }
+
+  return createAction('CALL_API', action)
+}
+
 const getConversation = (conversation) => {
   const action = {
     key: 'conversation',
@@ -58,4 +69,4 @@ const updateReadStatus = (conversation) => {
   return createAction('CALL_API', action)
 }
 
-export default { getConversation, getMessages, getUnreadConversationCount, sendMessage, updateReadStatus }
+export default { deleteConversation, getConversation, getMessages, getUnreadConversationCount, sendMessage, updateReadStatus }

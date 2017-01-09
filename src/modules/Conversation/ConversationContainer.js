@@ -1,5 +1,6 @@
 // Core
 import React, { Component, PropTypes } from 'react'
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import io from 'socket.io-client'
 
@@ -56,6 +57,14 @@ class ConversationContainer extends Component {
     this.setState({ message: value })
   }
 
+  handleDelete = () => {
+    const { deleteConversation, params } = this.props
+
+    deleteConversation(params.conversationId).then(response => {
+      browserHistory.push('/messages')
+    })
+  }
+
   handleFocus = () => {
     const { getUnreadConversationCount, params, updateReadStatus } = this.props
 
@@ -84,6 +93,10 @@ class ConversationContainer extends Component {
     getMessages(params.conversationId)
   }
 
+  handleToggle = () => {
+    this.setState({ showDialog: !this.state.showDialog })
+  }
+
   render () {
     const { conversation, messages, user } = this.props
 
@@ -93,9 +106,12 @@ class ConversationContainer extends Component {
         currentUser={ user.data }
         messages={ messages.data }
         message={ this.state.message }
+        showDialog={ this.state.showDialog }
+        handleDelete={ this.handleDelete }
         handleFocus={ this.handleFocus }
         handleChange={ this.handleChange }
-        handleSubmit={ this.handleSubmit } /> : null
+        handleSubmit={ this.handleSubmit }
+        handleToggle={ this.handleToggle } /> : null
   }
 }
 

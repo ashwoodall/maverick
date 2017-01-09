@@ -43,6 +43,7 @@ const forms = {
     }
   ],
   kidsAge: [
+    { value: 'bunInTheOver', label: 'Bun in the Oven' },
     { value: 'infant', label: 'Infant' },
     { value: 'middleSchool', label: 'Middle School' },
     { value: 'toddler', label: 'Toddler' },

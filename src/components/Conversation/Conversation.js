@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import moment from 'moment'
 
 // Thirdparty
-import { Avatar, Button, IconButton, Input, List, ListItem, ListDivider } from 'react-toolbox'
+import { Avatar, Button, Dialog, IconButton, Input, List, ListItem, ListDivider } from 'react-toolbox'
 import Flexbox from 'react-material-flexbox'
 
 // Theme
@@ -24,14 +24,14 @@ class Conversation extends Component {
   }
 
   render () {
-    const { conversation, currentUser, handleChange, handleFocus, handleSubmit, message, messages } = this.props
+    const { conversation, currentUser, handleChange, handleDelete, handleFocus, handleSubmit, handleToggle, message, messages, showDialog } = this.props
 
     return (
       <div className={ theme.conversation } data-oh-hi='conversation'>
         <Flexbox layout='row' flex align='start center'>
           <h4 className={ theme.title }>{ `${conversation.participant.first_name} ${conversation.participant.last_name.charAt(0)}.` }</h4>
           <Flexbox flex />
-          <IconButton className={ theme.fontIcon } icon='delete' />
+          <IconButton className={ theme.fontIcon } icon='delete' onClick={ () => handleToggle() } />
         </Flexbox>
         <ListDivider />
         <Flexbox layout='column'>
@@ -87,6 +87,14 @@ class Conversation extends Component {
               onClick={ () => handleSubmit() } />
           </Flexbox>
         </Flexbox>
+        <Dialog
+          actions={[ { label: 'Cancel', onClick: handleToggle }, { label: 'Delete', onClick: handleDelete } ]}
+          active={ showDialog }
+          onEscKeyDown={ handleToggle }
+          onOverlayClick={ handleToggle }
+          title='Delete conversation'>
+          <p>Delete this conversation? This cannot be undone.</p>
+        </Dialog>
       </div>
     )
   }

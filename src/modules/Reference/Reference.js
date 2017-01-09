@@ -29,7 +29,7 @@ const Reference = ({ data, handleChange, handleSubmit, reference, submitted }) =
             <Input type='text' label='Your Reference' name='reference' value={ reference } onChange={ (value) => handleChange('reference', value) } />
           </CardText>
           <CardActions className={ theme.actions }>
-            <Button className={ theme.button } label='Cancel' href={ `person/${data.id}` } />
+            <Button className={ theme.button } label='Cancel' href={ `/person/${data.id}` } />
             <Button className={ theme.button } label='Send' raised primary onClick={ () => handleSubmit(data.id) } />
           </CardActions>
         </Card>
