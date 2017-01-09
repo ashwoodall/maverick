@@ -35,7 +35,7 @@ You have access to many processes on the frontend. Chose the ony most applicable
 |clean|Removes the current dist/ folder|
 |compile|Compiles static files into dist/|
 |deploy|Runs linting, tests and comiles source|
-|dev|Same as build, except it starts a dev server|
+|dev|Starts a dev server|
 |lint|Lints both js and scss files|
 |lint:js|Lints js files|
 |lint:sass|Lints scss files|
