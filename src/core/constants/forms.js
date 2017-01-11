@@ -7,7 +7,7 @@ const forms = {
     }, { 
       value: 'coffee',
       label: 'Grab coffee or a drink',
-      message: 'I’d like to grab coee or a drink!'
+      message: 'I’d like to grab coffee or a drink!'
     }, { 
       value: 'eat',
       label: 'Grab lunch or dinner',
