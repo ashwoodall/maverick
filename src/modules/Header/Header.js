@@ -19,7 +19,7 @@ const Header = ({ active, count, handleClick }) => (
   <div className={ theme.appBar } data-oh-hi='header'>
     <AppBar className={ theme.header } flat fixed>
       <Flexbox className={ theme.wrapper } layout='row' flex align='space-between center'>
-        <img className={ theme.logo } src={ HeaderLogo } />
+        <a href='/' ><img className={ theme.logo } src={ HeaderLogo } /></a>
         <Navigation className={ theme.navigation }>
           <Link
             className={ active === null || active.includes('people') ? classnames(theme.link, theme.active) : theme.link }
