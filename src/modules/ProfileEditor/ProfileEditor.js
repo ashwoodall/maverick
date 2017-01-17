@@ -71,12 +71,12 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
             </Flexbox>
           </Flexbox>
           <Flexbox layout='column' align='center center'>
-            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('intro', true) } />
+            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('intro', true, true) } />
             <FontIcon value='keyboard_arrow_down' />
           </Flexbox>
         </Panel>
 
-        <Panel title='Introduce Yourself' subTitle='(required section)' expanded={ expanded.intro } onClick={ () => handlePanelChange('intro', !expanded.intro) }>
+        <Panel id='intro' title='Introduce Yourself' subTitle='(required section)' expanded={ expanded.intro } onClick={ () => handlePanelChange('intro', !expanded.intro) }>
           <Flexbox className={ theme.group } align='center center'>
             <Flexbox layout='column' flex>
               <h5>Write a <b>quick introduction</b> of yourself to potential new friends. Here are some things you might include:</h5>
@@ -115,12 +115,12 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
             </Flexbox>
           </Flexbox>
           <Flexbox layout='column' align='center center'>
-            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('social', true) } />
+            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('social', true, true) } />
             <FontIcon value='keyboard_arrow_down' />
           </Flexbox>
         </Panel>
 
-        <Panel title='Social Media' subTitle='(optional)' expanded={ expanded.social } onClick={ () => handlePanelChange('social', !expanded.social) }>
+        <Panel id='social' title='Social Media' subTitle='(optional)' expanded={ expanded.social } onClick={ () => handlePanelChange('social', !expanded.social) }>
           <Flexbox className={ classnames(theme.group, theme.social) } layout='row' align='center center'>
             <Flexbox layout='column' flex>
               <h5>Links to your social media pages</h5>
@@ -162,12 +162,12 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
             </Flexbox>
           </Flexbox>
           <Flexbox layout='column' align='center center'>
-            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('family', true) } />
+            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('family', true, true) } />
             <FontIcon value='keyboard_arrow_down' />
           </Flexbox>
         </Panel>
 
-        <Panel title='Family' subTitle='(optional)' expanded={ expanded.family } onClick={ () => handlePanelChange('family', !expanded.family) }>
+        <Panel id='family' title='Family' subTitle='(optional)' expanded={ expanded.family } onClick={ () => handlePanelChange('family', !expanded.family) }>
           <Flexbox className={ theme.group } layout='row' align='center center'>
             <Flexbox layout='column' flex>
               <h5>Pets</h5>
@@ -204,12 +204,12 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
             </Flexbox>
           </Flexbox>
           <Flexbox layout='column' align='center center'>
-            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('military', true) } />
+            <Button label='Next Section' flat primary onClick={ () => handlePanelChange('military', true, true) } />
             <FontIcon value='keyboard_arrow_down' />
           </Flexbox>
         </Panel>
 
-        <Panel title='History with the Military' subTitle='(optional)' expanded={ expanded.military } onClick={ () => handlePanelChange('military', !expanded.military) }>
+        <Panel id='military' title='History with the Military' subTitle='(optional)' expanded={ expanded.military } onClick={ () => handlePanelChange('military', !expanded.military) }>
           <Flexbox className={ theme.group } layout='row' align='center center'>
             <Flexbox layout='column' flex>
               <h6>Current Duty Station</h6>

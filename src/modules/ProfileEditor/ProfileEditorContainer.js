@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { forOwn, includes, merge } from 'lodash'
 import moment from 'moment'
 import { validate } from 'core/utils'
+import $ from 'jquery'
 
 // Modules
 import ProfileEditor from './ProfileEditor'
@@ -99,8 +100,14 @@ class ProfileEditorContainer extends Component {
     this.setState(newState)
   }
 
-  handlePanelChange = (name, value) => {
+  handlePanelChange = (name, value, next) => {
     const newState = update(this.state, { expanded: { $merge: { [name]: value } } })
+
+    if (next) {
+      $('html, body').animate({
+        scrollTop: $(`#${name}`).offset().top - 64
+      }, 1000)
+    }
 
     this.setState(newState)
   }
