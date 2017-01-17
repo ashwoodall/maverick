@@ -216,6 +216,8 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
               <h4>Fort Hood</h4>
               <br />
               <Checkbox label='I am a service member too!' checked={ user.is_service_member } onChange={ (value) => handleChange('is_service_member', value) } />
+              <br />
+              <p>Oh-hi is currently only available at Fort Hood. We'll let everyone know as we open up at more duty stations.</p>
             </Flexbox>
           </Flexbox>
         </Panel>
