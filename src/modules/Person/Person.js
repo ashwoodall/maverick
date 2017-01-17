@@ -27,13 +27,13 @@ const Person = ({ limited, person, references, startConversation }) => (
 
     { limited &&
       <div>
+        <Subheader title='Send an Invitation' />
         <Flexbox layout='row' align='center center'>
           <Flexbox className={ theme.activities } layout='column' flex>
-            <p className={ theme.aside }>I'd like to be invited to...</p>
             { person.activities.length > 0 && person.activities.map(activity => (
               <Button key={ activity } className={ theme.button } label={ activity } raised primary onClick={ () => startConversation(activity) } />
             ))}
-            <Button className={ theme.button } label='A Conversation' raised primary onClick={ () => startConversation() } />
+            <Button className={ theme.button } label='Send your own message' raised primary onClick={ () => startConversation() } />
           </Flexbox>
         </Flexbox>
 
