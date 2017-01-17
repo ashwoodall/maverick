@@ -2,7 +2,13 @@
 @import "~react-toolbox/lib/globals";
 
 .person {
+  margin: 0 auto;
+  max-width: $unit * 55.0;
   padding: $layout-gutter-width 0;
+
+  h1 {
+    font-size: $unit * 2.3;
+  }
 
   h5 {
     color: $color-text-secondary;

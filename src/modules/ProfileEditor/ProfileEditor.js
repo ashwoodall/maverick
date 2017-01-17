@@ -24,12 +24,9 @@ const ProfileEditor = ({ user, expanded, limit, handleCheck, handleChange, handl
   <div data-oh-hi='profile-editor' className={ theme.profileEditor }>
     <form role='form' onSubmit={ handleSubmit }>
       <PanelGroup>
-        <Panel title='Basic info' subTitle='(required section)' expanded={ expanded.basic } onClick={ () => handlePanelChange('basic', !expanded.basic) }>
+        <Panel title='Basic Info' subTitle='(required section)' expanded={ expanded.basic } onClick={ () => handlePanelChange('basic', !expanded.basic) }>
           <Flexbox className={ theme.group } layout='row' align='center center'>
             <Flexbox layout='column' flex>
-              <h5>Some quick information about yourself</h5>
-              <p>We need some basic information to add to your profile</p>
-              <br />
               <h6 className={ theme.noMargin }>Profile Picture</h6>
               <Flexbox className={ theme.upload } layout='column' align='start center'>
                 { user.profile_picture && <Avatar cover className={ theme.avatar } theme={ theme } image={ user.profile_picture } /> }

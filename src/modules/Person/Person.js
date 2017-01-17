@@ -19,7 +19,7 @@ const Person = ({ limited, person, references, startConversation }) => (
       { person.profile_picture
         ? (<Avatar cover className={ theme.avatar } image={ person.profile_picture } />)
         : (<Avatar className={ theme.avatar } title={ person.first_name } theme={ theme } />) }
-      <h3>{ `${person.first_name} ${person.last_name}` }</h3>
+      <h1>{ `${person.first_name} ${person.last_name}` }</h1>
       <h5>{ `${moment().diff(person.birth_date, 'years')} | ${person.current_station}`}</h5>
     </Flexbox>
 

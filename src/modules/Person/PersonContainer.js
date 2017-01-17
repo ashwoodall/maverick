@@ -8,6 +8,7 @@ import Person from './Person'
 import Actions from './PersonActions'
 
 class PersonContainer extends Component {
+  
   componentWillMount () {
     this.props.getReferences(this.props.params.userId)
     this.props.getUserById(this.props.params.userId)

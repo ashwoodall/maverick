@@ -5,7 +5,8 @@
   margin: 0 auto;
 
   .group {
-    margin: ($baseline-grid * 4) $layout-gutter-width-sm;
+    margin: ($baseline-grid * 4) auto;
+    max-width: $unit * 55.0;
 
     p {
       font-weight: 500;
@@ -44,6 +45,7 @@
     .description {
 
       .inputElement {
+        border: 1px solid $color-divider;
         height: 128px !important;
       }
 
